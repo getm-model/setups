@@ -1,0 +1,39 @@
+$Id: README,v 1.1 2007-06-27 12:38:06 kbk Exp $
+
+This test case contains a little box with a parabolic bottom topography. 
+It's lateral boundaries are lines of constant latitude and longitude, 
+respectively. The size of this box corresponds approximately to that
+of the "nice_little_box" in Cartesian coordinates. Stratification 
+from "tprof.dat" corresponds to a two-layer fluid.
+The flow is driven by a constant wind from west.
+The run's duration is 10 days, during which you can see some nice
+Poincare-type waves in the basin, some upwelling at the northern shore,
+and the initiation of a non-linear Kelvin-type wave in the upwelling
+region.
+
+This test case serves as a simple example for what is needed when 
+working with a regularly spaced, spherical grid. The file "topo_min.nc" 
+contains the minimum number of variables for GETM to do a useful run, 
+namely:
+
+- The interger "grid_type", 
+  telling GETM that you use a spherical grid
+
+- The grid spacings "dlon" and "dlat" in degrees
+
+- The fully polished "bathymetry", 
+  defined at the T-points, positive, in meters.
+  (the dimensions of this matrix have to correspond to
+  "iextr" and "jextr" in the *.dim file when working with
+  STATIC allocation). 
+   
+
+If one of these is missing, GETM doesn't run. However, it is 
+possible to specify more quantities to GETM like the (x,y) positions 
+of the (lon,lat) X-points (useful for plotting), and some parameters
+of the geographical projection. This delux-version of the topo-file
+is called "topo.nc". If GETM doesn't find one of these optional 
+quantities, it outputs a warning and sets a default value.
+
+Matlab routines are available to produce the topo-files for this
+and other topographies.

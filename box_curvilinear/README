@@ -1,0 +1,55 @@
+$Id: README,v 1.1 2007-06-27 12:38:06 kbk Exp $
+
+This test case contains a little curved channel with a parabolic 
+bottom topography. Stratification from "tprof.dat" corresponds to 
+a two-layer fluid. The flow is driven by a constant wind from west if
+"topo.nc" is used as bathymetry file. Alternatively, if "topo_min.nc"
+is used, the wind blows into the local x-direction of the curvilinear
+grid (see below). 
+
+The run's duration is 10 days, during which you can see some nice
+Poincare-type waves in the basin, some upwelling at the northern shore,
+and the initiation of a non-linear Kelvin-type wave in the upwelling
+region.
+
+This test case serves as a simple example for what is needed when 
+working with a plane curvilinear grid. The file "topo_min.nc" 
+contains the minimum number of variables for GETM to do a useful run, 
+namely:
+
+- The interger "grid_type", 
+  telling GETM that you use a spherical grid
+
+- The fully polished "bathymetry", 
+  defined at the T-points, positive, in meters.
+  (the dimensions of this matrix have to correspond to
+  "iextr" and "jextr" in the *.dim file when working with
+  STATIC allocation). 
+
+- The x- and y-position of the X-points of the curvilinear grid, 
+  called "xx" and "yx" in meters.
+  (the dimensions of this matrix have to correspond to
+  "iextr+1" and "jextr+1" in the *.dim file when working with
+  STATIC allocation). 
+   
+
+If one of these is missing, GETM doesn't run. However, it is 
+possible to specify more quantities to GETM, like "convx". 
+This quantity consists of two contributions: First, the local
+rotation of the curvilinear grid (mathematically positive) with
+respect to the x,y-coordinate system. Second, the local rotation 
+(also mathematically positive) of the N/E-system with respect to 
+the x,y-system ("grid convergence"). This is needed if the wind
+stress is given in the N/E system. Also added to the topo-file 
+can be the (lon,lat) positions of the (x,y) X-points, and some parameters
+of the geographical projection. This delux-version of the topo-file
+is called "topo.nc". If GETM doesn't find one of these optional 
+quantities, it outputs a warning and sets a default value. In 
+particular, "convx" is set to zero, if it is missing. This means
+that the x,y components of the wind stress are taken to be in the 
+local direction of the curvilinear grid lines.
+
+Matlab routines are available to produce the topo-files for this
+and other topographies. Curvilinear grids can also be produced with
+"Seagrid" and mapped afterwards to a topo-file with the help
+of the Matlab script "seagrid2getm".

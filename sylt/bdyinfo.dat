@@ -1,0 +1,14 @@
+# comments and empty lines are allowed in bdyinfo.dat.
+! comments are lines starting with ! or # in column 1
+
+! Number of western boundaries
+1
+1 2 159 3 0
+! Number of northern boundaries
+1 
+160 1 66 3 0
+! Number of eastern boundaries
+0
+! Number of southern boundaries
+1
+1 1 4 3 0

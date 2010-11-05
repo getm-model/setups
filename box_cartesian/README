@@ -1,0 +1,44 @@
+This test case contains a little rectangular box with a parabolic
+bottom topography. Stratification from "tprof.dat" corresponds to
+a two-layer fluid. The flow is driven by a constant wind from west 
+or, which is almost the same in this case, in the x-direction. The 
+run's duration is 10 days, during which you can see some nice
+Poincare-type waves in the basin, some upwelling at the northern shore,
+and the initiation of a non-linear Kelvin-type wave in the upwelling
+region.
+
+This test case serves as a simple example for what is needed when 
+working with a Cartesian grid. The file "topo_min.nc" contains 
+the minimum number of variables for GETM to do a useful run, namely:
+
+- The interger "grid_type", 
+  telling GETM that you use a Cartesian grid
+
+- The grid spacings "dx" and "dy" in meters
+
+- The fully polished "bathymetry", 
+  defined at the T-points, positive, in meters.
+  (the dimensions of this matrix have to correspond to
+   "iextr" and "jextr" in the *.dim file when working with
+  STATIC allocation). 
+   
+
+If one of these is missing, GETM doesn't run. However, it is 
+possible to specify more quantities to GETM like "convx", 
+the convergence of the geographical projection inside the model
+domain (useful for rotating the wind stress from E/N to x/y), 
+the (lonx,latx) positions of the X-points, and some parameters
+of the geographical projection. This delux-version of the topo-file
+is called "topo.nc". If GETM doesn't find one of these optional 
+quantities, it outputs a warning and sets a default value.
+
+Matlab routines are available to produce the topo-files for this
+and other topographies.
+
+Inlcuded in this setup is the option for running in parallel mode. Via 
+OpenMP and MPI. To do this execute the script 'run_tests.sh'. The script 
+compile and run the 'box_cartesian' 3 times and at the end run 
+'show_timer_speedup.pl' for analysing the performance results. Note that
+the lenght of these runs are only 3 days instead of the 11 days for
+the standard test case. Note also that mpiexec, editscenario.py and ncmerge
+mut be in the PATH.

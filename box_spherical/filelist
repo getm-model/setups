@@ -1,0 +1,13 @@
+box_spherical/filelist
+box_spherical/timestamp
+box_spherical/README
+box_spherical/Makefile
+box_spherical/box_spherical.1p.dim
+box_spherical/box_spherical.4p.dim
+box_spherical/box_spherical.dim
+box_spherical/box_spherical.xml
+box_spherical/getm.inp
+box_spherical/gotmturb.nml
+box_spherical/topo_min.nc
+box_spherical/topo.nc
+box_spherical/tprof.dat

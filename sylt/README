@@ -1,0 +1,20 @@
+For this idealised simulation with realistic bathymetry, 
+a bathymetry data set with a horizontal resolution of 200 m X 200 m is used.
+An equidistant vertical discretisation with 20 sigma layers is chosen.
+The micro time step is 4.4714 s (1/10000 of M2 frequency) and with
+M=10, the macro time step is 44.714 s.
+A tidal forcing considering 8 harmonic tides
+is applied until a periodically steady state is reached.
+The periods of the harmonic tides which are not overtides of the M2
+tide have been modified for this short term study such that the tidal
+forcing is periodic with the M2 tide, for details, 
+see Burchard & Bolding (2002).
+The minimum depth is chosen as 0.05 m and the critical depth
+below which some physical processes are restricted is 0.2 m.
+Wind forcing and surface heat fluxes are neglected.
+
+To run the model, do the following:
+
+make namelist
+make
+./bin/getm*
