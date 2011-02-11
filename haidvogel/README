@@ -1,0 +1,25 @@
+/----------------------------\
+| GETM test case "haidvogel" |
+|----------------------------|
+|         11/02/11           |
+\----------------------------/
+
+Haidvogel and Beckmann (1999) suggested this
+large-scale lock-exchange to test advection
+schemes at propagating sharp density fronts.
+
+
+| Compilation instructions
+\-------------------------
+make model: compilation of GETM
+make namelist: reset of getm.inp
+make run: both + execution
+
+
+| References
+\-----------
+
+Haidvogel, D. B., A. Beckmann, 1999:
+"Numerical Ocean Circulation Modeling"
+Bell, J. N. B. (ed.)
+Imperial College Press

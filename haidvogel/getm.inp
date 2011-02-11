@@ -1,0 +1,837 @@
+!-------------------------------------------------------------------------------
+! general model setup
+!-------------------------------------------------------------------------------
+! dryrun       [bool]
+!                dry run
+! runid        [string]
+!                identifier for the naming of output files
+! title        [string]
+!                title of simulation
+! parallel     [bool]
+!                parallel simulation
+! runtype      [integer]
+!                type of run
+!                1: 2D
+!                2: 3D (no density)
+!                3: 3D (frozen density)
+!                4: 3D (full)
+! hotstart     [bool]
+!                read initial fields from file
+! use_epoch    [bool]
+!                use a common time origin for a series of hotstart simulations
+! save_initial [bool]
+!                save initial values i.e. before entering the time loop
+!-------------------------------------------------------------------------------
+
+&param
+   dryrun = .false.,
+   runid = 'haidvogel',
+   title = 'lock-exchange from Haidvogel and Beckmann (1999)',
+   parallel = .false.,
+   runtype = 4,
+   hotstart = .false.,
+   use_epoch = .false.,
+   save_initial = .true.,
+/
+
+!-------------------------------------------------------------------------------
+! time related formats and variables
+!-------------------------------------------------------------------------------
+! timestep [float, unit = s]
+!            micro timestep
+! timefmt  [integer]
+!            time format
+!            1: nlast only - fake start time used
+!            2: start and stop - nlast calculated
+!            3: start and nlast - stop calculated
+! nlast    [integer]
+!            number of time steps
+!            This variable is not used if timefmt = 2
+! start    [string, format = "yyyy-mm-dd hh:mm:ss"]
+!            initial time
+!            This variable is not used if timefmt = 1
+! stop     [string, format = "yyyy-mm-dd hh:mm:ss"]
+!            final time
+!            This variable is only used if timefmt = 2
+!-------------------------------------------------------------------------------
+
+&time
+   timestep = 15.0,
+   timefmt = 1,
+   nlast = 5760,
+   start = '2000-01-01 00:00:00',
+   stop = '2000-01-01 00:05:00',
+/
+
+!-------------------------------------------------------------------------------
+! information on the calculation domain
+!-------------------------------------------------------------------------------
+! vert_cord   [integer]
+!               vertical coordinates
+!               1: sigma
+!               2: z-level
+!               3: general vertical coordinates (gvc)
+! maxdepth    [float, unit = m]
+!               maximum depth in active calculation domain
+!               This variable is only used if vert_cord = 3
+! bathymetry  [string]
+!               name of file with bathymetry and grid
+! longitude   [float, unit = deg East]
+!               Longitude used for calculating short wave radiation (if not from
+!                 bathymetry file)
+! latitude    [float, unit = deg North]
+!               Latitude used for calculating the Coriolis force (if not from
+!                 bathymetry file)
+! f_plane     [bool]
+!               compute (constant) f latitude (otherwise calculated from
+!                 latitude,longitude in bathymetry)
+! openbdy     [bool]
+!               whether the scenario has open boundaries
+! bdyinfofile [string]
+!               name of file with boundary info
+!               This variable is only used if openbdy = True
+! crit_depth  [float, unit = m]
+!               the critical depth - when the drying procedure starts
+! min_depth   [float, unit = m]
+!               the absolute minimum depth
+! kdum        [integer]
+!               number of layers in the vertical - only used when -DDYNAMIC
+! ddu         [float]
+!               Surface zooming: 0: no zooming, 1: weak zooming, 3: strong
+!                 zooming, etc.
+! ddl         [float]
+!               Bottom zooming: 0: no zooming, 1: weak zooming, 3: strong
+!                 zooming, etc.
+! d_gamma     [float, unit = m]
+!               Depth below which sigma coordinates are used. For larger depth,
+!                 surface or bottom layer thickness at depth=d_gamma is kept,
+!                 depending on gamma_surf
+!               This variable is only used if vert_cord = 3
+! gamma_surf  [bool]
+!               layer thickness constant at surface (else at the bottom)
+!               This variable is only used if vert_cord = 3
+! il          [integer]
+!               ???
+! ih          [integer]
+!               ???
+! jl          [integer]
+!               ???
+! jh          [integer]
+!               ???
+! z0_method   [integer]
+!               bottom roughness specification
+!               0: constant - using z0_const
+!               1: space varying - read from bathymetry file (variable name MUST
+!                 be z0)
+! z0_const    [float, unit = m]
+!               constant bottom roughness
+!               This variable is only used if z0_method = 0
+!-------------------------------------------------------------------------------
+
+&domain
+   vert_cord = 1,
+   maxdepth = 20.0,
+   bathymetry = 'haidvogel.input.nc',
+   longitude = 0.0,
+   latitude = 0.0,
+   f_plane = .true.,
+   openbdy = .false.,
+   bdyinfofile = 'bdyinfo.dat',
+   crit_depth = 2.0,
+   min_depth = 0.2,
+   kdum = 20,
+   ddu = 0.0,
+   ddl = 0.0,
+   d_gamma = 20.0,
+   gamma_surf = .true.,
+   il = -1,
+   ih = -1,
+   jl = -1,
+   jh = -1,
+   z0_method = 0,
+   z0_const = 0.01,
+/
+
+!-------------------------------------------------------------------------------
+! variables related to meteorological forcing
+!-------------------------------------------------------------------------------
+! metforcing    [bool]
+!                 use meteorological forcing
+! on_grid       [bool]
+!                 Are meteo given on grid-points?
+!                 This variable is only used if metforcing = True
+! calc_met      [bool]
+!                 Are the fluxes already given?
+!                 This variable is only used if metforcing = True
+! met_method    [integer]
+!                 meteo method
+!                 1: constant
+!                 2: from file
+!                 This variable is only used if metforcing = True
+! fwf_method    [integer]
+!                 freshwater flux method
+!                 0: none
+!                 1: constant, use precip_const and evap_const
+!                 2: both evapotation and precipitation from file
+!                 3: evaporation is calculated, precipitation from file
+!                 4: evaporation is calculated, NO precipitation
+!                 This variable is only used if metforcing = True
+! spinup        [integer, unit = micro time steps]
+!                 number of time steps for forcing spin-up
+!                 This variable is only used if metforcing = True
+! metfmt        [integer]
+!                 format of meteofile
+!                 1: ASCII
+!                 2: NetCDF
+!                 This variable is only used if (metforcing = True and
+!                   met_method = 2)
+! meteo_file    [string]
+!                 name of meteofile
+!                 This variable is only used if (metforcing = True and
+!                   met_method = 2)
+! tx            [float, unit = Pa]
+!                 constant x stress
+!                 This variable is only used if (metforcing = True and
+!                   met_method = 1)
+! ty            [float, unit = Pa]
+!                 constant y stress
+!                 This variable is only used if (metforcing = True and
+!                   met_method = 1)
+! swr_const     [float, unit = W/m^2]
+!                 constant short wave radiation
+!                 This variable is only used if (metforcing = True and
+!                   met_method = 1)
+! shf_const     [float, unit = W/m^2]
+!                 constant surface heat flux
+!                 This variable is only used if (metforcing = True and
+!                   met_method = 1)
+! evap_const    [float, unit = m/s]
+!                 constant evaporation
+!                 This variable is only used if (metforcing = True and
+!                   fwf_method = 1)
+! precip_const  [float, unit = m/s]
+!                 constant precipitation
+!                 This variable is only used if (metforcing = True and
+!                   fwf_method = 1)
+! evap_factor   [float]
+!                 factor to convert evaporation to m/s
+!                 This variable is only used if (metforcing = True and
+!                   fwf_method = 2)
+! precip_factor [float]
+!                 factor to convert precipitation to m/s
+!                 This variable is only used if (metforcing = True and
+!                   (fwf_method = 2 or fwf_method = 3))
+!-------------------------------------------------------------------------------
+
+&meteo
+   metforcing = .false.,
+   on_grid = .true.,
+   calc_met = .false.,
+   met_method = 2,
+   fwf_method = 2,
+   spinup = 500,
+   metfmt = 2,
+   meteo_file = 'meteo.nc',
+   tx = 0.0,
+   ty = 0.0,
+   swr_const = 0.0,
+   shf_const = 0.0,
+   evap_const = 0.0,
+   precip_const = 0.0,
+   evap_factor = 1.0,
+   precip_factor = 1.0,
+/
+
+!-------------------------------------------------------------------------------
+! variables related to rivers
+!-------------------------------------------------------------------------------
+! river_method   [integer]
+!                  river method
+!                  0: none
+!                  1: constant
+!                  2: from file
+! river_info     [string]
+!                  name of file with river specifications
+!                  This variable is only used if river_method = 2
+! river_format   [integer]
+!                  format of river_data
+!                  1: ASCII
+!                  2: NetCDF
+!                  This variable is only used if river_method = 2
+! river_data     [string]
+!                  name of file with actual river data
+!                  This variable is only used if river_method = 2
+! river_ramp     [integer]
+!                  ramp on river flows - in micro time steps
+!                  This variable is not used if river_method = 0
+! river_factor   [float]
+!                  factor to convert river flow to m^3/s
+!                  This variable is only used if river_method = 2
+! use_river_salt [bool]
+!                  use salinity info - if present in river data
+!                  This variable is only used if river_method = 2
+! use_river_temp [bool]
+!                  use temperature info - if present in river data
+!                  This variable is only used if river_method = 2
+!-------------------------------------------------------------------------------
+
+&rivers
+   river_method = 0,
+   river_info = 'riverinfo.dat',
+   river_format = 2,
+   river_data = 'rivers.nc',
+   river_ramp = -1,
+   river_factor = 1.0,
+   use_river_salt = .true.,
+   use_river_temp = .true.,
+/
+
+!-------------------------------------------------------------------------------
+! variables related to 2D model
+!-------------------------------------------------------------------------------
+! MM               [integer, minimum = 0, unit = micro time steps]
+!                    time steps between calls to bottom_friction()
+! vel_depth_method [integer]
+!                    vel_depth_method
+!                    0: use mean value of neighboring H points (default)
+!                    1: use minimum value of neighboring H points
+!                    2: use mixture of mean and minimum values: see code for
+!                      details
+! Am               [float, unit = m^2/s]
+!                    constant horizontal momentum diffusion coefficient
+! An_method        [integer]
+!                    method for constant horizontal numerical diffusion
+!                      coefficient (m^2/s) used to filter the surface elevation
+!                    0: disabled
+!                    1: constant value An_const
+!                    2: variable 2D from file
+! An_const         [float, unit = m^2/s]
+!                    constant horizontal numerical diffusion coefficient
+!                    This variable is only used if An_method = 1
+! An_file          [string]
+!                    name of netcdf file with variable An
+!                    This variable is only used if An_method = 2
+! residual         [integer]
+!                    compute vertically integrated residual currents every
+!                      'residual' time step
+! sealevel_check   [integer]
+!                    Interval between checks for NaN's in sealevels. 0:
+!                      disabled, >0: check every sealevel_check step, abort if
+!                      check fails, <0: check every abs(sealevel_check) step,
+!                      warn only if check fails
+! bdy2d            [bool]
+!                    open boundaries exist
+! bdyfmt_2d        [integer]
+!                    format of boundary specifications
+!                    -1: no data needed
+!                    0: analytical
+!                    1: ASCII
+!                    2: NetCDF
+!                    This variable is only used if bdy2d = True
+! bdyramp_2d       [integer]
+!                    number of time steps for elevation boundary spin-up
+!                    This variable is only used if bdy2d = True
+! bdyfile_2d       [string]
+!                    name of file with boundary data
+!                    This variable is only used if (bdy2d = True and (bdyfmt_2d
+!                      = 1 or bdyfmt_2d = 2))
+!-------------------------------------------------------------------------------
+
+&m2d
+   MM = 1,
+   vel_depth_method = 0,
+   Am = -1.0,
+   An_method = 0,
+   An_const = 0.0,
+   An_file = 'field_An.nc',
+   residual = -1,
+   sealevel_check = 1,
+   bdy2d = .false.,
+   bdyfmt_2d = 2,
+   bdyramp_2d = -1,
+   bdyfile_2d = 'bdy_2d.nc',
+/
+
+!-------------------------------------------------------------------------------
+! variables related to 3D model
+!-------------------------------------------------------------------------------
+! M                [integer, minimum = 1, unit = micro time steps]
+!                    time steps between calls to 3D model
+! cnpar            [float, minimum = 0.0, maximum = 1.0]
+!                    Cranck-Nicolson parameter
+! cord_relax       [float, minimum = 0.0, unit = s]
+!                    Coordinate relaxation time scale. The parameter
+!                      r=cord_relax/dt*H(i,j)/maxdepth regulates how strongly
+!                      new layer distribution is relaxed to the old one.
+!                    This variable is only used if ../domain/vert_cord = 3
+! bdy3d            [bool]
+!                    open boundaries exist
+! bdyfmt_3d        [integer]
+!                    format of boundary specifications
+!                    1: ASCII
+!                    2: NetCDF
+!                    This variable is only used if bdy3d = True
+! bdyramp_3d       [integer]
+!                    number of time steps for boundary spin-up
+!                    This variable is only used if bdy3d = True
+! bdyfile_3d       [string]
+!                    name of file with boundary data
+!                    This variable is only used if bdy3d = True
+! bdy3d_tmrlx      [bool]
+!                    temporal 3D boundary relaxation coeff.
+!                    This variable is only used if bdy3d = True
+! bdy3d_tmrlx_min  [float, minimum = 0.0, maximum = 1.0]
+!                    minimum relaxation coefficient
+!                    This variable is only used if bdy3d_tmrlx = True
+! bdy3d_tmrlx_max  [float, minimum = 0.0, maximum = 1.0]
+!                    maximum relaxation coefficient
+!                    This variable is only used if bdy3d_tmrlx = True
+! bdy3d_tmrlx_ucut [float, minimum = 0.0, unit = m/s]
+!                    velocity threshold
+!                    This variable is only used if bdy3d_tmrlx = True
+! vel_hor_adv      [integer]
+!                    horizontal advection method for momentum
+!                    1: upstream (first-order, monotone)
+!                    2: 2D upstream (first-order, monotone)
+!                    3: P2-PDM (third-order, non-monotone)
+!                    4: TVD-Superbee (second-order, monotone)
+!                    5: TVD-MUSCL (second-order, monotone)
+!                    6: TVD-P2-PDM (third-order, monotone)
+!                    7: 2D-FCT
+! vel_ver_adv      [integer]
+!                    vertical advection method for momentum
+!                    1: upstream (first-order, monotone)
+!                    2: 2D upstream (first-order, monotone)
+!                    3: P2-PDM (third-order, non-monotone)
+!                    4: TVD-Superbee (second-order, monotone)
+!                    5: TVD-MUSCL (second-order, monotone)
+!                    6: TVD-P2-PDM (third-order, monotone)
+!                    7: 2D-FCT
+! vel_adv_split    [integer]
+!                    splitting scheme for advection
+!                    0: 1D split --> full u, full v, full w
+!                    1: 1D split --> half u, half v, full w, half v, half u
+!                    2: 2D-hor-1D-vert split --> full uv, full w
+! calc_temp        [bool]
+!                    solve temperature equation
+! calc_salt        [bool]
+!                    solve salinity equation
+! avmback          [float, unit = m^2/s]
+!                    background viscosity
+! avhback          [float, unit = m^2/s]
+!                    background diffusivity
+! ip_method        [integer]
+!                    internal pressure method
+!                    1: Blumberg and Mellor
+!                    2: Blumberg and Mellor (linear)
+!                    3: z-interpolation
+!                    4: Song and Wright
+!                    5: Chu and Fan
+!                    6: Shchepetkin and McWilliams (2003)
+!                    7: Stelling and van Kester (1994)
+! ip_ramp          [integer, unit = micro time steps]
+!                    Internal pressure spin-up. must be a multiple of M (split
+!                      factor)
+! vel_check        [integer]
+!                    Interval between checks for out-of-bounds velocities. 0:
+!                      disabled, >0: check every vel_check step, abort if check
+!                      fails, <0: check every abs(vel_check) step, warn if check
+!                      fails
+! min_vel          [float, unit = m/s]
+!                    minimum valid velocity
+!                    This variable is not used if vel_check = 0
+! max_vel          [float, unit = m/s]
+!                    maximum valid velocity
+!                    This variable is not used if vel_check = 0
+!-------------------------------------------------------------------------------
+
+&m3d
+   M = 10,
+   cnpar = 0.9,
+   cord_relax = 0.0,
+   bdy3d = .false.,
+   bdyfmt_3d = 2,
+   bdyramp_3d = -1,
+   bdyfile_3d = 'bdy_3d.nc',
+   bdy3d_tmrlx = .false.,
+   bdy3d_tmrlx_min = 0.0,
+   bdy3d_tmrlx_max = 0.25,
+   bdy3d_tmrlx_ucut = 0.02,
+   vel_hor_adv = 6,
+   vel_ver_adv = 6,
+   vel_adv_split = 0,
+   calc_temp = .false.,
+   calc_salt = .true.,
+   avmback = -1.0,
+   avhback = -1.0,
+   ip_method = 1,
+   ip_ramp = -1,
+   vel_check = 0,
+   min_vel = -4.0,
+   max_vel = 4.0,
+/
+
+!-------------------------------------------------------------------------------
+! variables related to temperature
+!-------------------------------------------------------------------------------
+! temp_method        [integer]
+!                      temperature method
+!                      0: read from hotstart file
+!                      1: constant
+!                      2: homogeneous stratification
+!                      3: from 3D field
+! temp_const         [float]
+!                      constant initial temperature
+!                      This variable is only used if temp_method = 1
+! temp_format        [integer]
+!                      format of temperature file
+!                      1: ASCII
+!                      2: NetCDF
+!                      This variable is only used if temp_method = 3
+! temp_file          [string]
+!                      name of file with initial temperature distribution
+!                      This variable is only used if temp_method = 3
+! temp_name          [string]
+!                      name of the temperature variable
+!                      This variable is only used if (temp_method = 3 and
+!                        temp_format = 2)
+! temp_field_no      [integer]
+!                      what number to read initial data from
+!                      This variable is only used if (temp_method = 3 and
+!                        temp_format = 2)
+! temp_hor_adv       [integer]
+!                      horizontal advection method for temperature
+!                      1: upstream (first-order, monotone)
+!                      2: 2D upstream (first-order, monotone)
+!                      3: P2-PDM (third-order, non-monotone)
+!                      4: TVD-Superbee (second-order, monotone)
+!                      5: TVD-MUSCL (second-order, monotone)
+!                      6: TVD-P2-PDM (third-order, monotone)
+!                      7: 2D-FCT
+! temp_ver_adv       [integer]
+!                      vertical advection method for temperature
+!                      1: upstream (first-order, monotone)
+!                      2: 2D upstream (first-order, monotone)
+!                      3: P2-PDM (third-order, non-monotone)
+!                      4: TVD-Superbee (second-order, monotone)
+!                      5: TVD-MUSCL (second-order, monotone)
+!                      6: TVD-P2-PDM (third-order, monotone)
+!                      7: 2D-FCT
+! temp_adv_split     [integer]
+!                      splitting scheme for advection of temperature
+!                      0: 1D split --> full u, full v, full w
+!                      1: 1D split --> half u, half v, full w, half v, half u
+!                      2: 2D-hor-1D-vert split --> full uv, full w
+! temp_AH            [float, unit = m^2/s]
+!                      horizontal diffusivity of heat
+! attenuation_method [integer]
+!                      light attenuation method
+!                      0: spatially constant coefficients
+!                      1: spatially and temporally varying - read from file
+! jerlov             [integer]
+!                      Jerlov water class
+!                      0: custom
+!                      1: Jerlov type I
+!                      2: Jerlov type 1 (upper 50 m)
+!                      3: Jerlov type IA
+!                      4: Jerlov type IB
+!                      5: Jerlov type II
+!                      6: Jerlov type III
+!                      7: User specified A, g1 and g2
+!                      This variable is only used if attenuation_method = 0
+! A_const            [float]
+!                      longwave fraction of visible light
+!                      This variable is only used if (attenuation_method = 0 and
+!                        jerlov = 7)
+! g1_const           [float, unit = m]
+!                      efolding depth of longwave fraction
+!                      This variable is only used if (attenuation_method = 0 and
+!                        jerlov = 7)
+! g2_const           [float, unit = m]
+!                      efolding depth of shortwave fraction
+!                      This variable is only used if (attenuation_method = 0 and
+!                        jerlov = 7)
+! attenuation_file   [string]
+!                      name of file with varying coefficients
+!                      This variable is only used if attenuation_method = 1
+! swr_bot_refl_frac  [float, minimum = 0., maximum = 1.]
+!                      At low - or in clear - waters a certain amount of SWR
+!                        reaches the bottom. The value of this variable
+!                        specifies how much is reflected up in the water column.
+!                        Set to 0 to have no reflection. Default value is 0
+! swr_min_bot_frac   [float, minimum = 0.0, maximum = 1.]
+!                      Only do reflection if the ratio of bottom to surface SWR
+!                        is greater than this variable. Only used if
+!                        swr_bot_refl_frac is greater than 0. Default is 0.01.
+!                      This variable is not used if swr_bot_refl_frac = 0
+! temp_check         [integer]
+!                      Interval between checks for out-of-bounds temperatures.
+!                        0: disabled, >0: check every temp_check step, abort if
+!                        check fails, <0: check every abs(temp_check) step, warn
+!                        if check fails
+! min_temp           [float, unit = degC]
+!                      minimum valid temperature
+!                      This variable is not used if temp_check = 0
+! max_temp           [float, unit = degC]
+!                      maximum valid temperature
+!                      This variable is not used if temp_check = 0
+!-------------------------------------------------------------------------------
+
+&temp
+   temp_method = 1,
+   temp_const = 20.0,
+   temp_format = 2,
+   temp_file = 'haidvogel.input.nc',
+   temp_name = 'temp',
+   temp_field_no = 1,
+   temp_hor_adv = 6,
+   temp_ver_adv = 6,
+   temp_adv_split = 1,
+   temp_AH = 1.4e-07,
+   attenuation_method = 0,
+   jerlov = 1,
+   A_const = 0.58,
+   g1_const = 0.35,
+   g2_const = 23.0,
+   attenuation_file = 'attenuation.nc',
+   swr_bot_refl_frac = 0.0,
+   swr_min_bot_frac = 0.01,
+   temp_check = 0,
+   min_temp = -2.0,
+   max_temp = 35.0,
+/
+
+!-------------------------------------------------------------------------------
+! variables related to salinity
+!-------------------------------------------------------------------------------
+! salt_method    [integer]
+!                  salinity method
+!                  0: read from hotstart file
+!                  1: constant
+!                  2: homogeneous stratification
+!                  3: from 3D field
+! salt_const     [float, unit = psu]
+!                  constant initial salinity
+!                  This variable is only used if salt_method = 1
+! salt_format    [integer]
+!                  format of salinity file
+!                  1: ASCII
+!                  2: NetCDF
+!                  This variable is only used if salt_method = 3
+! salt_file      [string]
+!                  name of file with initial salinity distribution
+!                  This variable is only used if salt_method = 3
+! salt_name      [string]
+!                  name of the salinity variable
+!                  This variable is only used if (salt_method = 3 and
+!                    salt_format = 2)
+! salt_field_no  [integer]
+!                  what number to read initial data from
+!                  This variable is only used if (salt_method = 3 and
+!                    salt_format = 2)
+! salt_hor_adv   [integer]
+!                  horizontal advection method for salinity
+!                  1: upstream (first-order, monotone)
+!                  2: 2D upstream (first-order, monotone)
+!                  3: P2-PDM (third-order, non-monotone)
+!                  4: TVD-Superbee (second-order, monotone)
+!                  5: TVD-MUSCL (second-order, monotone)
+!                  6: TVD-P2-PDM (third-order, monotone)
+!                  7: 2D-FCT
+! salt_ver_adv   [integer]
+!                  vertical advection method for salinity
+!                  1: upstream (first-order, monotone)
+!                  2: 2D upstream (first-order, monotone)
+!                  3: P2-PDM (third-order, non-monotone)
+!                  4: TVD-Superbee (second-order, monotone)
+!                  5: TVD-MUSCL (second-order, monotone)
+!                  6: TVD-P2-PDM (third-order, monotone)
+!                  7: 2D-FCT
+! salt_adv_split [integer]
+!                  splitting scheme for advection of salinity
+!                  0: 1D split --> full u, full v, full w
+!                  1: 1D split --> half u, half v, full w, half v, half u
+!                  2: 2D-hor-1D-vert split --> full uv, full w
+! salt_AH        [float, unit = m^2/s]
+!                  horizontal diffusivity of salt
+! salt_check     [integer]
+!                  Interval between checks for out-of-bounds salinities. 0:
+!                    disabled, >0: check every salt_check step, abort if check
+!                    fails, <0: check every abs(salt_check) step, warn if check
+!                    fails
+! min_salt       [float, unit = psu]
+!                  minimum valid salinity
+!                  This variable is not used if salt_check = 0
+! max_salt       [float, unit = psu]
+!                  maximum valid salinity
+!                  This variable is not used if salt_check = 0
+!-------------------------------------------------------------------------------
+
+&salt
+   salt_method = 3,
+   salt_const = 35.0,
+   salt_format = 2,
+   salt_file = 'haidvogel.input.nc',
+   salt_name = 'rho',
+   salt_field_no = 1,
+   salt_hor_adv = 6,
+   salt_ver_adv = 6,
+   salt_adv_split = 0,
+   salt_AH = -1.0,
+   salt_check = 0,
+   min_salt = 1000.0,
+   max_salt = 1005.0,
+/
+
+!-------------------------------------------------------------------------------
+! equation of state
+!-------------------------------------------------------------------------------
+! eqstate_method [integer]
+!                  equation of state method
+!                  1: linearisation of equation of state with T0,S0,dtr0,dsr0
+!                  2: UNESCO equation of state with no pressure adjustment. See
+!                    -DUNPRESS for pressure effect
+! T0             [float, unit = MASCULINE ORDINAL INDICATORC]
+!                  reference temperature for linear equation of state
+!                  This variable is only used if eqstate_method = 1
+! S0             [float, unit = psu]
+!                  reference salinity for linear equation of state
+!                  This variable is only used if eqstate_method = 1
+! p0             [float, unit = bar]
+!                  reference pressure for linear equation of state
+!                  This variable is only used if eqstate_method = 1
+! dtr0           [float]
+!                  thermal expansion coefficient for linear equation of state
+!                  This variable is only used if eqstate_method = 1
+! dsr0           [float]
+!                  saline expansion coefficient for linear equation of state
+!                  This variable is only used if eqstate_method = 1
+!-------------------------------------------------------------------------------
+
+&eqstate
+   eqstate_method = 1,
+   T0 = 0.0,
+   S0 = 1025.0,
+   p0 = 0.0,
+   dtr0 = 0.0,
+   dsr0 = 1.0,
+/
+
+!-------------------------------------------------------------------------------
+! format for output and filename(s)
+!-------------------------------------------------------------------------------
+! out_fmt           [integer]
+!                     output format
+!                     1: ASCII
+!                     2: NetCDF
+! hotin_fmt         [integer]
+!                     format for input hotstart file
+!                     1: ASCII
+!                     2: NetCDF
+!                     3: binary
+! hotout_fmt        [integer]
+!                     format for output hotstart file
+!                     1: ASCII
+!                     2: NetCDF
+!                     3: binary
+! in_dir            [string]
+!                     path to input directory
+! out_dir           [string]
+!                     path to output directory
+! save_metrics      [bool]
+!                     save additional info on grid
+! save_masks        [bool]
+!                     save computational masks (az, au, av)
+! save_2d           [bool]
+!                     save 2d fields
+! save_meteo        [bool]
+!                     save meteo data
+! save_3d           [bool]
+!                     save 3d fields
+! save_vel          [bool]
+!                     save velocities
+! destag            [bool]
+!                     save velocities at T-points
+! save_strho        [bool]
+!                     save any of salinity, temperature, density
+! save_s            [bool]
+!                     save salinity
+! save_t            [bool]
+!                     save temperature
+! save_rho          [bool]
+!                     save density
+! save_rad          [bool]
+!                     save solar radiation in water column
+! save_turb         [bool]
+!                     save any of the turbulent quantities
+! save_tke          [bool]
+!                     save TKE
+! save_eps          [bool]
+!                     save turbulence dissipation rate
+! save_num          [bool]
+!                     save turbulent diffusivity of momentum
+! save_nuh          [bool]
+!                     save turbulent diffusivity of heat
+! save_ss_nn        [bool]
+!                     save shear stress and Brunt-Vaisala frequency
+! save_taub         [bool]
+!                     save bottom friction velocity
+! save_mix_analysis [bool]
+!                     calculate/save mixing analysis
+! first_2d          [integer, minimum = 0, unit = micro time steps]
+!                     first time step to save 2D fields
+! step_2d           [integer, minimum = 1, unit = micro time steps]
+!                     interval between saves of 2D fields
+! first_3d          [integer, minimum = 0, unit = micro time steps]
+!                     first time step to save 3D fields
+! step_3d           [integer, minimum = 1, unit = micro time steps]
+!                     interval between saves of 3D fields
+! hotout            [integer array with shape (3)]
+!                     Array to control generation of hot-start files. The three
+!                       array elements represent the start, stop and stride for
+!                       hot-start file generation, in micro time steps. All
+!                       values default to -1. Three special cases exist: a)
+!                       hotout(1) < 0 - no saving, hotout(1) = 0 - make hot-
+!                       start file at end of simulation, b) hotout(2) < 0 -->
+!                       hotout(2)='very large integer', hotout(3)=hotout(1), c)
+!                       hotout(2) <= hotout(1) --> hotout(2)=hotout(1),
+!                       hotout(3)=1
+! meanout           [integer]
+!                     Make average over 'meanout' time steps. Special cases: if
+!                       < 0 - no averaging, if = 0 - average over entire run.
+!-------------------------------------------------------------------------------
+
+&io_spec
+   out_fmt = 2,
+   hotin_fmt = 2,
+   hotout_fmt = 2,
+   in_dir = '.',
+   out_dir = '.',
+   save_metrics = .false.,
+   save_masks = .false.,
+   save_2d = .false.,
+   save_meteo = .false.,
+   save_3d = .true.,
+   save_vel = .true.,
+   destag = .true.,
+   save_strho = .true.,
+   save_s = .false.,
+   save_t = .false.,
+   save_rho = .true.,
+   save_rad = .false.,
+   save_turb = .false.,
+   save_tke = .false.,
+   save_eps = .false.,
+   save_num = .false.,
+   save_nuh = .false.,
+   save_ss_nn = .false.,
+   save_taub = .false.,
+   save_mix_analysis = .false.,
+   first_2d = 0,
+   step_2d = 30,
+   first_3d = 0,
+   step_3d = 30,
+   hotout(:) = -1,-1,-1,
+   meanout = -1,
+/
+
