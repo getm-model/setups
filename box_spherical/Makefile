@@ -1,4 +1,3 @@
-#$Id: Makefile,v 1.1 2007-06-27 12:38:06 kbk Exp $
 #
 # Makefile for making STATIC version of the - box_spherical - executable.
 #
@@ -10,10 +9,9 @@ setup	= $(name)
 
 include ../Rules.make
 
-STATIC += -DSPHERICAL
+STATIC += -DUV_TVD -DSPHERICAL
 
-input:
-
+include ../Boxes.make
 
 #-----------------------------------------------------------------------
 # Copyright (C) 2006 - Lars Unmlauf and Karsten Bolding                !

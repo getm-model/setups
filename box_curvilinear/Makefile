@@ -1,4 +1,3 @@
-#$Id: Makefile,v 1.1 2007-06-27 12:38:06 kbk Exp $
 #
 # Makefile for making STATIC version of the - box_curvilinear - executable.
 #
@@ -10,12 +9,9 @@ setup	= $(name)
 
 include ../Rules.make
 
-#export GETM_PARALLEL=true
+STATIC += -DUV_TVD -DCURVILINEAR
 
-STATIC += -DCURVILINEAR
-#STATIC += -DINCLUDE_HALOS
-
-input:
+include ../Boxes.make
 
 
 #-----------------------------------------------------------------------
