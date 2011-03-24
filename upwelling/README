@@ -1,0 +1,44 @@
+$Id: README,v 1.2 2007-06-30 12:41:42 kbk Exp $
+
+README for the upwelling example:
+
+To demonstrate how GETM runs as a slice model in x-direction, an upwelling
+test case with stable temperature stratification in a parabolic (in x-direction)
+channel and a wind stress of 0.2 N/m**2 in the channel direction (positive
+y-axis) is given. After some hours, strong upwelling occurs at the left 
+shore, while there is downwelling a the right shore. For enabling 
+slice model, the compiler option SLICE_MODEL needs to be given in the 
+Makefile.
+
+To generate necessary input files:
+make input
+
+The 20 km wide bathymetry with a 40 m deep, parabolic bottom is generated 
+in the Topo/ directory. 
+
+A stable temperature profile with a tanh-shape (surface to bottom difference
+is about 10 deg C) is generated in the Temp/ directory.
+
+A time varying meteo forcing can be used by setting met_method=2 in 
+upwelling.conf. The the variation can be specified in Meteo/meteo.cdl. When
+edited do: 'make meteo'.
+
+To prepare the setup for compilation and execution do:
+make input:
+
+To generate 'getm.inp' do:
+make namelist:
+
+To compile the model:
+make
+
+The will make a statically compiled version. If eveything works correct also
+a dynamically executable can be used.
+
+To run the model:
+./bin/model_prod_?????
+
+
+Karsten Bolding
+20070701
+

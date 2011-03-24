@@ -1,0 +1,21 @@
+netcdf topo {
+dimensions:
+	x = IMAX ;
+	y = JMAX ;
+variables:
+	int grid_type ;
+	double x(x) ;
+		x:long_name = "x-axis" ;
+		x:units = "meters" ;
+	double y(y) ;
+		y:units = "meters" ;
+		y:long_name = "y-axis" ;
+	float bathymetry(y, x) ;
+		bathymetry:long_name = "water depth" ;
+		bathymetry:units = "meters" ;
+		bathymetry:valid_min = -5.f ;
+		bathymetry:valid_max = 5000.f ;
+		bathymetry:missing_value = -10.f ;
+		bathymetry:positive = "down" ;
+
+data:

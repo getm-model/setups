@@ -1,0 +1,29 @@
+netcdf meteo {
+dimensions:
+	lon = 1 ;
+	lat = 1 ;
+	time = UNLIMITED ;
+variables:
+	float lon(lon) ;
+	float lat(lat) ;
+	float time(time) ;
+		time:units = "seconds since 2001-01-01 00:00:00" ;
+	float tausx(time,lat,lon) ;
+	float tausy(time,lat,lon) ;
+	float swr(time,lat,lon) ;
+	float shf(time,lat,lon) ;
+
+data:
+
+ lon = 0 ;
+
+ lat = 0 ;
+
+ time = 0, 21600, 21660, 259200 ;
+
+ tausx = 0, 0, 0, 0 ;
+ tausy = 0.2, 0.2, 0, 0 ;
+ swr = 0, 0, 0, 0 ;
+ shf = 0, 0, 0, 0 ;
+
+}
