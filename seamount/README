@@ -30,6 +30,7 @@ Updated 2011-03-29:
 The seamount can be run in parallel. Everything is controlled via the Makefile
 -  compilation and running the model. The parallel runs are named 1p, 2p, 4p,
 8p and are invoked by e.g. 'make 4p'. Results are put in directory named
-after the number of processors.
+after the number of processors. Succesful execution relies on mpiexec is 
+working properly.
 
 bdyinfo.dat is included but presently not used.
