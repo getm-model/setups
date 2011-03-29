@@ -1,0 +1,9 @@
+ &nampar
+! -1=ONE_CELL,0=ONED_MESH,1=TWOD_MESH,2=MESH_FROM_FILE
+  MeshMethod=0,
+  MeshMethod=1,
+  Reorder=.false.
+! 0=ONED_SENDRECV,1=ONED_NONBLOCKING,2=TWOD_SENDRECV,3=TWOD_NONBLOCKING
+  MsgMethod=1,
+  MsgMethod=3,
+ /

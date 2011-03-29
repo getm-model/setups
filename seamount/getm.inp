@@ -25,10 +25,10 @@
 
 &param
    dryrun = .false.,
-   runid = 'sylt',
-   title = 'Sylt - tidal simulation',
-   parallel = .false.,
-   runtype = 2,
+   runid = 'seamount',
+   title = 'Sea mountain test case',
+   parallel = .true.,
+   runtype = 4,
    hotstart = .false.,
    use_epoch = .false.,
    save_initial = .true.,
@@ -56,11 +56,11 @@
 !-------------------------------------------------------------------------------
 
 &time
-   timestep = 4.4714,
-   timefmt = 3,
-   nlast = 30000,
-   start = '2000-01-01 00:00:00',
-   stop = '2000-01-01 00:00:00',
+   timestep = 12.0,
+   timefmt = 2,
+   nlast = 10000,
+   start = '2001-01-01 00:00:00',
+   stop = '2001-01-02 00:00:00',
 /
 
 !-------------------------------------------------------------------------------
@@ -130,16 +130,16 @@
 
 &domain
    vert_cord = 1,
-   maxdepth = 29.1,
+   maxdepth = 4500.0,
    bathymetry = 'topo.nc',
    longitude = 0.0,
-   latitude = 50.0,
+   latitude = 0.0,
    f_plane = .true.,
-   openbdy = .true.,
+   openbdy = .false.,
    bdyinfofile = 'bdyinfo.dat',
-   crit_depth = 0.2,
-   min_depth = 0.05,
-   kdum = 10,
+   crit_depth = 0.1,
+   min_depth = 0.02,
+   kdum = 20,
    ddu = -1.0,
    ddl = -1.0,
    d_gamma = 20.0,
@@ -228,16 +228,16 @@
    on_grid = .true.,
    calc_met = .false.,
    met_method = 1,
-   fwf_method = 0,
-   spinup = 1000,
+   fwf_method = 1,
+   spinup = 10000,
    metfmt = 2,
-   meteo_file = 'meteo.nc',
+   meteo_file = 'meteofiles.dat',
    tx = 0.0,
    ty = 0.0,
    swr_const = 0.0,
    shf_const = 0.0,
    evap_const = 0.0,
-   precip_const = 0.0,
+   precip_const = 1.157407e-05,
    evap_factor = 1.0,
    precip_factor = 1.0,
 /
@@ -344,12 +344,12 @@
    An_method = 0,
    An_const = 0.0,
    An_file = 'field_An.nc',
-   residual = 20000,
+   residual = -1,
    sealevel_check = 0,
-   bdy2d = .true.,
+   bdy2d = .false.,
    bdyfmt_2d = 2,
-   bdyramp_2d = 1000,
-   bdyfile_2d = 'sylt_bdy.nc',
+   bdyramp_2d = -1,
+   bdyfile_2d = 'bdy_2d.nc',
 /
 
 !-------------------------------------------------------------------------------
@@ -446,8 +446,8 @@
 !-------------------------------------------------------------------------------
 
 &m3d
-   M = 10,
-   cnpar = 0.9,
+   M = 30,
+   cnpar = 1.0,
    cord_relax = 0.0,
    bdy3d = .false.,
    bdyfmt_3d = 2,
@@ -460,8 +460,8 @@
    vel_hor_adv = 1,
    vel_ver_adv = 1,
    vel_adv_split = 0,
-   calc_temp = .false.,
-   calc_salt = .false.,
+   calc_temp = .true.,
+   calc_salt = .true.,
    avmback = 0.0,
    avhback = 0.0,
    ip_method = 1,
@@ -578,10 +578,10 @@
 !-------------------------------------------------------------------------------
 
 &temp
-   temp_method = 1,
+   temp_method = 2,
    temp_const = 20.0,
    temp_format = 2,
-   temp_file = 't_and_s.nc',
+   temp_file = 'tprofile.dat',
    temp_name = 'temp',
    temp_field_no = 1,
    temp_hor_adv = 1,
@@ -671,7 +671,7 @@
    salt_method = 1,
    salt_const = 35.0,
    salt_format = 2,
-   salt_file = 't_and_s.nc',
+   salt_file = 'sprofile.dat',
    salt_name = 'salt',
    salt_field_no = 1,
    salt_hor_adv = 1,
@@ -689,8 +689,10 @@
 ! eqstate_method [integer]
 !                  equation of state method
 !                  1: linearisation of equation of state with T0,S0,dtr0,dsr0
-!                  2: UNESCO equation of state with no pressure adjustment. See
-!                    -DUNPRESS for pressure effect
+!                  2: UNESCO (1980) equation of state with no pressure
+!                    adjustment
+!                  3:  http://www.teos-10.org/ - adopted for modelling according
+!                    Jackett et al. 2006
 ! T0             [float, unit = MASCULINE ORDINAL INDICATORC]
 !                  reference temperature for linear equation of state
 !                  This variable is only used if eqstate_method = 1
@@ -806,7 +808,7 @@
    hotin_fmt = 3,
    hotout_fmt = 3,
    in_dir = '.',
-   out_dir = '.',
+   out_dir = '4p',
    save_metrics = .false.,
    save_masks = .false.,
    save_2d = .true.,
@@ -814,11 +816,11 @@
    save_3d = .true.,
    save_vel = .true.,
    destag = .true.,
-   save_strho = .false.,
-   save_s = .false.,
-   save_t = .false.,
-   save_rho = .false.,
-   save_rad = .false.,
+   save_strho = .true.,
+   save_s = .true.,
+   save_t = .true.,
+   save_rho = .true.,
+   save_rad = .true.,
    save_turb = .true.,
    save_tke = .true.,
    save_eps = .true.,
@@ -828,9 +830,9 @@
    save_taub = .false.,
    save_mix_analysis = .false.,
    first_2d = 0,
-   step_2d = 100,
-   first_3d = 20000,
-   step_3d = 500,
+   step_2d = 300,
+   first_3d = 0,
+   step_3d = 300,
    hotout(:) = -1,,,
    meanout = -1,
 /

@@ -1,0 +1,35 @@
+
+README for the seamount example:
+
+A paper describing the setup and a comparison between POM and ROMS can be found
+at:
+http://marine.rutgers.edu/po/Papers/ezer_etal_2002.pdf
+
+To generate necessary input files:
+make input
+
+The bathymetry is generated in the Topo/ directory. Two different seamounts can
+be generated according to setting in Topo/Makefile.
+
+The initial temperature profile is generated in Temp/. By setting KMAX in
+Temp/Makefile the vertical resolution can be changed - only equidistant 
+distribution is supported at present - change Temp/temp.c to change this.
+
+To compile the model:
+make
+
+The will make a statically compiled version.
+
+To run the model in serial mode do:
+./bin/model_prod_?????
+
+Karsten Bolding
+20020710
+
+Updated 2011-03-29:
+The seamount can be run in parallel. Everything is controlled via the Makefile
+-  compilation and running the model. The parallel runs are named 1p, 2p, 4p,
+8p and are invoked by e.g. 'make 4p'. Results are put in directory named
+after the number of processors.
+
+bdyinfo.dat is included but presently not used.

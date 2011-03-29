@@ -5,7 +5,7 @@
 
 SHELL	= /bin/sh
 
-export GETM_NO_BAROCLINIC=true
+#export GETM_NO_BAROCLINIC=true
 
 name    = sylt
 setup	= $(name)
