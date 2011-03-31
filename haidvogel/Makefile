@@ -11,5 +11,8 @@ STATIC += -DNO_BOTTFRIC -DUV_TVD
 
 include ../Rules.make
 
-.PHONY: input
 input:
+
+$(name)_clean:
+
+.PHONY: input

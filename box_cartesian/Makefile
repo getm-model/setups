@@ -12,7 +12,3 @@ STATIC += -DUV_TVD
 include ../Rules.make
 
 include ../Boxes.make
-
-#-----------------------------------------------------------------------
-# Copyright (C) 2006 - Lars Unmlauf and Karsten Bolding                !
-#-----------------------------------------------------------------------

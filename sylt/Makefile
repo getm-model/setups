@@ -1,4 +1,3 @@
-#$Id: Makefile,v 1.1 2007-06-27 12:38:07 kbk Exp $
 #
 # Makefile for making STATIC version of the 'sylt' executable.
 #
@@ -14,8 +13,4 @@ include ../Rules.make
 
 STATIC  += -DUV_TVD -DMUDFLAT
 
-input:
-
-#-----------------------------------------------------------------------
-# Copyright (C) 2006 - Hans Burchard and Karsten Bolding (BBH)         !
-#-----------------------------------------------------------------------
+$(name)_clean:

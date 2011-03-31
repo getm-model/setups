@@ -12,8 +12,3 @@ include ../Rules.make
 STATIC += -DUV_TVD -DCURVILINEAR
 
 include ../Boxes.make
-
-
-#-----------------------------------------------------------------------
-# Copyright (C) 2006 - Lars Unmlauf and Karsten Bolding                !
-#-----------------------------------------------------------------------

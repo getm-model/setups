@@ -35,3 +35,7 @@ run_box_test: execs
 	../run_box_test.sh $(setup)
 
 .PHONY: run_box_test
+
+$(name)_clean:
+	$(RM) -r Serial OpenMP Parallel
+

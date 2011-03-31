@@ -1,4 +1,3 @@
-#$Id: Rules.make,v 1.2 2009-09-23 12:23:25 kb Exp $
 #
 # Included in the Makefiles for the different setups - kbk 20010523
 #
@@ -14,7 +13,6 @@ endif
 ifndef GETMDIR
 export GETMDIR = $(HOME)/GETM/getm-git
 endif
-#export GETMDIR = $(HOME)/GETM/v1.7.x_femern
 srcdir  = $(GETMDIR)/src
 
 ifndef GETM_SETUP
@@ -31,7 +29,7 @@ ifndef BINDIR
 export BINDIR=$(GETM_SETUP)/bin
 endif
 
-editscenario.py_args=-q -e nml --schemadir=$(GETMDIR)/schemas
+editscenario.py_args=-q -e nml --schemadir=$(GETMDIR)/schemas --targetversion=getm-1.9
 
 tarflags = -C .. --files-from filelist --exclude=CVS -cvzf
 
@@ -65,7 +63,8 @@ realclean: clean
 
 archclean: realclean
 
-distclean: clean
+distclean: clean $(name)_clean
+	$(RM) timestamp
 	$(RM) -r modules
 	$(RM) -r lib
 	$(RM) -r bin

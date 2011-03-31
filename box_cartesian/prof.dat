@@ -1,0 +1,1149 @@
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls   s/call   s/call  name    
+  9.62      1.68     1.68     8640     0.00     0.00  bottom_friction_
+  6.36      2.79     1.11      144     0.01     0.01  uv_advect_3d_
+  6.07      3.85     1.06      432     0.00     0.00  upstream_adv_
+  6.01      4.90     1.05     8640     0.00     0.00  uv_advect_
+  5.44      5.85     0.95      144     0.01     0.01  ss_nn_
+  4.35      6.61     0.76      144     0.01     0.01  uu_momentum_3d_
+  4.01      7.31     0.70  1060704     0.00     0.00  getm_tridiagonal_
+  4.01      8.01     0.70     8640     0.00     0.00  umomentum_
+  3.49      8.62     0.61     8640     0.00     0.00  vmomentum_
+  3.44      9.22     0.60                             __svml_log2.L
+  3.26      9.79     0.57      144     0.00     0.01  vv_momentum_3d_
+  3.21     10.35     0.56   718848     0.00     0.00  diff_face_
+  3.15     10.90     0.55   718848     0.00     0.00  mtridiagonal_mp_tridiagonal_
+  2.92     11.41     0.51      145     0.00     0.00  general_coordinates_
+  2.92     11.92     0.51                             __libm_sse2_exp
+  2.63     12.38     0.46     8641     0.00     0.00  depth_update_
+  2.63     12.84     0.46      144     0.00     0.02  gotm_
+  2.46     13.27     0.43   718848     0.00     0.00  alpha_mnb_
+  2.41     13.69     0.42      144     0.00     0.00  ip_blumberg_mellor_
+  2.29     14.09     0.40   359424     0.00     0.00  dissipationeq_
+  2.06     14.45     0.36                             __svml_sincos2.N
+  1.66     14.74     0.29      144     0.00     0.01  temperature_mp_do_temperature_
+  1.15     14.94     0.20   359424     0.00     0.00  cmue_c_
+  1.09     15.13     0.19      144     0.00     0.00  slow_terms_
+  0.97     15.30     0.17     8641     0.00     0.00  meteo_mp_do_meteo_
+  0.97     15.47     0.17      144     0.00     0.00  ww_momentum_3d_
+  0.97     15.64     0.17                             netcdf_mp_nf90_put_var_3d_eightbytereal_
+  0.80     15.78     0.14      144     0.00     0.07  m3d_mp_integrate_3d_
+  0.80     15.92     0.14       13     0.01     0.01  tow_
+  0.74     16.05     0.13      145     0.00     0.00  eqstate_mp_do_eqstate_
+  0.69     16.17     0.12   359424     0.00     0.00  tkeeq_
+  0.63     16.28     0.11                             swap4b
+  0.52     16.37     0.09   359424     0.00     0.00  turbulence_mp_kolpran_
+  0.52     16.46     0.09        1     0.09     0.09  ver_interpol_
+  0.46     16.54     0.08     8640     0.00     0.00  m2d_mp_integrate_2d_
+  0.46     16.62     0.08     8640     0.00     0.00  sealevel_
+  0.46     16.70     0.08                             netcdf_mp_nf90_put_var_2d_eightbytereal_
+  0.40     16.77     0.07   359424     0.00     0.00  epsbalgebraic_
+  0.34     16.83     0.06      105     0.00     0.00  cnv_3d_
+  0.34     16.89     0.06                             ncx_put_float_double
+  0.29     16.94     0.05  1437696     0.00     0.00  turbulence_mp_epsilon_bc_
+  0.29     16.99     0.05   359424     0.00     0.00  kbalgebraic_
+  0.29     17.04     0.05      144     0.00     0.00  slow_bottom_friction_
+  0.23     17.08     0.04      144     0.00     0.00  bottom_friction_3d_
+  0.23     17.12     0.04                             __svml_log2_mask.A
+  0.23     17.16     0.04                             __svml_sincos2_mask.A
+  0.17     17.19     0.03                             __libm_sse2_log
+  0.17     17.22     0.03                             ncx_putn_float_double
+  0.11     17.24     0.02   359424     0.00     0.00  production_
+  0.11     17.26     0.02     1153     0.00     0.00  halo_zones_mp_update_3d_halo_
+  0.11     17.28     0.02       13     0.00     0.00  to_3d_uu_
+  0.11     17.30     0.02        1     0.02     0.02  variables_3d_mp_init_variables_3d_
+  0.11     17.32     0.02                             __svml_log2_mask
+  0.11     17.34     0.02                             __svml_sincos2_mask
+  0.11     17.36     0.02                             put_ix_float
+  0.06     17.37     0.01   359424     0.00     0.00  turbulence_mp_do_epsb_
+  0.06     17.38     0.01   359424     0.00     0.00  turbulence_mp_do_lengthscale_
+  0.06     17.39     0.01   116792     0.00     0.00  getm_timers_mp_toc_
+  0.06     17.40     0.01      144     0.00     0.00  slow_advection_
+  0.06     17.41     0.01      144     0.00     0.00  stresses_3d_
+  0.06     17.42     0.01        1     0.01     0.01  hcc_check_
+  0.06     17.43     0.01                             __svml_sincos2
+  0.06     17.44     0.01                             for__acquire_lun.
+  0.06     17.45     0.01                             for_system_clock_count
+  0.06     17.46     0.01                             ncio_px_get
+  0.00     17.46     0.00  2592002     0.00     0.00  sealevel_nandum_
+  0.00     17.46     0.00  1437696     0.00     0.00  turbulence_mp_k_bc_
+  0.00     17.46     0.00   359424     0.00     0.00  turbulence_mp_do_kb_
+  0.00     17.46     0.00   359424     0.00     0.00  turbulence_mp_do_tke_
+  0.00     17.46     0.00   359424     0.00     0.00  turbulence_mp_do_turbulence_
+  0.00     17.46     0.00   116792     0.00     0.00  getm_timers_mp_tic_
+  0.00     17.46     0.00    34561     0.00     0.00  mirror_bdy_2d_
+  0.00     17.46     0.00    27368     0.00     0.00  halo_zones_mp_wait_halo_
+  0.00     17.46     0.00    26215     0.00     0.00  halo_zones_mp_update_2d_halo_
+  0.00     17.46     0.00     8738     0.00     0.00  time_mp_caldat_
+  0.00     17.46     0.00     8643     0.00     0.00  time_mp_julday_
+  0.00     17.46     0.00     8641     0.00     0.00  output_mp_do_output_
+  0.00     17.46     0.00     8641     0.00     0.00  time_mp_update_time_
+  0.00     17.46     0.00     8640     0.00     0.00  input_mp_do_input_
+  0.00     17.46     0.00     8640     0.00     0.00  momentum_
+  0.00     17.46     0.00     8640     0.00     0.00  rivers_mp_do_rivers_
+  0.00     17.46     0.00     8640     0.00     0.00  sealevel_nan_check_
+  0.00     17.46     0.00      487     0.00     0.00  cnv_2d_
+  0.00     17.46     0.00      433     0.00     0.00  mirror_bdy_3d_
+  0.00     17.46     0.00      432     0.00     0.00  advection_3d_mp_do_advection_3d_
+  0.00     17.46     0.00      145     0.00     0.00  coordinates_
+  0.00     17.46     0.00      145     0.00     0.00  start_macro_
+  0.00     17.46     0.00      144     0.00     0.00  internal_pressure_mp_do_internal_pressure_
+  0.00     17.46     0.00      144     0.00     0.00  stop_macro_
+  0.00     17.46     0.00      110     0.00     0.00  eta_mask_
+  0.00     17.46     0.00       98     0.00     0.00  save_2d_ncdf_
+  0.00     17.46     0.00       97     0.00     0.00  divergence_
+  0.00     17.46     0.00       97     0.00     0.00  time_mp_write_time_string_
+  0.00     17.46     0.00       97     0.00     0.00  to_2d_u_
+  0.00     17.46     0.00       97     0.00     0.00  to_2d_v_
+  0.00     17.46     0.00       73     0.00     0.00  cmue_d_
+  0.00     17.46     0.00       52     0.00     0.00  set_attributes_
+  0.00     17.46     0.00       26     0.00     0.00  to_2d_vel_
+  0.00     17.46     0.00       13     0.00     0.02  save_3d_ncdf_
+  0.00     17.46     0.00       13     0.00     0.00  to_3d_vv_
+  0.00     17.46     0.00        4     0.00     0.00  ncdf_topo_mp_ncdf_read_2d_
+  0.00     17.46     0.00        2     0.00     0.00  init_grid_ncdf_
+  0.00     17.46     0.00        2     0.00     0.00  save_grid_ncdf_
+  0.00     17.46     0.00        2     0.00     0.00  time_mp_string2julsecs_
+  0.00     17.46     0.00        1     0.00    15.33  MAIN__
+  0.00     17.46     0.00        1     0.00     0.00  advection_3d_mp_init_advection_3d_
+  0.00     17.46     0.00        1     0.00     0.00  cfl_check_
+  0.00     17.46     0.00        1     0.00     0.00  clean_up_
+  0.00     17.46     0.00        1     0.00     0.00  compilation_options_
+  0.00     17.46     0.00        1     0.00     0.00  compute_cpsi3_
+  0.00     17.46     0.00        1     0.00     0.00  domain_mp_adjust_bathymetry_
+  0.00     17.46     0.00        1     0.00     0.00  domain_mp_adjust_mask_
+  0.00     17.46     0.00        1     0.00     0.00  domain_mp_init_domain_
+  0.00     17.46     0.00        1     0.00     0.00  domain_mp_metric_
+  0.00     17.46     0.00        1     0.00     0.00  domain_mp_set_min_depth_
+  0.00     17.46     0.00        1     0.00     0.00  domain_mp_x2uvc_
+  0.00     17.46     0.00        1     0.00     0.00  eqstate_mp_init_eqstate_
+  0.00     17.46     0.00        1     0.00     0.00  getm_timers_mp_init_getm_timers_
+  0.00     17.46     0.00        1     0.00     0.00  getm_timers_mp_write_getm_timers_
+  0.00     17.46     0.00        1     0.00     0.00  init_2d_ncdf_
+  0.00     17.46     0.00        1     0.00     0.00  init_3d_ncdf_
+  0.00     17.46     0.00        1     0.00     0.12  initialise_mp_init_model_
+  0.00     17.46     0.00        1     0.00     0.00  input_mp_clean_input_
+  0.00     17.46     0.00        1     0.00     0.00  input_mp_init_input_
+  0.00     17.46     0.00        1     0.00    15.21  integration_mp_time_loop_
+  0.00     17.46     0.00        1     0.00     0.00  internal_pressure_mp_init_internal_pressure_
+  0.00     17.46     0.00        1     0.00     0.00  kurt_parallel_mp_clean_parallel_
+  0.00     17.46     0.00        1     0.00     0.00  m2d_mp_clean_2d_
+  0.00     17.46     0.00        1     0.00     0.00  m2d_mp_init_2d_
+  0.00     17.46     0.00        1     0.00     0.00  m3d_mp_clean_3d_
+  0.00     17.46     0.00        1     0.00     0.12  m3d_mp_init_3d_
+  0.00     17.46     0.00        1     0.00     0.00  meteo_mp_clean_meteo_
+  0.00     17.46     0.00        1     0.00     0.00  meteo_mp_init_meteo_
+  0.00     17.46     0.00        1     0.00     0.00  mtridiagonal_mp_init_tridiagonal_
+  0.00     17.46     0.00        1     0.00     0.00  ncdf_close_
+  0.00     17.46     0.00        1     0.00     0.00  ncdf_topo_mp_ncdf_read_topo_file_
+  0.00     17.46     0.00        1     0.00     0.00  output_mp_clean_output_
+  0.00     17.46     0.00        1     0.00     0.00  output_mp_file_names_
+  0.00     17.46     0.00        1     0.00     0.00  output_mp_init_output_
+  0.00     17.46     0.00        1     0.00     0.00  part_domain_
+  0.00     17.46     0.00        1     0.00     0.00  read_profile_
+  0.00     17.46     0.00        1     0.00     0.00  read_topo_file_
+  0.00     17.46     0.00        1     0.00     0.00  rivers_mp_clean_rivers_
+  0.00     17.46     0.00        1     0.00     0.00  rivers_mp_init_rivers_
+  0.00     17.46     0.00        1     0.00     0.09  temperature_mp_init_temperature_
+  0.00     17.46     0.00        1     0.00     0.00  time_mp_init_time_
+  0.00     17.46     0.00        1     0.00     0.00  time_mp_time_diff_
+  0.00     17.46     0.00        1     0.00     0.00  turbulence_mp_analyse_model_
+  0.00     17.46     0.00        1     0.00     0.00  turbulence_mp_compute_cm0_
+  0.00     17.46     0.00        1     0.00     0.00  turbulence_mp_init_scnd_
+  0.00     17.46     0.00        1     0.00     0.00  turbulence_mp_init_turbulence_
+  0.00     17.46     0.00        1     0.00     0.00  turbulence_mp_report_model_
+  0.00     17.46     0.00        1     0.00     0.00  uv_depths_
+  0.00     17.46     0.00        1     0.00     0.00  variables_2d_mp_init_variables_2d_
+  0.00     17.46     0.00        1     0.00     0.00  variables_3d_mp_clean_variables_3d_
+
+ %         the percentage of the total running time of the
+time       program used by this function.
+
+cumulative a running sum of the number of seconds accounted
+ seconds   for by this function and those listed above it.
+
+ self      the number of seconds accounted for by this
+seconds    function alone.  This is the major sort for this
+           listing.
+
+calls      the number of times this function was invoked, if
+           this function is profiled, else blank.
+ 
+ self      the average number of milliseconds spent in this
+ms/call    function per call, if this function is profiled,
+	   else blank.
+
+ total     the average number of milliseconds spent in this
+ms/call    function and its descendents per call, if this 
+	   function is profiled, else blank.
+
+name       the name of the function.  This is the minor sort
+           for this listing. The index shows the location of
+	   the function in the gprof listing. If the index is
+	   in parenthesis it shows where it would appear in
+	   the gprof listing if it were to be printed.
+
+		     Call graph (explanation follows)
+
+
+granularity: each sample hit covers 4 byte(s) for 0.06% of 17.46 seconds
+
+index % time    self  children    called     name
+                0.00   15.33       1/1           main [2]
+[1]     87.8    0.00   15.33       1         MAIN__ [1]
+                0.00   15.21       1/1           integration_mp_time_loop_ [3]
+                0.00    0.12       1/1           initialise_mp_init_model_ [45]
+                0.00    0.00       1/1           clean_up_ [115]
+                0.00    0.00       1/1           getm_timers_mp_write_getm_timers_ [126]
+                0.00    0.00       1/1           compilation_options_ [116]
+-----------------------------------------------
+                                                 <spontaneous>
+[2]     87.8    0.00   15.33                 main [2]
+                0.00   15.33       1/1           MAIN__ [1]
+-----------------------------------------------
+                0.00   15.21       1/1           MAIN__ [1]
+[3]     87.1    0.00   15.21       1         integration_mp_time_loop_ [3]
+                0.14   10.01     144/144         m3d_mp_integrate_3d_ [4]
+                0.08    4.59    8640/8640        m2d_mp_integrate_2d_ [5]
+                0.00    0.22    8640/8641        output_mp_do_output_ [36]
+                0.17    0.00    8640/8641        meteo_mp_do_meteo_ [41]
+                0.00    0.00    8640/8640        input_mp_do_input_ [81]
+                0.00    0.00    8640/8640        rivers_mp_do_rivers_ [94]
+                0.00    0.00    8640/8641        time_mp_update_time_ [93]
+-----------------------------------------------
+                0.14   10.01     144/144         integration_mp_time_loop_ [3]
+[4]     58.1    0.14   10.01     144         m3d_mp_integrate_3d_ [4]
+                0.46    2.57     144/144         gotm_ [6]
+                1.11    0.71     144/144         uv_advect_3d_ [8]
+                0.76    0.24     144/144         uu_momentum_3d_ [17]
+                0.95    0.00     144/144         ss_nn_ [18]
+                0.29    0.59     144/144         temperature_mp_do_temperature_ [19]
+                0.57    0.23     144/144         vv_momentum_3d_ [20]
+                0.00    0.51     144/145         coordinates_ [28]
+                0.00    0.42     144/144         internal_pressure_mp_do_internal_pressure_ [33]
+                0.19    0.00     144/144         slow_terms_ [39]
+                0.17    0.00     144/144         ww_momentum_3d_ [40]
+                0.13    0.00     144/145         eqstate_mp_do_eqstate_ [44]
+                0.05    0.00     144/144         slow_bottom_friction_ [57]
+                0.04    0.00     144/144         bottom_friction_3d_ [61]
+                0.01    0.00     144/144         stresses_3d_ [73]
+                0.01    0.00     144/144         slow_advection_ [74]
+                0.00    0.00     144/1153        halo_zones_mp_update_3d_halo_ [67]
+                0.00    0.00     720/116792      getm_timers_mp_toc_ [75]
+                0.00    0.00     144/145         start_macro_ [83]
+                0.00    0.00     720/116792      getm_timers_mp_tic_ [87]
+                0.00    0.00     144/144         stop_macro_ [98]
+                0.00    0.00     144/27368       halo_zones_mp_wait_halo_ [89]
+                0.00    0.00     144/433         mirror_bdy_3d_ [97]
+-----------------------------------------------
+                0.08    4.59    8640/8640        integration_mp_time_loop_ [3]
+[5]     26.7    0.08    4.59    8640         m2d_mp_integrate_2d_ [5]
+                1.68    0.00    8640/8640        bottom_friction_ [9]
+                0.00    1.31    8640/8640        momentum_ [10]
+                1.05    0.00    8640/8640        uv_advect_ [14]
+                0.46    0.00    8640/8641        depth_update_ [31]
+                0.08    0.00    8640/8640        sealevel_ [51]
+                0.00    0.00   17280/116792      getm_timers_mp_toc_ [75]
+                0.00    0.00   17280/116792      getm_timers_mp_tic_ [87]
+                0.00    0.00   17280/34561       mirror_bdy_2d_ [88]
+-----------------------------------------------
+                0.46    2.57     144/144         m3d_mp_integrate_3d_ [4]
+[6]     17.3    0.46    2.57     144         gotm_ [6]
+                0.00    2.56  359424/359424      turbulence_mp_do_turbulence_ [7]
+                0.00    0.00     288/1153        halo_zones_mp_update_3d_halo_ [67]
+                0.00    0.00     288/116792      getm_timers_mp_toc_ [75]
+                0.00    0.00     288/116792      getm_timers_mp_tic_ [87]
+                0.00    0.00     288/27368       halo_zones_mp_wait_halo_ [89]
+-----------------------------------------------
+                0.00    2.56  359424/359424      gotm_ [6]
+[7]     14.7    0.00    2.56  359424         turbulence_mp_do_turbulence_ [7]
+                0.01    1.00  359424/359424      turbulence_mp_do_lengthscale_ [15]
+                0.00    0.68  359424/359424      turbulence_mp_do_tke_ [24]
+                0.43    0.00  718848/718848      alpha_mnb_ [32]
+                0.20    0.00  359424/359424      cmue_c_ [38]
+                0.09    0.00  359424/359424      turbulence_mp_kolpran_ [49]
+                0.01    0.07  359424/359424      turbulence_mp_do_epsb_ [52]
+                0.00    0.05  359424/359424      turbulence_mp_do_kb_ [60]
+                0.02    0.00  359424/359424      production_ [66]
+-----------------------------------------------
+                1.11    0.71     144/144         m3d_mp_integrate_3d_ [4]
+[8]     10.4    1.11    0.71     144         uv_advect_3d_ [8]
+                0.00    0.71     288/432         advection_3d_mp_do_advection_3d_ [12]
+                0.00    0.00     288/1153        halo_zones_mp_update_3d_halo_ [67]
+                0.00    0.00     432/116792      getm_timers_mp_toc_ [75]
+                0.00    0.00     432/116792      getm_timers_mp_tic_ [87]
+                0.00    0.00     288/27368       halo_zones_mp_wait_halo_ [89]
+-----------------------------------------------
+                1.68    0.00    8640/8640        m2d_mp_integrate_2d_ [5]
+[9]      9.6    1.68    0.00    8640         bottom_friction_ [9]
+                0.00    0.00    8640/116792      getm_timers_mp_toc_ [75]
+                0.00    0.00    8640/116792      getm_timers_mp_tic_ [87]
+-----------------------------------------------
+                0.00    1.31    8640/8640        m2d_mp_integrate_2d_ [5]
+[10]     7.5    0.00    1.31    8640         momentum_ [10]
+                0.70    0.00    8640/8640        umomentum_ [21]
+                0.61    0.00    8640/8640        vmomentum_ [25]
+                0.00    0.00    8640/116792      getm_timers_mp_toc_ [75]
+                0.00    0.00    8640/116792      getm_timers_mp_tic_ [87]
+-----------------------------------------------
+                0.28    0.28  359424/718848      tkeeq_ [23]
+                0.28    0.28  359424/718848      dissipationeq_ [16]
+[11]     6.4    0.56    0.55  718848         diff_face_ [11]
+                0.55    0.00  718848/718848      mtridiagonal_mp_tridiagonal_ [27]
+-----------------------------------------------
+                0.00    0.35     144/432         temperature_mp_do_temperature_ [19]
+                0.00    0.71     288/432         uv_advect_3d_ [8]
+[12]     6.1    0.00    1.06     432         advection_3d_mp_do_advection_3d_ [12]
+                1.06    0.00     432/432         upstream_adv_ [13]
+                0.00    0.00     432/116792      getm_timers_mp_toc_ [75]
+                0.00    0.00     432/116792      getm_timers_mp_tic_ [87]
+-----------------------------------------------
+                1.06    0.00     432/432         advection_3d_mp_do_advection_3d_ [12]
+[13]     6.1    1.06    0.00     432         upstream_adv_ [13]
+-----------------------------------------------
+                1.05    0.00    8640/8640        m2d_mp_integrate_2d_ [5]
+[14]     6.0    1.05    0.00    8640         uv_advect_ [14]
+                0.00    0.00    8640/116792      getm_timers_mp_toc_ [75]
+                0.00    0.00    8640/116792      getm_timers_mp_tic_ [87]
+-----------------------------------------------
+                0.01    1.00  359424/359424      turbulence_mp_do_turbulence_ [7]
+[15]     5.8    0.01    1.00  359424         turbulence_mp_do_lengthscale_ [15]
+                0.40    0.60  359424/359424      dissipationeq_ [16]
+-----------------------------------------------
+                0.40    0.60  359424/359424      turbulence_mp_do_lengthscale_ [15]
+[16]     5.8    0.40    0.60  359424         dissipationeq_ [16]
+                0.28    0.28  359424/718848      diff_face_ [11]
+                0.05    0.00 1437696/1437696     turbulence_mp_epsilon_bc_ [58]
+-----------------------------------------------
+                0.76    0.24     144/144         m3d_mp_integrate_3d_ [4]
+[17]     5.7    0.76    0.24     144         uu_momentum_3d_ [17]
+                0.23    0.00  355680/1060704     getm_tridiagonal_ [22]
+                0.00    0.00     144/1153        halo_zones_mp_update_3d_halo_ [67]
+                0.00    0.00     288/116792      getm_timers_mp_toc_ [75]
+                0.00    0.00     288/116792      getm_timers_mp_tic_ [87]
+                0.00    0.00     144/27368       halo_zones_mp_wait_halo_ [89]
+                0.00    0.00     144/433         mirror_bdy_3d_ [97]
+-----------------------------------------------
+                0.95    0.00     144/144         m3d_mp_integrate_3d_ [4]
+[18]     5.4    0.95    0.00     144         ss_nn_ [18]
+                0.00    0.00     144/116792      getm_timers_mp_toc_ [75]
+                0.00    0.00     144/116792      getm_timers_mp_tic_ [87]
+-----------------------------------------------
+                0.29    0.59     144/144         m3d_mp_integrate_3d_ [4]
+[19]     5.0    0.29    0.59     144         temperature_mp_do_temperature_ [19]
+                0.00    0.35     144/432         advection_3d_mp_do_advection_3d_ [12]
+                0.24    0.00  359424/1060704     getm_tridiagonal_ [22]
+                0.00    0.00     144/116792      getm_timers_mp_toc_ [75]
+                0.00    0.00     144/116792      getm_timers_mp_tic_ [87]
+-----------------------------------------------
+                0.57    0.23     144/144         m3d_mp_integrate_3d_ [4]
+[20]     4.6    0.57    0.23     144         vv_momentum_3d_ [20]
+                0.23    0.00  345600/1060704     getm_tridiagonal_ [22]
+                0.00    0.00     144/1153        halo_zones_mp_update_3d_halo_ [67]
+                0.00    0.00     288/116792      getm_timers_mp_toc_ [75]
+                0.00    0.00     288/116792      getm_timers_mp_tic_ [87]
+                0.00    0.00     144/27368       halo_zones_mp_wait_halo_ [89]
+                0.00    0.00     144/433         mirror_bdy_3d_ [97]
+-----------------------------------------------
+                0.70    0.00    8640/8640        momentum_ [10]
+[21]     4.0    0.70    0.00    8640         umomentum_ [21]
+                0.00    0.00    8640/116792      getm_timers_mp_toc_ [75]
+                0.00    0.00    8640/116792      getm_timers_mp_tic_ [87]
+                0.00    0.00    8640/26215       halo_zones_mp_update_2d_halo_ [90]
+                0.00    0.00    8640/27368       halo_zones_mp_wait_halo_ [89]
+                0.00    0.00    8640/34561       mirror_bdy_2d_ [88]
+-----------------------------------------------
+                0.23    0.00  345600/1060704     vv_momentum_3d_ [20]
+                0.23    0.00  355680/1060704     uu_momentum_3d_ [17]
+                0.24    0.00  359424/1060704     temperature_mp_do_temperature_ [19]
+[22]     4.0    0.70    0.00 1060704         getm_tridiagonal_ [22]
+-----------------------------------------------
+                0.12    0.56  359424/359424      turbulence_mp_do_tke_ [24]
+[23]     3.9    0.12    0.56  359424         tkeeq_ [23]
+                0.28    0.28  359424/718848      diff_face_ [11]
+                0.00    0.00 1437696/1437696     turbulence_mp_k_bc_ [86]
+-----------------------------------------------
+                0.00    0.68  359424/359424      turbulence_mp_do_turbulence_ [7]
+[24]     3.9    0.00    0.68  359424         turbulence_mp_do_tke_ [24]
+                0.12    0.56  359424/359424      tkeeq_ [23]
+-----------------------------------------------
+                0.61    0.00    8640/8640        momentum_ [10]
+[25]     3.5    0.61    0.00    8640         vmomentum_ [25]
+                0.00    0.00    8640/116792      getm_timers_mp_toc_ [75]
+                0.00    0.00    8640/116792      getm_timers_mp_tic_ [87]
+                0.00    0.00    8640/26215       halo_zones_mp_update_2d_halo_ [90]
+                0.00    0.00    8640/27368       halo_zones_mp_wait_halo_ [89]
+                0.00    0.00    8640/34561       mirror_bdy_2d_ [88]
+-----------------------------------------------
+                                                 <spontaneous>
+[26]     3.4    0.60    0.00                 __svml_log2.L [26]
+-----------------------------------------------
+                0.55    0.00  718848/718848      diff_face_ [11]
+[27]     3.2    0.55    0.00  718848         mtridiagonal_mp_tridiagonal_ [27]
+-----------------------------------------------
+                0.00    0.00       1/145         m3d_mp_init_3d_ [46]
+                0.00    0.51     144/145         m3d_mp_integrate_3d_ [4]
+[28]     2.9    0.00    0.51     145         coordinates_ [28]
+                0.51    0.00     145/145         general_coordinates_ [29]
+                0.00    0.00     145/116792      getm_timers_mp_toc_ [75]
+                0.00    0.00     145/116792      getm_timers_mp_tic_ [87]
+-----------------------------------------------
+                0.51    0.00     145/145         coordinates_ [28]
+[29]     2.9    0.51    0.00     145         general_coordinates_ [29]
+-----------------------------------------------
+                                                 <spontaneous>
+[30]     2.9    0.51    0.00                 __libm_sse2_exp [30]
+-----------------------------------------------
+                0.00    0.00       1/8641        m2d_mp_init_2d_ [82]
+                0.46    0.00    8640/8641        m2d_mp_integrate_2d_ [5]
+[31]     2.6    0.46    0.00    8641         depth_update_ [31]
+                0.00    0.00    8641/116792      getm_timers_mp_toc_ [75]
+                0.00    0.00    8641/116792      getm_timers_mp_tic_ [87]
+-----------------------------------------------
+                0.43    0.00  718848/718848      turbulence_mp_do_turbulence_ [7]
+[32]     2.5    0.43    0.00  718848         alpha_mnb_ [32]
+-----------------------------------------------
+                0.00    0.42     144/144         m3d_mp_integrate_3d_ [4]
+[33]     2.4    0.00    0.42     144         internal_pressure_mp_do_internal_pressure_ [33]
+                0.42    0.00     144/144         ip_blumberg_mellor_ [34]
+                0.00    0.00     144/116792      getm_timers_mp_toc_ [75]
+                0.00    0.00     144/116792      getm_timers_mp_tic_ [87]
+-----------------------------------------------
+                0.42    0.00     144/144         internal_pressure_mp_do_internal_pressure_ [33]
+[34]     2.4    0.42    0.00     144         ip_blumberg_mellor_ [34]
+-----------------------------------------------
+                                                 <spontaneous>
+[35]     2.1    0.36    0.00                 __svml_sincos2.N [35]
+-----------------------------------------------
+                0.00    0.00       1/8641        initialise_mp_init_model_ [45]
+                0.00    0.22    8640/8641        integration_mp_time_loop_ [3]
+[36]     1.3    0.00    0.22    8641         output_mp_do_output_ [36]
+                0.00    0.22      13/13          save_3d_ncdf_ [37]
+                0.00    0.00    8641/116792      getm_timers_mp_toc_ [75]
+                0.00    0.00    8641/116792      getm_timers_mp_tic_ [87]
+                0.00    0.00      97/97          time_mp_write_time_string_ [102]
+                0.00    0.00      97/97          divergence_ [101]
+                0.00    0.00      97/98          save_2d_ncdf_ [100]
+-----------------------------------------------
+                0.00    0.22      13/13          output_mp_do_output_ [36]
+[37]     1.3    0.00    0.22      13         save_3d_ncdf_ [37]
+                0.14    0.00      13/13          tow_ [43]
+                0.06    0.00     105/105         cnv_3d_ [55]
+                0.02    0.00      13/13          to_3d_uu_ [68]
+                0.00    0.00      26/26          to_2d_vel_ [107]
+                0.00    0.00      13/110         eta_mask_ [99]
+                0.00    0.00      13/13          to_3d_vv_ [108]
+                0.00    0.00       1/2           save_grid_ncdf_ [111]
+-----------------------------------------------
+                0.20    0.00  359424/359424      turbulence_mp_do_turbulence_ [7]
+[38]     1.1    0.20    0.00  359424         cmue_c_ [38]
+-----------------------------------------------
+                0.19    0.00     144/144         m3d_mp_integrate_3d_ [4]
+[39]     1.1    0.19    0.00     144         slow_terms_ [39]
+                0.00    0.00     144/116792      getm_timers_mp_toc_ [75]
+                0.00    0.00     144/116792      getm_timers_mp_tic_ [87]
+-----------------------------------------------
+                0.17    0.00     144/144         m3d_mp_integrate_3d_ [4]
+[40]     1.0    0.17    0.00     144         ww_momentum_3d_ [40]
+                0.00    0.00     144/1153        halo_zones_mp_update_3d_halo_ [67]
+                0.00    0.00     288/116792      getm_timers_mp_toc_ [75]
+                0.00    0.00     288/116792      getm_timers_mp_tic_ [87]
+                0.00    0.00     144/27368       halo_zones_mp_wait_halo_ [89]
+-----------------------------------------------
+                0.00    0.00       1/8641        initialise_mp_init_model_ [45]
+                0.17    0.00    8640/8641        integration_mp_time_loop_ [3]
+[41]     1.0    0.17    0.00    8641         meteo_mp_do_meteo_ [41]
+                0.00    0.00    8641/116792      getm_timers_mp_toc_ [75]
+                0.00    0.00    8641/116792      getm_timers_mp_tic_ [87]
+-----------------------------------------------
+                                                 <spontaneous>
+[42]     1.0    0.17    0.00                 netcdf_mp_nf90_put_var_3d_eightbytereal_ [42]
+-----------------------------------------------
+                0.14    0.00      13/13          save_3d_ncdf_ [37]
+[43]     0.8    0.14    0.00      13         tow_ [43]
+-----------------------------------------------
+                0.00    0.00       1/145         m3d_mp_init_3d_ [46]
+                0.13    0.00     144/145         m3d_mp_integrate_3d_ [4]
+[44]     0.7    0.13    0.00     145         eqstate_mp_do_eqstate_ [44]
+                0.00    0.00     145/116792      getm_timers_mp_toc_ [75]
+                0.00    0.00     145/116792      getm_timers_mp_tic_ [87]
+-----------------------------------------------
+                0.00    0.12       1/1           MAIN__ [1]
+[45]     0.7    0.00    0.12       1         initialise_mp_init_model_ [45]
+                0.00    0.12       1/1           m3d_mp_init_3d_ [46]
+                0.00    0.00       1/1           m2d_mp_init_2d_ [82]
+                0.00    0.00       1/8641        output_mp_do_output_ [36]
+                0.00    0.00       1/8641        meteo_mp_do_meteo_ [41]
+                0.00    0.00       1/116792      getm_timers_mp_toc_ [75]
+                0.00    0.00       1/1           getm_timers_mp_init_getm_timers_ [125]
+                0.00    0.00       1/116792      getm_timers_mp_tic_ [87]
+                0.00    0.00       1/1           time_mp_init_time_ [148]
+                0.00    0.00       1/1           domain_mp_init_domain_ [120]
+                0.00    0.00       1/1           meteo_mp_init_meteo_ [136]
+                0.00    0.00       1/1           rivers_mp_init_rivers_ [147]
+                0.00    0.00       1/1           turbulence_mp_init_turbulence_ [153]
+                0.00    0.00       1/1           mtridiagonal_mp_init_tridiagonal_ [137]
+                0.00    0.00       1/1           output_mp_init_output_ [142]
+                0.00    0.00       1/1           input_mp_init_input_ [130]
+-----------------------------------------------
+                0.00    0.12       1/1           initialise_mp_init_model_ [45]
+[46]     0.7    0.00    0.12       1         m3d_mp_init_3d_ [46]
+                0.00    0.09       1/1           temperature_mp_init_temperature_ [48]
+                0.02    0.00       1/1           variables_3d_mp_init_variables_3d_ [69]
+                0.01    0.00       1/1           hcc_check_ [76]
+                0.00    0.00       1/145         coordinates_ [28]
+                0.00    0.00       1/145         eqstate_mp_do_eqstate_ [44]
+                0.00    0.00       1/145         start_macro_ [83]
+                0.00    0.00       1/1           advection_3d_mp_init_advection_3d_ [113]
+                0.00    0.00       1/1           eqstate_mp_init_eqstate_ [124]
+                0.00    0.00       1/1           internal_pressure_mp_init_internal_pressure_ [131]
+-----------------------------------------------
+                                                 <spontaneous>
+[47]     0.6    0.11    0.00                 swap4b [47]
+-----------------------------------------------
+                0.00    0.09       1/1           m3d_mp_init_3d_ [46]
+[48]     0.5    0.00    0.09       1         temperature_mp_init_temperature_ [48]
+                0.09    0.00       1/1           ver_interpol_ [50]
+                0.00    0.00       1/1153        halo_zones_mp_update_3d_halo_ [67]
+                0.00    0.00       1/1           read_profile_ [144]
+                0.00    0.00       1/27368       halo_zones_mp_wait_halo_ [89]
+                0.00    0.00       1/433         mirror_bdy_3d_ [97]
+-----------------------------------------------
+                0.09    0.00  359424/359424      turbulence_mp_do_turbulence_ [7]
+[49]     0.5    0.09    0.00  359424         turbulence_mp_kolpran_ [49]
+-----------------------------------------------
+                0.09    0.00       1/1           temperature_mp_init_temperature_ [48]
+[50]     0.5    0.09    0.00       1         ver_interpol_ [50]
+-----------------------------------------------
+                0.08    0.00    8640/8640        m2d_mp_integrate_2d_ [5]
+[51]     0.5    0.08    0.00    8640         sealevel_ [51]
+                0.00    0.00   17280/116792      getm_timers_mp_toc_ [75]
+                0.00    0.00   17280/116792      getm_timers_mp_tic_ [87]
+                0.00    0.00    8640/8640        sealevel_nan_check_ [95]
+                0.00    0.00    8640/26215       halo_zones_mp_update_2d_halo_ [90]
+                0.00    0.00    8640/27368       halo_zones_mp_wait_halo_ [89]
+-----------------------------------------------
+                0.01    0.07  359424/359424      turbulence_mp_do_turbulence_ [7]
+[52]     0.5    0.01    0.07  359424         turbulence_mp_do_epsb_ [52]
+                0.07    0.00  359424/359424      epsbalgebraic_ [54]
+-----------------------------------------------
+                                                 <spontaneous>
+[53]     0.5    0.08    0.00                 netcdf_mp_nf90_put_var_2d_eightbytereal_ [53]
+-----------------------------------------------
+                0.07    0.00  359424/359424      turbulence_mp_do_epsb_ [52]
+[54]     0.4    0.07    0.00  359424         epsbalgebraic_ [54]
+-----------------------------------------------
+                0.06    0.00     105/105         save_3d_ncdf_ [37]
+[55]     0.3    0.06    0.00     105         cnv_3d_ [55]
+-----------------------------------------------
+                                                 <spontaneous>
+[56]     0.3    0.06    0.00                 ncx_put_float_double [56]
+-----------------------------------------------
+                0.05    0.00     144/144         m3d_mp_integrate_3d_ [4]
+[57]     0.3    0.05    0.00     144         slow_bottom_friction_ [57]
+                0.00    0.00     144/116792      getm_timers_mp_toc_ [75]
+                0.00    0.00     144/116792      getm_timers_mp_tic_ [87]
+-----------------------------------------------
+                0.05    0.00 1437696/1437696     dissipationeq_ [16]
+[58]     0.3    0.05    0.00 1437696         turbulence_mp_epsilon_bc_ [58]
+-----------------------------------------------
+                0.05    0.00  359424/359424      turbulence_mp_do_kb_ [60]
+[59]     0.3    0.05    0.00  359424         kbalgebraic_ [59]
+-----------------------------------------------
+                0.00    0.05  359424/359424      turbulence_mp_do_turbulence_ [7]
+[60]     0.3    0.00    0.05  359424         turbulence_mp_do_kb_ [60]
+                0.05    0.00  359424/359424      kbalgebraic_ [59]
+-----------------------------------------------
+                0.04    0.00     144/144         m3d_mp_integrate_3d_ [4]
+[61]     0.2    0.04    0.00     144         bottom_friction_3d_ [61]
+                0.00    0.00     144/116792      getm_timers_mp_toc_ [75]
+                0.00    0.00     144/116792      getm_timers_mp_tic_ [87]
+-----------------------------------------------
+                                                 <spontaneous>
+[62]     0.2    0.04    0.00                 __svml_log2_mask.A [62]
+-----------------------------------------------
+                                                 <spontaneous>
+[63]     0.2    0.04    0.00                 __svml_sincos2_mask.A [63]
+-----------------------------------------------
+                                                 <spontaneous>
+[64]     0.2    0.03    0.00                 ncx_putn_float_double [64]
+-----------------------------------------------
+                                                 <spontaneous>
+[65]     0.2    0.03    0.00                 __libm_sse2_log [65]
+-----------------------------------------------
+                0.02    0.00  359424/359424      turbulence_mp_do_turbulence_ [7]
+[66]     0.1    0.02    0.00  359424         production_ [66]
+-----------------------------------------------
+                0.00    0.00       1/1153        temperature_mp_init_temperature_ [48]
+                0.00    0.00     144/1153        m3d_mp_integrate_3d_ [4]
+                0.00    0.00     144/1153        uu_momentum_3d_ [17]
+                0.00    0.00     144/1153        vv_momentum_3d_ [20]
+                0.00    0.00     144/1153        ww_momentum_3d_ [40]
+                0.00    0.00     288/1153        uv_advect_3d_ [8]
+                0.00    0.00     288/1153        gotm_ [6]
+[67]     0.1    0.02    0.00    1153         halo_zones_mp_update_3d_halo_ [67]
+-----------------------------------------------
+                0.02    0.00      13/13          save_3d_ncdf_ [37]
+[68]     0.1    0.02    0.00      13         to_3d_uu_ [68]
+-----------------------------------------------
+                0.02    0.00       1/1           m3d_mp_init_3d_ [46]
+[69]     0.1    0.02    0.00       1         variables_3d_mp_init_variables_3d_ [69]
+-----------------------------------------------
+                                                 <spontaneous>
+[70]     0.1    0.02    0.00                 put_ix_float [70]
+-----------------------------------------------
+                                                 <spontaneous>
+[71]     0.1    0.02    0.00                 __svml_log2_mask [71]
+-----------------------------------------------
+                                                 <spontaneous>
+[72]     0.1    0.02    0.00                 __svml_sincos2_mask [72]
+-----------------------------------------------
+                0.01    0.00     144/144         m3d_mp_integrate_3d_ [4]
+[73]     0.1    0.01    0.00     144         stresses_3d_ [73]
+                0.00    0.00     288/116792      getm_timers_mp_toc_ [75]
+                0.00    0.00     288/116792      getm_timers_mp_tic_ [87]
+                0.00    0.00     288/26215       halo_zones_mp_update_2d_halo_ [90]
+                0.00    0.00     288/27368       halo_zones_mp_wait_halo_ [89]
+-----------------------------------------------
+                0.01    0.00     144/144         m3d_mp_integrate_3d_ [4]
+[74]     0.1    0.01    0.00     144         slow_advection_ [74]
+                0.00    0.00     144/116792      getm_timers_mp_toc_ [75]
+                0.00    0.00     144/116792      getm_timers_mp_tic_ [87]
+-----------------------------------------------
+                0.00    0.00       1/116792      initialise_mp_init_model_ [45]
+                0.00    0.00       1/116792      uv_depths_ [84]
+                0.00    0.00     144/116792      bottom_friction_3d_ [61]
+                0.00    0.00     144/116792      slow_bottom_friction_ [57]
+                0.00    0.00     144/116792      slow_advection_ [74]
+                0.00    0.00     144/116792      slow_terms_ [39]
+                0.00    0.00     144/116792      ss_nn_ [18]
+                0.00    0.00     144/116792      temperature_mp_do_temperature_ [19]
+                0.00    0.00     144/116792      internal_pressure_mp_do_internal_pressure_ [33]
+                0.00    0.00     145/116792      eqstate_mp_do_eqstate_ [44]
+                0.00    0.00     145/116792      start_macro_ [83]
+                0.00    0.00     145/116792      coordinates_ [28]
+                0.00    0.00     288/116792      uu_momentum_3d_ [17]
+                0.00    0.00     288/116792      vv_momentum_3d_ [20]
+                0.00    0.00     288/116792      ww_momentum_3d_ [40]
+                0.00    0.00     288/116792      stresses_3d_ [73]
+                0.00    0.00     288/116792      gotm_ [6]
+                0.00    0.00     432/116792      uv_advect_3d_ [8]
+                0.00    0.00     432/116792      advection_3d_mp_do_advection_3d_ [12]
+                0.00    0.00     720/116792      m3d_mp_integrate_3d_ [4]
+                0.00    0.00    8640/116792      bottom_friction_ [9]
+                0.00    0.00    8640/116792      momentum_ [10]
+                0.00    0.00    8640/116792      umomentum_ [21]
+                0.00    0.00    8640/116792      vmomentum_ [25]
+                0.00    0.00    8640/116792      uv_advect_ [14]
+                0.00    0.00    8640/116792      input_mp_do_input_ [81]
+                0.00    0.00    8641/116792      output_mp_do_output_ [36]
+                0.00    0.00    8641/116792      meteo_mp_do_meteo_ [41]
+                0.00    0.00    8641/116792      depth_update_ [31]
+                0.00    0.00   17280/116792      m2d_mp_integrate_2d_ [5]
+                0.00    0.00   17280/116792      sealevel_ [51]
+[75]     0.1    0.01    0.00  116792         getm_timers_mp_toc_ [75]
+-----------------------------------------------
+                0.01    0.00       1/1           m3d_mp_init_3d_ [46]
+[76]     0.1    0.01    0.00       1         hcc_check_ [76]
+-----------------------------------------------
+                                                 <spontaneous>
+[77]     0.1    0.01    0.00                 for__acquire_lun. [77]
+-----------------------------------------------
+                                                 <spontaneous>
+[78]     0.1    0.01    0.00                 for_system_clock_count [78]
+-----------------------------------------------
+                                                 <spontaneous>
+[79]     0.1    0.01    0.00                 ncio_px_get [79]
+-----------------------------------------------
+                                                 <spontaneous>
+[80]     0.1    0.01    0.00                 __svml_sincos2 [80]
+-----------------------------------------------
+                0.00    0.00    8640/8640        integration_mp_time_loop_ [3]
+[81]     0.0    0.00    0.00    8640         input_mp_do_input_ [81]
+                0.00    0.00    8640/116792      getm_timers_mp_toc_ [75]
+                0.00    0.00    8640/116792      getm_timers_mp_tic_ [87]
+-----------------------------------------------
+                0.00    0.00       1/1           initialise_mp_init_model_ [45]
+[82]     0.0    0.00    0.00       1         m2d_mp_init_2d_ [82]
+                0.00    0.00       1/8641        depth_update_ [31]
+                0.00    0.00       1/1           uv_depths_ [84]
+                0.00    0.00       1/1           variables_2d_mp_init_variables_2d_ [155]
+                0.00    0.00       1/1           cfl_check_ [114]
+-----------------------------------------------
+                0.00    0.00       1/145         m3d_mp_init_3d_ [46]
+                0.00    0.00     144/145         m3d_mp_integrate_3d_ [4]
+[83]     0.0    0.00    0.00     145         start_macro_ [83]
+                0.00    0.00     145/116792      getm_timers_mp_toc_ [75]
+                0.00    0.00     145/116792      getm_timers_mp_tic_ [87]
+-----------------------------------------------
+                0.00    0.00       1/1           m2d_mp_init_2d_ [82]
+[84]     0.0    0.00    0.00       1         uv_depths_ [84]
+                0.00    0.00       1/116792      getm_timers_mp_toc_ [75]
+                0.00    0.00       1/116792      getm_timers_mp_tic_ [87]
+-----------------------------------------------
+                0.00    0.00 2592002/2592002     sealevel_nan_check_ [95]
+[85]     0.0    0.00    0.00 2592002         sealevel_nandum_ [85]
+-----------------------------------------------
+                0.00    0.00 1437696/1437696     tkeeq_ [23]
+[86]     0.0    0.00    0.00 1437696         turbulence_mp_k_bc_ [86]
+-----------------------------------------------
+                0.00    0.00       1/116792      initialise_mp_init_model_ [45]
+                0.00    0.00       1/116792      uv_depths_ [84]
+                0.00    0.00     144/116792      bottom_friction_3d_ [61]
+                0.00    0.00     144/116792      slow_bottom_friction_ [57]
+                0.00    0.00     144/116792      slow_advection_ [74]
+                0.00    0.00     144/116792      slow_terms_ [39]
+                0.00    0.00     144/116792      ss_nn_ [18]
+                0.00    0.00     144/116792      temperature_mp_do_temperature_ [19]
+                0.00    0.00     144/116792      internal_pressure_mp_do_internal_pressure_ [33]
+                0.00    0.00     145/116792      eqstate_mp_do_eqstate_ [44]
+                0.00    0.00     145/116792      start_macro_ [83]
+                0.00    0.00     145/116792      coordinates_ [28]
+                0.00    0.00     288/116792      uu_momentum_3d_ [17]
+                0.00    0.00     288/116792      vv_momentum_3d_ [20]
+                0.00    0.00     288/116792      ww_momentum_3d_ [40]
+                0.00    0.00     288/116792      stresses_3d_ [73]
+                0.00    0.00     288/116792      gotm_ [6]
+                0.00    0.00     432/116792      uv_advect_3d_ [8]
+                0.00    0.00     432/116792      advection_3d_mp_do_advection_3d_ [12]
+                0.00    0.00     720/116792      m3d_mp_integrate_3d_ [4]
+                0.00    0.00    8640/116792      bottom_friction_ [9]
+                0.00    0.00    8640/116792      momentum_ [10]
+                0.00    0.00    8640/116792      umomentum_ [21]
+                0.00    0.00    8640/116792      vmomentum_ [25]
+                0.00    0.00    8640/116792      uv_advect_ [14]
+                0.00    0.00    8640/116792      input_mp_do_input_ [81]
+                0.00    0.00    8641/116792      output_mp_do_output_ [36]
+                0.00    0.00    8641/116792      meteo_mp_do_meteo_ [41]
+                0.00    0.00    8641/116792      depth_update_ [31]
+                0.00    0.00   17280/116792      m2d_mp_integrate_2d_ [5]
+                0.00    0.00   17280/116792      sealevel_ [51]
+[87]     0.0    0.00    0.00  116792         getm_timers_mp_tic_ [87]
+-----------------------------------------------
+                0.00    0.00       1/34561       domain_mp_init_domain_ [120]
+                0.00    0.00    8640/34561       umomentum_ [21]
+                0.00    0.00    8640/34561       vmomentum_ [25]
+                0.00    0.00   17280/34561       m2d_mp_integrate_2d_ [5]
+[88]     0.0    0.00    0.00   34561         mirror_bdy_2d_ [88]
+-----------------------------------------------
+                0.00    0.00       1/27368       temperature_mp_init_temperature_ [48]
+                0.00    0.00       7/27368       domain_mp_init_domain_ [120]
+                0.00    0.00     144/27368       m3d_mp_integrate_3d_ [4]
+                0.00    0.00     144/27368       uu_momentum_3d_ [17]
+                0.00    0.00     144/27368       vv_momentum_3d_ [20]
+                0.00    0.00     144/27368       ww_momentum_3d_ [40]
+                0.00    0.00     288/27368       uv_advect_3d_ [8]
+                0.00    0.00     288/27368       stresses_3d_ [73]
+                0.00    0.00     288/27368       gotm_ [6]
+                0.00    0.00    8640/27368       umomentum_ [21]
+                0.00    0.00    8640/27368       vmomentum_ [25]
+                0.00    0.00    8640/27368       sealevel_ [51]
+[89]     0.0    0.00    0.00   27368         halo_zones_mp_wait_halo_ [89]
+-----------------------------------------------
+                0.00    0.00       7/26215       domain_mp_init_domain_ [120]
+                0.00    0.00     288/26215       stresses_3d_ [73]
+                0.00    0.00    8640/26215       umomentum_ [21]
+                0.00    0.00    8640/26215       vmomentum_ [25]
+                0.00    0.00    8640/26215       sealevel_ [51]
+[90]     0.0    0.00    0.00   26215         halo_zones_mp_update_2d_halo_ [90]
+-----------------------------------------------
+                0.00    0.00      97/8738        time_mp_write_time_string_ [102]
+                0.00    0.00    8641/8738        time_mp_update_time_ [93]
+[91]     0.0    0.00    0.00    8738         time_mp_caldat_ [91]
+-----------------------------------------------
+                0.00    0.00       2/8643        time_mp_string2julsecs_ [112]
+                0.00    0.00    8641/8643        time_mp_update_time_ [93]
+[92]     0.0    0.00    0.00    8643         time_mp_julday_ [92]
+-----------------------------------------------
+                0.00    0.00       1/8641        time_mp_init_time_ [148]
+                0.00    0.00    8640/8641        integration_mp_time_loop_ [3]
+[93]     0.0    0.00    0.00    8641         time_mp_update_time_ [93]
+                0.00    0.00    8641/8738        time_mp_caldat_ [91]
+                0.00    0.00    8641/8643        time_mp_julday_ [92]
+-----------------------------------------------
+                0.00    0.00    8640/8640        integration_mp_time_loop_ [3]
+[94]     0.0    0.00    0.00    8640         rivers_mp_do_rivers_ [94]
+-----------------------------------------------
+                0.00    0.00    8640/8640        sealevel_ [51]
+[95]     0.0    0.00    0.00    8640         sealevel_nan_check_ [95]
+                0.00    0.00 2592002/2592002     sealevel_nandum_ [85]
+-----------------------------------------------
+                0.00    0.00     487/487         save_2d_ncdf_ [100]
+[96]     0.0    0.00    0.00     487         cnv_2d_ [96]
+-----------------------------------------------
+                0.00    0.00       1/433         temperature_mp_init_temperature_ [48]
+                0.00    0.00     144/433         m3d_mp_integrate_3d_ [4]
+                0.00    0.00     144/433         uu_momentum_3d_ [17]
+                0.00    0.00     144/433         vv_momentum_3d_ [20]
+[97]     0.0    0.00    0.00     433         mirror_bdy_3d_ [97]
+-----------------------------------------------
+                0.00    0.00     144/144         m3d_mp_integrate_3d_ [4]
+[98]     0.0    0.00    0.00     144         stop_macro_ [98]
+-----------------------------------------------
+                0.00    0.00      13/110         save_3d_ncdf_ [37]
+                0.00    0.00      97/110         save_2d_ncdf_ [100]
+[99]     0.0    0.00    0.00     110         eta_mask_ [99]
+-----------------------------------------------
+                0.00    0.00       1/98          ncdf_close_ [138]
+                0.00    0.00      97/98          output_mp_do_output_ [36]
+[100]    0.0    0.00    0.00      98         save_2d_ncdf_ [100]
+                0.00    0.00     487/487         cnv_2d_ [96]
+                0.00    0.00      97/110         eta_mask_ [99]
+                0.00    0.00      97/97          to_2d_u_ [103]
+                0.00    0.00      97/97          to_2d_v_ [104]
+                0.00    0.00       1/2           save_grid_ncdf_ [111]
+-----------------------------------------------
+                0.00    0.00      97/97          output_mp_do_output_ [36]
+[101]    0.0    0.00    0.00      97         divergence_ [101]
+-----------------------------------------------
+                0.00    0.00      97/97          output_mp_do_output_ [36]
+[102]    0.0    0.00    0.00      97         time_mp_write_time_string_ [102]
+                0.00    0.00      97/8738        time_mp_caldat_ [91]
+-----------------------------------------------
+                0.00    0.00      97/97          save_2d_ncdf_ [100]
+[103]    0.0    0.00    0.00      97         to_2d_u_ [103]
+-----------------------------------------------
+                0.00    0.00      97/97          save_2d_ncdf_ [100]
+[104]    0.0    0.00    0.00      97         to_2d_v_ [104]
+-----------------------------------------------
+                0.00    0.00      73/73          compute_cpsi3_ [117]
+[105]    0.0    0.00    0.00      73         cmue_d_ [105]
+-----------------------------------------------
+                0.00    0.00      11/52          init_2d_ncdf_ [127]
+                0.00    0.00      16/52          init_3d_ncdf_ [128]
+                0.00    0.00      25/52          init_grid_ncdf_ [110]
+[106]    0.0    0.00    0.00      52         set_attributes_ [106]
+-----------------------------------------------
+                0.00    0.00      26/26          save_3d_ncdf_ [37]
+[107]    0.0    0.00    0.00      26         to_2d_vel_ [107]
+-----------------------------------------------
+                0.00    0.00      13/13          save_3d_ncdf_ [37]
+[108]    0.0    0.00    0.00      13         to_3d_vv_ [108]
+-----------------------------------------------
+                0.00    0.00       4/4           ncdf_topo_mp_ncdf_read_topo_file_ [139]
+[109]    0.0    0.00    0.00       4         ncdf_topo_mp_ncdf_read_2d_ [109]
+-----------------------------------------------
+                0.00    0.00       1/2           init_2d_ncdf_ [127]
+                0.00    0.00       1/2           init_3d_ncdf_ [128]
+[110]    0.0    0.00    0.00       2         init_grid_ncdf_ [110]
+                0.00    0.00      25/52          set_attributes_ [106]
+-----------------------------------------------
+                0.00    0.00       1/2           save_2d_ncdf_ [100]
+                0.00    0.00       1/2           save_3d_ncdf_ [37]
+[111]    0.0    0.00    0.00       2         save_grid_ncdf_ [111]
+-----------------------------------------------
+                0.00    0.00       2/2           time_mp_init_time_ [148]
+[112]    0.0    0.00    0.00       2         time_mp_string2julsecs_ [112]
+                0.00    0.00       2/8643        time_mp_julday_ [92]
+-----------------------------------------------
+                0.00    0.00       1/1           m3d_mp_init_3d_ [46]
+[113]    0.0    0.00    0.00       1         advection_3d_mp_init_advection_3d_ [113]
+-----------------------------------------------
+                0.00    0.00       1/1           m2d_mp_init_2d_ [82]
+[114]    0.0    0.00    0.00       1         cfl_check_ [114]
+-----------------------------------------------
+                0.00    0.00       1/1           MAIN__ [1]
+[115]    0.0    0.00    0.00       1         clean_up_ [115]
+                0.00    0.00       1/1           m2d_mp_clean_2d_ [133]
+                0.00    0.00       1/1           meteo_mp_clean_meteo_ [135]
+                0.00    0.00       1/1           rivers_mp_clean_rivers_ [146]
+                0.00    0.00       1/1           m3d_mp_clean_3d_ [134]
+                0.00    0.00       1/1           output_mp_clean_output_ [140]
+                0.00    0.00       1/1           input_mp_clean_input_ [129]
+                0.00    0.00       1/1           kurt_parallel_mp_clean_parallel_ [132]
+-----------------------------------------------
+                0.00    0.00       1/1           MAIN__ [1]
+[116]    0.0    0.00    0.00       1         compilation_options_ [116]
+-----------------------------------------------
+                0.00    0.00       1/1           turbulence_mp_analyse_model_ [150]
+[117]    0.0    0.00    0.00       1         compute_cpsi3_ [117]
+                0.00    0.00      73/73          cmue_d_ [105]
+-----------------------------------------------
+                0.00    0.00       1/1           domain_mp_init_domain_ [120]
+[118]    0.0    0.00    0.00       1         domain_mp_adjust_bathymetry_ [118]
+-----------------------------------------------
+                0.00    0.00       1/1           domain_mp_init_domain_ [120]
+[119]    0.0    0.00    0.00       1         domain_mp_adjust_mask_ [119]
+-----------------------------------------------
+                0.00    0.00       1/1           initialise_mp_init_model_ [45]
+[120]    0.0    0.00    0.00       1         domain_mp_init_domain_ [120]
+                0.00    0.00       7/26215       halo_zones_mp_update_2d_halo_ [90]
+                0.00    0.00       7/27368       halo_zones_mp_wait_halo_ [89]
+                0.00    0.00       1/1           part_domain_ [143]
+                0.00    0.00       1/1           read_topo_file_ [145]
+                0.00    0.00       1/1           domain_mp_set_min_depth_ [122]
+                0.00    0.00       1/1           domain_mp_adjust_bathymetry_ [118]
+                0.00    0.00       1/1           domain_mp_adjust_mask_ [119]
+                0.00    0.00       1/34561       mirror_bdy_2d_ [88]
+                0.00    0.00       1/1           domain_mp_x2uvc_ [123]
+                0.00    0.00       1/1           domain_mp_metric_ [121]
+-----------------------------------------------
+                0.00    0.00       1/1           domain_mp_init_domain_ [120]
+[121]    0.0    0.00    0.00       1         domain_mp_metric_ [121]
+-----------------------------------------------
+                0.00    0.00       1/1           domain_mp_init_domain_ [120]
+[122]    0.0    0.00    0.00       1         domain_mp_set_min_depth_ [122]
+-----------------------------------------------
+                0.00    0.00       1/1           domain_mp_init_domain_ [120]
+[123]    0.0    0.00    0.00       1         domain_mp_x2uvc_ [123]
+-----------------------------------------------
+                0.00    0.00       1/1           m3d_mp_init_3d_ [46]
+[124]    0.0    0.00    0.00       1         eqstate_mp_init_eqstate_ [124]
+-----------------------------------------------
+                0.00    0.00       1/1           initialise_mp_init_model_ [45]
+[125]    0.0    0.00    0.00       1         getm_timers_mp_init_getm_timers_ [125]
+-----------------------------------------------
+                0.00    0.00       1/1           MAIN__ [1]
+[126]    0.0    0.00    0.00       1         getm_timers_mp_write_getm_timers_ [126]
+-----------------------------------------------
+                0.00    0.00       1/1           output_mp_init_output_ [142]
+[127]    0.0    0.00    0.00       1         init_2d_ncdf_ [127]
+                0.00    0.00      11/52          set_attributes_ [106]
+                0.00    0.00       1/2           init_grid_ncdf_ [110]
+-----------------------------------------------
+                0.00    0.00       1/1           output_mp_init_output_ [142]
+[128]    0.0    0.00    0.00       1         init_3d_ncdf_ [128]
+                0.00    0.00      16/52          set_attributes_ [106]
+                0.00    0.00       1/2           init_grid_ncdf_ [110]
+-----------------------------------------------
+                0.00    0.00       1/1           clean_up_ [115]
+[129]    0.0    0.00    0.00       1         input_mp_clean_input_ [129]
+-----------------------------------------------
+                0.00    0.00       1/1           initialise_mp_init_model_ [45]
+[130]    0.0    0.00    0.00       1         input_mp_init_input_ [130]
+-----------------------------------------------
+                0.00    0.00       1/1           m3d_mp_init_3d_ [46]
+[131]    0.0    0.00    0.00       1         internal_pressure_mp_init_internal_pressure_ [131]
+-----------------------------------------------
+                0.00    0.00       1/1           clean_up_ [115]
+[132]    0.0    0.00    0.00       1         kurt_parallel_mp_clean_parallel_ [132]
+-----------------------------------------------
+                0.00    0.00       1/1           clean_up_ [115]
+[133]    0.0    0.00    0.00       1         m2d_mp_clean_2d_ [133]
+-----------------------------------------------
+                0.00    0.00       1/1           clean_up_ [115]
+[134]    0.0    0.00    0.00       1         m3d_mp_clean_3d_ [134]
+                0.00    0.00       1/1           variables_3d_mp_clean_variables_3d_ [156]
+-----------------------------------------------
+                0.00    0.00       1/1           clean_up_ [115]
+[135]    0.0    0.00    0.00       1         meteo_mp_clean_meteo_ [135]
+-----------------------------------------------
+                0.00    0.00       1/1           initialise_mp_init_model_ [45]
+[136]    0.0    0.00    0.00       1         meteo_mp_init_meteo_ [136]
+-----------------------------------------------
+                0.00    0.00       1/1           initialise_mp_init_model_ [45]
+[137]    0.0    0.00    0.00       1         mtridiagonal_mp_init_tridiagonal_ [137]
+-----------------------------------------------
+                0.00    0.00       1/1           output_mp_clean_output_ [140]
+[138]    0.0    0.00    0.00       1         ncdf_close_ [138]
+                0.00    0.00       1/98          save_2d_ncdf_ [100]
+-----------------------------------------------
+                0.00    0.00       1/1           read_topo_file_ [145]
+[139]    0.0    0.00    0.00       1         ncdf_topo_mp_ncdf_read_topo_file_ [139]
+                0.00    0.00       4/4           ncdf_topo_mp_ncdf_read_2d_ [109]
+-----------------------------------------------
+                0.00    0.00       1/1           clean_up_ [115]
+[140]    0.0    0.00    0.00       1         output_mp_clean_output_ [140]
+                0.00    0.00       1/1           ncdf_close_ [138]
+-----------------------------------------------
+                0.00    0.00       1/1           output_mp_init_output_ [142]
+[141]    0.0    0.00    0.00       1         output_mp_file_names_ [141]
+-----------------------------------------------
+                0.00    0.00       1/1           initialise_mp_init_model_ [45]
+[142]    0.0    0.00    0.00       1         output_mp_init_output_ [142]
+                0.00    0.00       1/1           output_mp_file_names_ [141]
+                0.00    0.00       1/1           init_3d_ncdf_ [128]
+                0.00    0.00       1/1           init_2d_ncdf_ [127]
+-----------------------------------------------
+                0.00    0.00       1/1           domain_mp_init_domain_ [120]
+[143]    0.0    0.00    0.00       1         part_domain_ [143]
+-----------------------------------------------
+                0.00    0.00       1/1           temperature_mp_init_temperature_ [48]
+[144]    0.0    0.00    0.00       1         read_profile_ [144]
+-----------------------------------------------
+                0.00    0.00       1/1           domain_mp_init_domain_ [120]
+[145]    0.0    0.00    0.00       1         read_topo_file_ [145]
+                0.00    0.00       1/1           ncdf_topo_mp_ncdf_read_topo_file_ [139]
+-----------------------------------------------
+                0.00    0.00       1/1           clean_up_ [115]
+[146]    0.0    0.00    0.00       1         rivers_mp_clean_rivers_ [146]
+-----------------------------------------------
+                0.00    0.00       1/1           initialise_mp_init_model_ [45]
+[147]    0.0    0.00    0.00       1         rivers_mp_init_rivers_ [147]
+-----------------------------------------------
+                0.00    0.00       1/1           initialise_mp_init_model_ [45]
+[148]    0.0    0.00    0.00       1         time_mp_init_time_ [148]
+                0.00    0.00       2/2           time_mp_string2julsecs_ [112]
+                0.00    0.00       1/1           time_mp_time_diff_ [149]
+                0.00    0.00       1/8641        time_mp_update_time_ [93]
+-----------------------------------------------
+                0.00    0.00       1/1           time_mp_init_time_ [148]
+[149]    0.0    0.00    0.00       1         time_mp_time_diff_ [149]
+-----------------------------------------------
+                0.00    0.00       1/1           turbulence_mp_init_turbulence_ [153]
+[150]    0.0    0.00    0.00       1         turbulence_mp_analyse_model_ [150]
+                0.00    0.00       1/1           compute_cpsi3_ [117]
+-----------------------------------------------
+                0.00    0.00       1/1           turbulence_mp_init_turbulence_ [153]
+[151]    0.0    0.00    0.00       1         turbulence_mp_compute_cm0_ [151]
+-----------------------------------------------
+                0.00    0.00       1/1           turbulence_mp_init_turbulence_ [153]
+[152]    0.0    0.00    0.00       1         turbulence_mp_init_scnd_ [152]
+-----------------------------------------------
+                0.00    0.00       1/1           initialise_mp_init_model_ [45]
+[153]    0.0    0.00    0.00       1         turbulence_mp_init_turbulence_ [153]
+                0.00    0.00       1/1           turbulence_mp_compute_cm0_ [151]
+                0.00    0.00       1/1           turbulence_mp_analyse_model_ [150]
+                0.00    0.00       1/1           turbulence_mp_report_model_ [154]
+                0.00    0.00       1/1           turbulence_mp_init_scnd_ [152]
+-----------------------------------------------
+                0.00    0.00       1/1           turbulence_mp_init_turbulence_ [153]
+[154]    0.0    0.00    0.00       1         turbulence_mp_report_model_ [154]
+-----------------------------------------------
+                0.00    0.00       1/1           m2d_mp_init_2d_ [82]
+[155]    0.0    0.00    0.00       1         variables_2d_mp_init_variables_2d_ [155]
+-----------------------------------------------
+                0.00    0.00       1/1           m3d_mp_clean_3d_ [134]
+[156]    0.0    0.00    0.00       1         variables_3d_mp_clean_variables_3d_ [156]
+-----------------------------------------------
+
+ This table describes the call tree of the program, and was sorted by
+ the total amount of time spent in each function and its children.
+
+ Each entry in this table consists of several lines.  The line with the
+ index number at the left hand margin lists the current function.
+ The lines above it list the functions that called this function,
+ and the lines below it list the functions this one called.
+ This line lists:
+     index	A unique number given to each element of the table.
+		Index numbers are sorted numerically.
+		The index number is printed next to every function name so
+		it is easier to look up where the function in the table.
+
+     % time	This is the percentage of the `total' time that was spent
+		in this function and its children.  Note that due to
+		different viewpoints, functions excluded by options, etc,
+		these numbers will NOT add up to 100%.
+
+     self	This is the total amount of time spent in this function.
+
+     children	This is the total amount of time propagated into this
+		function by its children.
+
+     called	This is the number of times the function was called.
+		If the function called itself recursively, the number
+		only includes non-recursive calls, and is followed by
+		a `+' and the number of recursive calls.
+
+     name	The name of the current function.  The index number is
+		printed after it.  If the function is a member of a
+		cycle, the cycle number is printed between the
+		function's name and the index number.
+
+
+ For the function's parents, the fields have the following meanings:
+
+     self	This is the amount of time that was propagated directly
+		from the function into this parent.
+
+     children	This is the amount of time that was propagated from
+		the function's children into this parent.
+
+     called	This is the number of times this parent called the
+		function `/' the total number of times the function
+		was called.  Recursive calls to the function are not
+		included in the number after the `/'.
+
+     name	This is the name of the parent.  The parent's index
+		number is printed after it.  If the parent is a
+		member of a cycle, the cycle number is printed between
+		the name and the index number.
+
+ If the parents of the function cannot be determined, the word
+ `<spontaneous>' is printed in the `name' field, and all the other
+ fields are blank.
+
+ For the function's children, the fields have the following meanings:
+
+     self	This is the amount of time that was propagated directly
+		from the child into the function.
+
+     children	This is the amount of time that was propagated from the
+		child's children to the function.
+
+     called	This is the number of times the function called
+		this child `/' the total number of times the child
+		was called.  Recursive calls by the child are not
+		listed in the number after the `/'.
+
+     name	This is the name of the child.  The child's index
+		number is printed after it.  If the child is a
+		member of a cycle, the cycle number is printed
+		between the name and the index number.
+
+ If there are any cycles (circles) in the call graph, there is an
+ entry for the cycle-as-a-whole.  This entry shows who called the
+ cycle (as parents) and the members of the cycle (as children.)
+ The `+' recursive calls entry shows the number of function calls that
+ were internal to the cycle, and the calls entry for each member shows,
+ for that member, how many times it was called from other members of
+ the cycle.
+
+
+Index by function name
+
+   [1] MAIN__                [128] init_3d_ncdf_         [106] set_attributes_
+  [30] __libm_sse2_exp       [110] init_grid_ncdf_        [74] slow_advection_
+  [65] __libm_sse2_log        [45] initialise_mp_init_model_ [57] slow_bottom_friction_
+  [26] __svml_log2.L         [129] input_mp_clean_input_  [39] slow_terms_
+  [71] __svml_log2_mask       [81] input_mp_do_input_     [18] ss_nn_
+  [62] __svml_log2_mask.A    [130] input_mp_init_input_   [83] start_macro_
+  [80] __svml_sincos2          [3] integration_mp_time_loop_ [98] stop_macro_
+  [35] __svml_sincos2.N       [33] internal_pressure_mp_do_internal_pressure_ [73] stresses_3d_
+  [72] __svml_sincos2_mask   [131] internal_pressure_mp_init_internal_pressure_ [47] swap4b (ncx.c)
+  [63] __svml_sincos2_mask.A  [34] ip_blumberg_mellor_    [19] temperature_mp_do_temperature_
+  [12] advection_3d_mp_do_advection_3d_ [59] kbalgebraic_ [48] temperature_mp_init_temperature_
+ [113] advection_3d_mp_init_advection_3d_ [132] kurt_parallel_mp_clean_parallel_ [91] time_mp_caldat_
+  [32] alpha_mnb_            [133] m2d_mp_clean_2d_      [148] time_mp_init_time_
+   [9] bottom_friction_       [82] m2d_mp_init_2d_        [92] time_mp_julday_
+  [61] bottom_friction_3d_     [5] m2d_mp_integrate_2d_  [112] time_mp_string2julsecs_
+ [114] cfl_check_            [134] m3d_mp_clean_3d_      [149] time_mp_time_diff_
+ [115] clean_up_              [46] m3d_mp_init_3d_        [93] time_mp_update_time_
+  [38] cmue_c_                 [4] m3d_mp_integrate_3d_  [102] time_mp_write_time_string_
+ [105] cmue_d_               [135] meteo_mp_clean_meteo_  [23] tkeeq_
+  [96] cnv_2d_                [41] meteo_mp_do_meteo_    [103] to_2d_u_
+  [55] cnv_3d_               [136] meteo_mp_init_meteo_  [104] to_2d_v_
+ [116] compilation_options_   [88] mirror_bdy_2d_        [107] to_2d_vel_
+ [117] compute_cpsi3_         [97] mirror_bdy_3d_         [68] to_3d_uu_
+  [28] coordinates_           [10] momentum_             [108] to_3d_vv_
+  [31] depth_update_         [137] mtridiagonal_mp_init_tridiagonal_ [43] tow_
+  [11] diff_face_             [27] mtridiagonal_mp_tridiagonal_ [150] turbulence_mp_analyse_model_
+  [16] dissipationeq_        [138] ncdf_close_           [151] turbulence_mp_compute_cm0_
+ [101] divergence_           [109] ncdf_topo_mp_ncdf_read_2d_ [52] turbulence_mp_do_epsb_
+ [118] domain_mp_adjust_bathymetry_ [139] ncdf_topo_mp_ncdf_read_topo_file_ [60] turbulence_mp_do_kb_
+ [119] domain_mp_adjust_mask_ [79] ncio_px_get (posixio.c) [15] turbulence_mp_do_lengthscale_
+ [120] domain_mp_init_domain_ [56] ncx_put_float_double   [24] turbulence_mp_do_tke_
+ [121] domain_mp_metric_      [64] ncx_putn_float_double   [7] turbulence_mp_do_turbulence_
+ [122] domain_mp_set_min_depth_ [53] netcdf_mp_nf90_put_var_2d_eightbytereal_ [58] turbulence_mp_epsilon_bc_
+ [123] domain_mp_x2uvc_       [42] netcdf_mp_nf90_put_var_3d_eightbytereal_ [152] turbulence_mp_init_scnd_
+  [54] epsbalgebraic_        [140] output_mp_clean_output_ [153] turbulence_mp_init_turbulence_
+  [44] eqstate_mp_do_eqstate_ [36] output_mp_do_output_   [86] turbulence_mp_k_bc_
+ [124] eqstate_mp_init_eqstate_ [141] output_mp_file_names_ [49] turbulence_mp_kolpran_
+  [99] eta_mask_             [142] output_mp_init_output_ [154] turbulence_mp_report_model_
+  [77] for__acquire_lun.     [143] part_domain_           [21] umomentum_
+  [78] for_system_clock_count [66] production_            [13] upstream_adv_
+  [29] general_coordinates_   [70] put_ix_float (ncx.c)   [17] uu_momentum_3d_
+ [125] getm_timers_mp_init_getm_timers_ [144] read_profile_ [14] uv_advect_
+  [87] getm_timers_mp_tic_   [145] read_topo_file_         [8] uv_advect_3d_
+  [75] getm_timers_mp_toc_   [146] rivers_mp_clean_rivers_ [84] uv_depths_
+ [126] getm_timers_mp_write_getm_timers_ [94] rivers_mp_do_rivers_ [155] variables_2d_mp_init_variables_2d_
+  [22] getm_tridiagonal_     [147] rivers_mp_init_rivers_ [156] variables_3d_mp_clean_variables_3d_
+   [6] gotm_                 [100] save_2d_ncdf_          [69] variables_3d_mp_init_variables_3d_
+  [90] halo_zones_mp_update_2d_halo_ [37] save_3d_ncdf_   [50] ver_interpol_
+  [67] halo_zones_mp_update_3d_halo_ [111] save_grid_ncdf_ [25] vmomentum_
+  [89] halo_zones_mp_wait_halo_ [51] sealevel_            [20] vv_momentum_3d_
+  [76] hcc_check_             [95] sealevel_nan_check_    [40] ww_momentum_3d_
+ [127] init_2d_ncdf_          [85] sealevel_nandum_

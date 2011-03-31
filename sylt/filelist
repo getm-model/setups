@@ -3,7 +3,7 @@ sylt/filelist
 sylt/Makefile
 sylt/README
 sylt/sylt.dim
-sylt/sylt.conf
+sylt/sylt.xml
 sylt/getm.inp
 sylt/gotmturb.nml
 sylt/topo.nc

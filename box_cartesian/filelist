@@ -12,5 +12,3 @@ box_cartesian/gotmturb.nml
 box_cartesian/topo.nc
 box_cartesian/topo_min.nc
 box_cartesian/tprof.dat
-box_cartesian/run_tests.sh
-box_cartesian/show_timer_speedup.sh

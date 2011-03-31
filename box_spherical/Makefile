@@ -12,7 +12,3 @@ include ../Rules.make
 STATIC += -DUV_TVD -DSPHERICAL
 
 include ../Boxes.make
-
-#-----------------------------------------------------------------------
-# Copyright (C) 2006 - Lars Unmlauf and Karsten Bolding                !
-#-----------------------------------------------------------------------

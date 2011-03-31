@@ -7,7 +7,7 @@ seamount/seamount.1p.dim
 seamount/seamount.2p.dim
 seamount/seamount.4p.dim
 seamount/seamount.8p.dim
-seamount/seamount.conf
+seamount/seamount.xml
 seamount/parallel.inp
 seamount/getm.inp
 seamount/gotmturb.nml

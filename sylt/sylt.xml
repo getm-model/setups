@@ -46,7 +46,7 @@
 		</time>
 		<domain>
 			<vert_cord>
-				1
+				5
 			</vert_cord>
 			<maxdepth>
 				29.1
@@ -328,9 +328,6 @@
 			<attenuation_method>
 				0
 			</attenuation_method>
-			<attenuation_file>
-				attenuation.nc
-			</attenuation_file>
 			<jerlov>
 				1
 			</jerlov>
@@ -343,8 +340,11 @@
 			<g2_const>
 				23.0
 			</g2_const>
+			<attenuation_file>
+				attenuation.nc
+			</attenuation_file>
 			<swr_bot_refl_frac>
-				0.
+				0.0
 			</swr_bot_refl_frac>
 			<swr_min_bot_frac>
 				0.01
@@ -442,12 +442,12 @@
 			<save_masks>
 				False
 			</save_masks>
-			<save_meteo>
-				False
-			</save_meteo>
 			<save_2d>
 				True
 			</save_2d>
+			<save_meteo>
+				False
+			</save_meteo>
 			<save_3d>
 				True
 			</save_3d>

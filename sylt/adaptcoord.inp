@@ -1,0 +1,47 @@
+!-------------------------------------------------------------------------------
+! adaptive coordinates parameters
+!-------------------------------------------------------------------------------
+! faclag   [float, minimum = 0, maximum = 1]
+!            Lagrangian tendency
+! faciso   [float, minimum = 0, maximum = 1]
+!            Isopycnal tendency
+! fachor   [float, minimum = 0, maximum = 1]
+!            interf. postition filter
+! facdif   [float, minimum = 0, maximum = 1]
+!            layer height filter
+! depthmin [float, unit = m]
+!            minimum layer height
+! cNN      [float, minimum = 0, maximum = 1]
+!            zoom. tendency stratification
+! cSS      [float, minimum = 0, maximum = 1]
+!            zoom. tendency shear
+! cdd      [float, minimum = 0, maximum = 1]
+!            zoom. tendency boundaries
+! d_vel    [float, unit = m/s]
+!            vel. difference to resolve
+! d_dens   [float, unit = kg/m^3]
+!            dens. difference to resolve
+! dsurf    [float, unit = m]
+!            reference distance to boundaries
+! tgrid    [float, unit = s]
+!            adaptation timescale
+! preadapt [integer]
+!            pre-adaptation iterations
+!-------------------------------------------------------------------------------
+
+&adapt_coord
+   faclag = 0.0,
+   faciso = 0.0,
+   fachor = 0.1,
+   facdif = 0.3,
+   depthmin = 0.2,
+   cNN = 0.2,
+   cSS = 0.0,
+   cdd = 0.2,
+   d_vel = 0.1,
+   d_dens = 0.5,
+   dsurf = 20.0,
+   tgrid = 21600.0,
+   preadapt = 0,
+/
+

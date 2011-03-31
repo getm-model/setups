@@ -11,8 +11,6 @@ include ../Rules.make
 
 STATIC += -DUV_TVD
 
-execs: 1p 2p 4p 8p
-
 input: topo temp
 
 topo:
@@ -31,17 +29,9 @@ temp:
 	$(RM) -r $@ && mkdir $@
 	( export out_dir=$@ ; export parallel=True ; $(MAKE) namelist )
 	mpiexec -np `echo $@ | cut -c 1,1` ./bin/getm_prod_$(FORTRAN_COMPILER)_$@ && mv *.stderr $@
-#	mpiexec -np `${$@%p}` ./bin/getm_prod_$(FORTRAN_COMPILER)_$@ && mv *.stderr $@
 	ln -sf $(name).1p.dim $(name).dim
 
-
-clean:
-
-$(name)_clean: distclean
+$(name)_clean:
 	$(RM) -r 1p 2p 4p 8p
 
 .PHONY: 1p 2p 3p 4p
-
-#-----------------------------------------------------------------------
-# Copyright (C) 2006 - Karsten Bolding and Hans Burchard (BBH)         !
-#-----------------------------------------------------------------------
