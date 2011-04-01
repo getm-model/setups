@@ -10,10 +10,10 @@ ifndef GOTMDIR
 export GOTMDIR=$(HOME)/GOTM/gotm-cvs
 endif
 
-ver=2.0
+ver=2.1
 
 ifndef GETMDIR
-export GETMDIR = $(HOME)/GETM/v$(ver).x
+export GETMDIR = $(HOME)/GETM/getm-git
 endif
 srcdir  = $(GETMDIR)/src
 

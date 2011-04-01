@@ -1,10 +1,8 @@
 #
-# Master Makefile for making 'getm' v2.0.x
+# Master Makefile for making 'getm' v2.1.x
 #
 
 SHELL = /bin/sh
-
-#ver=2.0.x
 
 # Set the list of ready test setups
 SETUPS=`cat SETUPS`
