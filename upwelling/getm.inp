@@ -71,6 +71,7 @@
 !               1: sigma
 !               2: z-level
 !               3: general vertical coordinates (gvc)
+!               5: adaptive coordinates
 ! maxdepth    [float, unit = m]
 !               maximum depth in active calculation domain
 !               This variable is only used if vert_cord = 3
@@ -689,8 +690,10 @@
 ! eqstate_method [integer]
 !                  equation of state method
 !                  1: linearisation of equation of state with T0,S0,dtr0,dsr0
-!                  2: UNESCO equation of state with no pressure adjustment. See
-!                    -DUNPRESS for pressure effect
+!                  2: UNESCO (1980) equation of state with no pressure
+!                    adjustment
+!                  3:  http://www.teos-10.org/ - adopted for modelling according
+!                    Jackett et al. 2006
 ! T0             [float, unit = MASCULINE ORDINAL INDICATORC]
 !                  reference temperature for linear equation of state
 !                  This variable is only used if eqstate_method = 1

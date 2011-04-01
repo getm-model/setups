@@ -10,8 +10,10 @@ ifndef GOTMDIR
 export GOTMDIR=$(HOME)/GOTM/gotm-cvs
 endif
 
+ver=2.0
+
 ifndef GETMDIR
-export GETMDIR = $(HOME)/GETM/getm-git
+export GETMDIR = $(HOME)/GETM/v$(ver).x
 endif
 srcdir  = $(GETMDIR)/src
 
@@ -29,7 +31,7 @@ ifndef BINDIR
 export BINDIR=$(GETM_SETUP)/bin
 endif
 
-editscenario.py_args=-q -e nml --schemadir=$(GETMDIR)/schemas --targetversion=getm-1.9
+editscenario.py_args=-q -e nml --schemadir=$(GETMDIR)/schemas --targetversion=getm-$(ver)
 
 tarflags = -C .. --files-from filelist --exclude=CVS -cvzf
 
@@ -38,7 +40,7 @@ model: link clean
 	$(MAKE) -e -C $(srcdir)
 
 nml2xml:
-	nml2xml.py -q $(GETMDIR)/schemas/getm-1.9.schema . $(setup).xml
+	nml2xml.py -q $(GETMDIR)/schemas/getm-$(ver).schema . $(setup).xml
 	mv getm.inp getm.inp.old
 
 namelist:

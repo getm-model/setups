@@ -27,7 +27,7 @@
    dryrun = .false.,
    runid = 'seamount',
    title = 'Sea mountain test case',
-   parallel = .true.,
+   parallel = .false.,
    runtype = 4,
    hotstart = .false.,
    use_epoch = .false.,
@@ -71,6 +71,7 @@
 !               1: sigma
 !               2: z-level
 !               3: general vertical coordinates (gvc)
+!               5: adaptive coordinates
 ! maxdepth    [float, unit = m]
 !               maximum depth in active calculation domain
 !               This variable is only used if vert_cord = 3
@@ -237,7 +238,7 @@
    swr_const = 0.0,
    shf_const = 0.0,
    evap_const = 0.0,
-   precip_const = 1.157407e-05,
+   precip_const = 0.0,
    evap_factor = 1.0,
    precip_factor = 1.0,
 /
@@ -808,7 +809,7 @@
    hotin_fmt = 3,
    hotout_fmt = 3,
    in_dir = '.',
-   out_dir = '4p',
+   out_dir = '.',
    save_metrics = .false.,
    save_masks = .false.,
    save_2d = .true.,
