@@ -4,8 +4,6 @@
 
 SHELL = /bin/sh
 
-#ver=2.0.x
-
 # Set the list of ready test setups
 SETUPS=`cat SETUPS`
 
