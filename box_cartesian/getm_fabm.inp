@@ -1,0 +1,21 @@
+!-------------------------------------------------------------------------------
+!  Specification for 3D part of fabmlogical modelling
+!
+!  hotstart_fabm=        reading initial fields from hot-start file
+!  see getm.inp for descriptiona and valid values of the following variables
+!  fabm_hor_adv=         horizontal advection method
+!  fabm_ver_adv=         vertical advection method
+!  fabm_adv_split=       spitting scheme for advection
+!  fabm_AH=  horizontal diffusivity for fabmlogical variables
+!-------------------------------------------------------------------------------
+&getm_fabm_nml
+  fabm_init_method=1,
+  fabm_init_file='fabm_fields.nc',
+  fabm_init_format=2,
+  fabm_field_no=1,
+  fabm_hor_adv=4
+  fabm_ver_adv=4
+  fabm_adv_split=1
+  fabm_AH=-1.
+ /
+
