@@ -7,7 +7,7 @@
 STATIC += -DSTATIC -D_$(shell echo $(name) | tr a-z A-Z)_TEST_
 
 ifndef GOTMDIR
-export GOTMDIR=$(HOME)/GOTM/gotm-cvs
+export GOTMDIR=$(HOME)/GOTM/gotm-git
 endif
 
 ver=2.1
