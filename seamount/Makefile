@@ -9,7 +9,7 @@ setup = $(name)
 
 include ../Rules.make
 
-STATIC += -DUV_TVD
+STATIC += -DSTATIC -DUV_TVD
 
 input: topo temp
 
