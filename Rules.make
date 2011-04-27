@@ -4,7 +4,8 @@
 
 .EXPORT_ALL_VARIABLES:
 
-STATIC += -D_$(shell echo $(name) | tr a-z A-Z)_TEST_
+ADDARGS=
+STATIC += -D_$(shell echo $(name) | tr a-z A-Z)_TEST_ $(ADDARGS)
 
 ifndef GOTMDIR
 export GOTMDIR=$(HOME)/GOTM/gotm-git
