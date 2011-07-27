@@ -12,3 +12,6 @@ include ../Rules.make
 STATIC += -DUV_TVD -DSPHERICAL
 
 include ../Boxes.make
+
+.PHONY: input
+input:

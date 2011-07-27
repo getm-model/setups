@@ -13,4 +13,7 @@ include ../Rules.make
 
 STATIC  += -DUV_TVD -DMUDFLAT
 
+.PHONY: input
+input:
+
 $(name)_clean:

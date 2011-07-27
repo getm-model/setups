@@ -11,6 +11,7 @@ include ../Rules.make
 
 STATIC += -DUV_TVD
 
+.PHONY: input
 input: topo temp
 
 topo:

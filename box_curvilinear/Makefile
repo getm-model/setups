@@ -12,3 +12,6 @@ include ../Rules.make
 STATIC += -DUV_TVD -DCURVILINEAR
 
 include ../Boxes.make
+
+.PHONY: input
+input:
