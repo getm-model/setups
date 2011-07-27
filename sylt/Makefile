@@ -4,14 +4,14 @@
 
 SHELL	= /bin/sh
 
-#export GETM_NO_BAROCLINIC=true
+export GETM_NO_BAROCLINIC=true
 
 name    = sylt
 setup	= $(name)
 
 include ../Rules.make
 
-STATIC  += -DUV_TVD -DMUDFLAT
+STATIC  += -DSTATIC -DUV_TVD -DMUDFLAT
 
 .PHONY: input
 input:

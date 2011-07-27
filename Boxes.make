@@ -10,7 +10,6 @@ serial:
 	mv bin/getm_prod_$(FORTRAN_COMPILER) bin/getm_prod_$(FORTRAN_COMPILER)_$@ )
 
 openmp:
-	ln -sf $(name).4p.dim $(name).dim
 	( unset GETM_PARALLEL; \
 	export GETM_OMP=true; \
 	export MODDIR=`pwd`/modules/$(FORTRAN_COMPILER)/$@/; \

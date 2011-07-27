@@ -9,7 +9,7 @@ setup	= $(name)
 
 include ../Rules.make
 
-STATIC += -DUV_TVD -DSPHERICAL
+STATIC += -DSTATIC -DUV_TVD -DSPHERICAL
 
 include ../Boxes.make
 
