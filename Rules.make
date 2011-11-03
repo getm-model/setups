@@ -50,7 +50,7 @@ namelist:
 link:
 	(cd $(srcdir)/../include ; ln -sf $(GETM_SETUP)/$(name).dim dimensions.h)
 
-run: model namelist input
+run: input model namelist
 	$(BINDIR)/getm_prod_$(FORTRAN_COMPILER) >& $(name).log
 
 example:
