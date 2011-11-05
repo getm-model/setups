@@ -346,7 +346,7 @@
    An_const = 0.0,
    An_file = 'field_An.nc',
    residual = -1,
-   sealevel_check = 1,
+   sealevel_check = 0,
    bdy2d = .false.,
    bdyfmt_2d = 2,
    bdyramp_2d = -1,
