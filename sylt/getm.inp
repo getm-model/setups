@@ -130,7 +130,7 @@
 !-------------------------------------------------------------------------------
 
 &domain
-   vert_cord = 5,
+   vert_cord = 1,
    maxdepth = 29.1,
    bathymetry = 'topo.nc',
    longitude = 0.0,
