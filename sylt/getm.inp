@@ -723,85 +723,86 @@
 !-------------------------------------------------------------------------------
 ! format for output and filename(s)
 !-------------------------------------------------------------------------------
-! out_fmt           [integer]
-!                     output format
-!                     1: ASCII
-!                     2: NetCDF
-! hotin_fmt         [integer]
-!                     format for input hotstart file
-!                     1: ASCII
-!                     2: NetCDF
-!                     3: binary
-! hotout_fmt        [integer]
-!                     format for output hotstart file
-!                     1: ASCII
-!                     2: NetCDF
-!                     3: binary
-! in_dir            [string]
-!                     path to input directory
-! out_dir           [string]
-!                     path to output directory
-! save_metrics      [bool]
-!                     save additional info on grid
-! save_masks        [bool]
-!                     save computational masks (az, au, av)
-! save_2d           [bool]
-!                     save 2d fields
-! save_meteo        [bool]
-!                     save meteo data
-! save_3d           [bool]
-!                     save 3d fields
-! save_vel          [bool]
-!                     save velocities
-! destag            [bool]
-!                     save velocities at T-points
-! save_strho        [bool]
-!                     save any of salinity, temperature, density
-! save_s            [bool]
-!                     save salinity
-! save_t            [bool]
-!                     save temperature
-! save_rho          [bool]
-!                     save density
-! save_rad          [bool]
-!                     save solar radiation in water column
-! save_turb         [bool]
-!                     save any of the turbulent quantities
-! save_tke          [bool]
-!                     save TKE
-! save_eps          [bool]
-!                     save turbulence dissipation rate
-! save_num          [bool]
-!                     save turbulent diffusivity of momentum
-! save_nuh          [bool]
-!                     save turbulent diffusivity of heat
-! save_ss_nn        [bool]
-!                     save shear stress and Brunt-Vaisala frequency
-! save_taub         [bool]
-!                     save bottom friction velocity
-! save_mix_analysis [bool]
-!                     calculate/save mixing analysis
-! first_2d          [integer, minimum = 0, unit = micro time steps]
-!                     first time step to save 2D fields
-! step_2d           [integer, minimum = 1, unit = micro time steps]
-!                     interval between saves of 2D fields
-! first_3d          [integer, minimum = 0, unit = micro time steps]
-!                     first time step to save 3D fields
-! step_3d           [integer, minimum = 1, unit = micro time steps]
-!                     interval between saves of 3D fields
-! hotout            [integer array with shape (3)]
-!                     Array to control generation of hot-start files. The three
-!                       array elements represent the start, stop and stride for
-!                       hot-start file generation, in micro time steps. All
-!                       values default to -1. Three special cases exist: a)
-!                       hotout(1) < 0 - no saving, hotout(1) = 0 - make hot-
-!                       start file at end of simulation, b) hotout(2) < 0 -->
-!                       hotout(2)='very large integer', hotout(3)=hotout(1), c)
-!                       hotout(2) <= hotout(1) --> hotout(2)=hotout(1),
-!                       hotout(3)=1
-! meanout           [integer]
-!                     Make average over 'meanout' time steps. Special cases: if
-!                       < 0 - no averaging, if = 0 - average over entire run.
+! out_fmt                 [integer]
+!                           output format
+!                           1: ASCII
+!                           2: NetCDF
+! hotin_fmt               [integer]
+!                           format for input hotstart file
+!                           1: ASCII
+!                           2: NetCDF
+!                           3: binary
+! hotout_fmt              [integer]
+!                           format for output hotstart file
+!                           1: ASCII
+!                           2: NetCDF
+!                           3: binary
+! in_dir                  [string]
+!                           path to input directory
+! out_dir                 [string]
+!                           path to output directory
+! save_metrics            [bool]
+!                           save additional info on grid
+! save_masks              [bool]
+!                           save computational masks (az, au, av)
+! save_2d                 [bool]
+!                           save 2d fields
+! save_meteo              [bool]
+!                           save meteo data
+! save_3d                 [bool]
+!                           save 3d fields
+! save_vel                [bool]
+!                           save velocities
+! destag                  [bool]
+!                           save velocities at T-points
+! save_strho              [bool]
+!                           save any of salinity, temperature, density
+! save_s                  [bool]
+!                           save salinity
+! save_t                  [bool]
+!                           save temperature
+! save_rho                [bool]
+!                           save density
+! save_rad                [bool]
+!                           save solar radiation in water column
+! save_turb               [bool]
+!                           save any of the turbulent quantities
+! save_tke                [bool]
+!                           save TKE
+! save_eps                [bool]
+!                           save turbulence dissipation rate
+! save_num                [bool]
+!                           save turbulent diffusivity of momentum
+! save_nuh                [bool]
+!                           save turbulent diffusivity of heat
+! save_ss_nn              [bool]
+!                           save shear stress and Brunt-Vaisala frequency
+! save_taub               [bool]
+!                           save bottom friction velocity
+! save_numerical_analyses [bool]
+!                           presently numerical mixing and dissipation analyses
+! first_2d                [integer, minimum = 0, unit = micro time steps]
+!                           first time step to save 2D fields
+! step_2d                 [integer, minimum = 1, unit = micro time steps]
+!                           interval between saves of 2D fields
+! first_3d                [integer, minimum = 0, unit = micro time steps]
+!                           first time step to save 3D fields
+! step_3d                 [integer, minimum = 1, unit = micro time steps]
+!                           interval between saves of 3D fields
+! hotout                  [integer array with shape (3)]
+!                           Array to control generation of hot-start files. The
+!                             three array elements represent the start, stop and
+!                             stride for hot-start file generation, in micro
+!                             time steps. All values default to -1. Three
+!                             special cases exist: a) hotout(1) < 0 - no saving,
+!                             hotout(1) = 0 - make hot-start file at end of
+!                             simulation, b) hotout(2) < 0 --> hotout(2)='very
+!                             large integer', hotout(3)=hotout(1), c) hotout(2)
+!                             <= hotout(1) --> hotout(2)=hotout(1), hotout(3)=1
+! meanout                 [integer]
+!                           Make average over 'meanout' time steps. Special
+!                             cases: if < 0 - no averaging, if = 0 - average
+!                             over entire run.
 !-------------------------------------------------------------------------------
 
 &io_spec
@@ -829,7 +830,7 @@
    save_nuh = .true.,
    save_ss_nn = .false.,
    save_taub = .false.,
-   save_mix_analysis = .false.,
+   save_numerical_analyses = .false.,
    first_2d = 0,
    step_2d = 100,
    first_3d = 20000,

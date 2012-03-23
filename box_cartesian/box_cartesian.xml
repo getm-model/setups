@@ -370,7 +370,7 @@
 				2
 			</salt_format>
 			<salt_file>
-				sprof.dat
+				sprofile.dat
 			</salt_file>
 			<salt_name>
 				salt
