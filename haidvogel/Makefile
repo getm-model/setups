@@ -2,7 +2,7 @@
 # Makefile for making STATIC version of the - haidvogel - executable
 #
 
-SHELL	  = /bin/bash
+SHELL	  = /bin/sh
 
 name	  = haidvogel
 setup	  = $(name)
