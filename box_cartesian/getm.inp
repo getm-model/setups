@@ -491,7 +491,8 @@
 !                      This variable is only used if temp_method = 3
 ! temp_file          [string]
 !                      name of file with initial temperature distribution
-!                      This variable is only used if temp_method = 3
+!                      This variable is only used if (temp_method = 2 or
+!                        temp_method = 3)
 ! temp_name          [string]
 !                      name of the temperature variable
 !                      This variable is only used if (temp_method = 3 and
@@ -621,7 +622,8 @@
 !                  This variable is only used if salt_method = 3
 ! salt_file      [string]
 !                  name of file with initial salinity distribution
-!                  This variable is only used if salt_method = 3
+!                  This variable is only used if (salt_method = 2 or salt_method
+!                    = 3)
 ! salt_name      [string]
 !                  name of the salinity variable
 !                  This variable is only used if (salt_method = 3 and
