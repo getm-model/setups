@@ -1,5 +1,5 @@
 #
-# Master Makefile for making test cases for getm-2.2
+# Master Makefile for making test cases for getm-2.3
 #
 
 SHELL = /bin/sh
