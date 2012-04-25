@@ -205,7 +205,7 @@
 				field_An.nc
 			</An_file>
 			<residual>
-				20000
+				-1
 			</residual>
 			<sealevel_check>
 				0
