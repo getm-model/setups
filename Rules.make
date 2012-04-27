@@ -51,7 +51,7 @@ link:
 	(cd $(srcdir)/../include ; ln -sf $(GETM_SETUP)/$(name).dim dimensions.h)
 
 run: input model namelist
-	$(BINDIR)/getm_prod_$(FORTRAN_COMPILER) >& $(name).log
+	$(BINDIR)/getm_prod_$(FORTRAN_COMPILER) 2> $(name).log
 
 example:
 	echo -n "Created at: " > timestamp
