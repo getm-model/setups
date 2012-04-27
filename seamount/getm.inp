@@ -81,7 +81,7 @@
 !               Longitude used for calculating short wave radiation (if not from
 !                 bathymetry file)
 ! latitude    [float, unit = deg North]
-!               Latitude used for calculating the Coriolis force (if not from
+!               Latitude used for meteo and the Coriolis force (if not from
 !                 bathymetry file)
 ! f_plane     [bool]
 !               compute (constant) f latitude (otherwise calculated from
