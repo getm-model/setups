@@ -66,73 +66,80 @@
 !-------------------------------------------------------------------------------
 ! information on the calculation domain
 !-------------------------------------------------------------------------------
-! vert_cord   [integer]
-!               vertical coordinates
-!               1: sigma
-!               2: z-level
-!               3: general vertical coordinates (gvc)
-!               5: adaptive coordinates
-! maxdepth    [float, unit = m]
-!               maximum depth in active calculation domain
-!               This variable is only used if vert_cord = 3
-! bathymetry  [string]
-!               name of file with bathymetry and grid
-! longitude   [float, unit = deg East]
-!               Longitude used for calculating short wave radiation (if not from
-!                 bathymetry file)
-! latitude    [float, unit = deg North]
-!               Latitude used for meteo and the Coriolis force (if not from
-!                 bathymetry file)
-! f_plane     [bool]
-!               compute (constant) f latitude (otherwise calculated from
-!                 latitude,longitude in bathymetry)
-! openbdy     [bool]
-!               whether the scenario has open boundaries
-! bdyinfofile [string]
-!               name of file with boundary info
-!               This variable is only used if openbdy = True
-! crit_depth  [float, unit = m]
-!               the critical depth - when the drying procedure starts
-! min_depth   [float, unit = m]
-!               the absolute minimum depth
-! kdum        [integer]
-!               number of layers in the vertical - only used when -DDYNAMIC
-! ddu         [float]
-!               Surface zooming: 0: no zooming, 1: weak zooming, 3: strong
-!                 zooming, etc.
-! ddl         [float]
-!               Bottom zooming: 0: no zooming, 1: weak zooming, 3: strong
-!                 zooming, etc.
-! d_gamma     [float, unit = m]
-!               Depth below which sigma coordinates are used. For larger depth,
-!                 surface or bottom layer thickness at depth=d_gamma is kept,
-!                 depending on gamma_surf
-!               This variable is only used if vert_cord = 3
-! gamma_surf  [bool]
-!               layer thickness constant at surface (else at the bottom)
-!               This variable is only used if vert_cord = 3
-! il          [integer]
-!               ???
-! ih          [integer]
-!               ???
-! jl          [integer]
-!               ???
-! jh          [integer]
-!               ???
-! z0_method   [integer]
-!               bottom roughness specification
-!               0: constant - using z0_const
-!               1: space varying - read from bathymetry file (variable name MUST
-!                 be z0)
-! z0_const    [float, unit = m]
-!               constant bottom roughness
-!               This variable is only used if z0_method = 0
+! vert_cord        [integer]
+!                    vertical coordinates
+!                    1: sigma
+!                    2: z-level
+!                    3: general vertical coordinates (gvc)
+!                    5: adaptive coordinates
+! maxdepth         [float, unit = m]
+!                    maximum depth in active calculation domain
+!                    This variable is only used if vert_cord = 3
+! bathymetry       [string]
+!                    name of file with bathymetry and grid
+! vel_depth_method [integer]
+!                    vel_depth_method
+!                    0: use mean value of neighboring H points (default)
+!                    1: use minimum value of neighboring H points
+!                    2: use mixture of mean and minimum values: see code for
+!                      details
+! longitude        [float, unit = deg East]
+!                    Longitude used for calculating short wave radiation (if not
+!                      from bathymetry file)
+! latitude         [float, unit = deg North]
+!                    Latitude used for meteo and the Coriolis force (if not from
+!                      bathymetry file)
+! f_plane          [bool]
+!                    compute (constant) f latitude (otherwise calculated from
+!                      latitude,longitude in bathymetry)
+! openbdy          [bool]
+!                    whether the scenario has open boundaries
+! bdyinfofile      [string]
+!                    name of file with boundary info
+!                    This variable is only used if openbdy = True
+! crit_depth       [float, unit = m]
+!                    the critical depth - when the drying procedure starts
+! min_depth        [float, unit = m]
+!                    the absolute minimum depth
+! kdum             [integer]
+!                    number of layers in the vertical - only used when -DDYNAMIC
+! ddu              [float]
+!                    Surface zooming: 0: no zooming, 1: weak zooming, 3: strong
+!                      zooming, etc.
+! ddl              [float]
+!                    Bottom zooming: 0: no zooming, 1: weak zooming, 3: strong
+!                      zooming, etc.
+! d_gamma          [float, unit = m]
+!                    Depth below which sigma coordinates are used. For larger
+!                      depth, surface or bottom layer thickness at depth=d_gamma
+!                      is kept, depending on gamma_surf
+!                    This variable is only used if vert_cord = 3
+! gamma_surf       [bool]
+!                    layer thickness constant at surface (else at the bottom)
+!                    This variable is only used if vert_cord = 3
+! il               [integer]
+!                    ???
+! ih               [integer]
+!                    ???
+! jl               [integer]
+!                    ???
+! jh               [integer]
+!                    ???
+! z0_method        [integer]
+!                    bottom roughness specification
+!                    0: constant - using z0_const
+!                    1: space varying - read from bathymetry file (variable name
+!                      MUST be z0)
+! z0_const         [float, unit = m]
+!                    constant bottom roughness
+!                    This variable is only used if z0_method = 0
 !-------------------------------------------------------------------------------
 
 &domain
    vert_cord = 1,
    maxdepth = 4500.0,
    bathymetry = 'topo.nc',
+   vel_depth_method = 0,
    longitude = 0.0,
    latitude = 0.0,
    f_plane = .true.,
@@ -290,57 +297,83 @@
 !-------------------------------------------------------------------------------
 ! variables related to 2D model
 !-------------------------------------------------------------------------------
-! MM               [integer, minimum = 0, unit = micro time steps]
-!                    time steps between calls to bottom_friction()
-! vel_depth_method [integer]
-!                    vel_depth_method
-!                    0: use mean value of neighboring H points (default)
-!                    1: use minimum value of neighboring H points
-!                    2: use mixture of mean and minimum values: see code for
-!                      details
-! Am               [float, unit = m^2/s]
-!                    constant horizontal momentum diffusion coefficient
-! An_method        [integer]
-!                    method for constant horizontal numerical diffusion
-!                      coefficient (m^2/s) used to filter the surface elevation
-!                    0: disabled
-!                    1: constant value An_const
-!                    2: variable 2D from file
-! An_const         [float, unit = m^2/s]
-!                    constant horizontal numerical diffusion coefficient
-!                    This variable is only used if An_method = 1
-! An_file          [string]
-!                    name of netcdf file with variable An
-!                    This variable is only used if An_method = 2
-! residual         [integer]
-!                    compute vertically integrated residual currents every
-!                      'residual' time step
-! sealevel_check   [integer]
-!                    Interval between checks for NaN's in sealevels. 0:
-!                      disabled, >0: check every sealevel_check step, abort if
-!                      check fails, <0: check every abs(sealevel_check) step,
-!                      warn only if check fails
-! bdy2d            [bool]
-!                    open boundaries exist
-! bdyfmt_2d        [integer]
-!                    format of boundary specifications
-!                    -1: no data needed
-!                    0: analytical
-!                    1: ASCII
-!                    2: NetCDF
-!                    This variable is only used if bdy2d = True
-! bdyramp_2d       [integer]
-!                    number of time steps for elevation boundary spin-up
-!                    This variable is only used if bdy2d = True
-! bdyfile_2d       [string]
-!                    name of file with boundary data
-!                    This variable is only used if (bdy2d = True and (bdyfmt_2d
-!                      = 1 or bdyfmt_2d = 2))
+! elev_method     [integer]
+!                   method for initial surface elevation
+!                   1: constant
+!                   2: from 2D field
+! elev_const      [float]
+!                   constant initial surface elevation
+!                   This variable is only used if elev_method = 1
+! elev_file       [string]
+!                   name of file with initial surface elevation
+!                   This variable is only used if elev_method = 2
+! MM              [integer, minimum = 0, unit = micro time steps]
+!                   time steps between calls to bottom_friction()
+! vel2d_adv_split [integer]
+!                   advection splitting for depth-averaged velocities
+!                   0: no split: one 2D uv step
+!                   1: full step splitting: u + v
+!                   2: half step splitting: u/2 + v + u/2
+!                   This variable is not used if vel2d_adv_hor = 0
+! vel2d_adv_hor   [integer]
+!                   advection scheme for depth-averaged velocities
+!                   0: advection disabled
+!                   1: upstream (first-order, monotone)
+!                   2: 2DH-upstream with forced monotonicity
+!                   3: P2 (third-order, non-monotone)
+!                   4: TVD-Superbee (second-order, monotone)
+!                   5: TVD-MUSCL (second-order, monotone)
+!                   6: TVD-P2-PDM (third-order, monotone)
+!                   7: 2DH-J7
+!                   8: 2DH-FCT
+!                   9: 2DH-P2
+! Am              [float, unit = m^2/s]
+!                   constant horizontal momentum diffusion coefficient
+! An_method       [integer]
+!                   method for constant horizontal numerical diffusion
+!                     coefficient (m^2/s) used to filter the surface elevation
+!                   0: disabled
+!                   1: constant value An_const
+!                   2: variable 2D from file
+! An_const        [float, unit = m^2/s]
+!                   constant horizontal numerical diffusion coefficient
+!                   This variable is only used if An_method = 1
+! An_file         [string]
+!                   name of netcdf file with variable An
+!                   This variable is only used if An_method = 2
+! residual        [integer]
+!                   compute vertically integrated residual currents every
+!                     'residual' time step
+! sealevel_check  [integer]
+!                   Interval between checks for NaN's in sealevels. 0: disabled,
+!                     >0: check every sealevel_check step, abort if check fails,
+!                     <0: check every abs(sealevel_check) step, warn only if
+!                     check fails
+! bdy2d           [bool]
+!                   open boundaries exist
+! bdyfmt_2d       [integer]
+!                   format of boundary specifications
+!                   -1: no data needed
+!                   0: analytical
+!                   1: ASCII
+!                   2: NetCDF
+!                   This variable is only used if bdy2d = True
+! bdyramp_2d      [integer]
+!                   number of time steps for elevation boundary spin-up
+!                   This variable is only used if bdy2d = True
+! bdyfile_2d      [string]
+!                   name of file with boundary data
+!                   This variable is only used if (bdy2d = True and (bdyfmt_2d =
+!                     1 or bdyfmt_2d = 2))
 !-------------------------------------------------------------------------------
 
 &m2d
+   elev_method = 1,
+   elev_const = 0.0,
+   elev_file = 'elev.nc',
    MM = 1,
-   vel_depth_method = 0,
+   vel2d_adv_split = 0,
+   vel2d_adv_hor = 1,
    Am = -1.0,
    An_method = 0,
    An_const = 0.0,
@@ -356,100 +389,109 @@
 !-------------------------------------------------------------------------------
 ! variables related to 3D model
 !-------------------------------------------------------------------------------
-! M                [integer, minimum = 1, unit = micro time steps]
-!                    time steps between calls to 3D model
-! cnpar            [float, minimum = 0.0, maximum = 1.0]
-!                    Cranck-Nicolson parameter
-! cord_relax       [float, minimum = 0.0, unit = s]
-!                    Coordinate relaxation time scale. The parameter
-!                      r=cord_relax/dt*H(i,j)/maxdepth regulates how strongly
-!                      new layer distribution is relaxed to the old one.
-!                    This variable is only used if ../domain/vert_cord = 3
-! bdy3d            [bool]
-!                    open boundaries exist
-! bdyfmt_3d        [integer]
-!                    format of boundary specifications
-!                    1: ASCII
-!                    2: NetCDF
-!                    This variable is only used if bdy3d = True
-! bdyramp_3d       [integer]
-!                    number of time steps for boundary spin-up
-!                    This variable is only used if bdy3d = True
-! bdyfile_3d       [string]
-!                    name of file with boundary data
-!                    This variable is only used if bdy3d = True
-! bdy3d_tmrlx      [bool]
-!                    temporal 3D boundary relaxation coeff.
-!                    This variable is only used if bdy3d = True
-! bdy3d_tmrlx_min  [float, minimum = 0.0, maximum = 1.0]
-!                    minimum relaxation coefficient
-!                    This variable is only used if bdy3d_tmrlx = True
-! bdy3d_tmrlx_max  [float, minimum = 0.0, maximum = 1.0]
-!                    maximum relaxation coefficient
-!                    This variable is only used if bdy3d_tmrlx = True
-! bdy3d_tmrlx_ucut [float, minimum = 0.0, unit = m/s]
-!                    velocity threshold
-!                    This variable is only used if bdy3d_tmrlx = True
-! vel_hor_adv      [integer]
-!                    horizontal advection method for momentum
-!                    1: upstream (first-order, monotone)
-!                    2: 2D upstream (first-order, monotone)
-!                    3: P2-PDM (third-order, non-monotone)
-!                    4: TVD-Superbee (second-order, monotone)
-!                    5: TVD-MUSCL (second-order, monotone)
-!                    6: TVD-P2-PDM (third-order, monotone)
-!                    7: 2D-FCT
-! vel_ver_adv      [integer]
-!                    vertical advection method for momentum
-!                    1: upstream (first-order, monotone)
-!                    2: 2D upstream (first-order, monotone)
-!                    3: P2-PDM (third-order, non-monotone)
-!                    4: TVD-Superbee (second-order, monotone)
-!                    5: TVD-MUSCL (second-order, monotone)
-!                    6: TVD-P2-PDM (third-order, monotone)
-!                    7: 2D-FCT
-! vel_adv_split    [integer]
-!                    splitting scheme for advection
-!                    0: 1D split --> full u, full v, full w
-!                    1: 1D split --> half u, half v, full w, half v, half u
-!                    2: 2D-hor-1D-vert split --> full uv, full w
-! calc_temp        [bool]
-!                    solve temperature equation
-! calc_salt        [bool]
-!                    solve salinity equation
-! avmback          [float, unit = m^2/s]
-!                    background viscosity
-! avhback          [float, unit = m^2/s]
-!                    background diffusivity
-! ip_method        [integer]
-!                    internal pressure method
-!                    1: Blumberg and Mellor
-!                    2: Blumberg and Mellor (linear)
-!                    3: z-interpolation
-!                    4: Song and Wright
-!                    5: Chu and Fan
-!                    6: Shchepetkin and McWilliams (2003)
-!                    7: Stelling and van Kester (1994)
-! ip_ramp          [integer, unit = micro time steps]
-!                    Internal pressure spin-up. must be a multiple of M (split
-!                      factor)
-! vel_check        [integer]
-!                    Interval between checks for out-of-bounds velocities. 0:
-!                      disabled, >0: check every vel_check step, abort if check
-!                      fails, <0: check every abs(vel_check) step, warn if check
-!                      fails
-! min_vel          [float, unit = m/s]
-!                    minimum valid velocity
-!                    This variable is not used if vel_check = 0
-! max_vel          [float, unit = m/s]
-!                    maximum valid velocity
-!                    This variable is not used if vel_check = 0
+! M                  [integer, minimum = 1, unit = micro time steps]
+!                      time steps between calls to 3D model
+! cnpar              [float, minimum = 0.0, maximum = 1.0]
+!                      Cranck-Nicolson parameter
+! cord_relax         [float, minimum = 0.0, unit = s]
+!                      Coordinate relaxation time scale. The parameter
+!                        r=cord_relax/dt*H(i,j)/maxdepth regulates how strongly
+!                        new layer distribution is relaxed to the old one.
+!                      This variable is only used if ../domain/vert_cord = 3
+! adv_ver_iterations [integer, minimum = 0]
+!                      max number of iterations of vertical advection
+! bdy3d              [bool]
+!                      open boundaries exist
+! bdyfmt_3d          [integer]
+!                      format of boundary specifications
+!                      1: ASCII
+!                      2: NetCDF
+!                      This variable is only used if bdy3d = True
+! bdyramp_3d         [integer]
+!                      number of time steps for boundary spin-up
+!                      This variable is only used if bdy3d = True
+! bdyfile_3d         [string]
+!                      name of file with boundary data
+!                      This variable is only used if bdy3d = True
+! bdy3d_tmrlx        [bool]
+!                      temporal 3D boundary relaxation coeff.
+!                      This variable is only used if bdy3d = True
+! bdy3d_tmrlx_min    [float, minimum = 0.0, maximum = 1.0]
+!                      minimum relaxation coefficient
+!                      This variable is only used if bdy3d_tmrlx = True
+! bdy3d_tmrlx_max    [float, minimum = 0.0, maximum = 1.0]
+!                      maximum relaxation coefficient
+!                      This variable is only used if bdy3d_tmrlx = True
+! bdy3d_tmrlx_ucut   [float, minimum = 0.0, unit = m/s]
+!                      velocity threshold
+!                      This variable is only used if bdy3d_tmrlx = True
+! vel3d_adv_split    [integer]
+!                      advection splitting for horizontal 3D velocities
+!                      0: no split: one 3D uvw step
+!                      1: full step splitting: u + v + w
+!                      2: half step splitting: u/2 + v/2 + w + v/2 + u/2
+!                      3: hor/ver splitting: uv + w
+!                      This variable is not used if vel3d_adv_hor = 0
+! vel3d_adv_hor      [integer]
+!                      horizontal advection scheme for horizontal 3D velocities
+!                      0: advection disabled
+!                      1: upstream (first-order, monotone)
+!                      2: 2DH-upstream with forced monotonicity
+!                      3: P2 (third-order, non-monotone)
+!                      4: TVD-Superbee (second-order, monotone)
+!                      5: TVD-MUSCL (second-order, monotone)
+!                      6: TVD-P2-PDM (third-order, monotone)
+!                      7: 2DH-J7
+!                      8: 2DH-FCT
+!                      9: 2DH-P2
+! vel3d_adv_ver      [integer]
+!                      vertical advection scheme for horizontal 3D velocities
+!                      0: advection disabled
+!                      1: upstream (first-order, monotone)
+!                      3: P2 (third-order, non-monotone)
+!                      4: TVD-Superbee (second-order, monotone)
+!                      5: TVD-MUSCL (second-order, monotone)
+!                      6: TVD-P2-PDM (third-order, monotone)
+! calc_temp          [bool]
+!                      solve temperature equation
+! calc_salt          [bool]
+!                      solve salinity equation
+! avmback            [float, unit = m^2/s]
+!                      background viscosity
+! avhback            [float, unit = m^2/s]
+!                      background diffusivity
+! advect_turbulence  [bool]
+!                      advect TKE and eps
+! ip_method          [integer]
+!                      internal pressure method
+!                      1: Blumberg and Mellor
+!                      2: Blumberg and Mellor (linear)
+!                      3: z-interpolation
+!                      4: Song and Wright
+!                      5: Chu and Fan
+!                      6: Shchepetkin and McWilliams (2003)
+!                      7: Stelling and van Kester (1994)
+! ip_ramp            [integer, unit = micro time steps]
+!                      Internal pressure spin-up. must be a multiple of M (split
+!                        factor)
+! vel_check          [integer]
+!                      Interval between checks for out-of-bounds velocities. 0:
+!                        disabled, >0: check every vel_check step, abort if
+!                        check fails, <0: check every abs(vel_check) step, warn
+!                        if check fails
+! min_vel            [float, unit = m/s]
+!                      minimum valid velocity
+!                      This variable is not used if vel_check = 0
+! max_vel            [float, unit = m/s]
+!                      maximum valid velocity
+!                      This variable is not used if vel_check = 0
 !-------------------------------------------------------------------------------
 
 &m3d
    M = 30,
    cnpar = 1.0,
    cord_relax = 0.0,
+   adv_ver_iterations = 200,
    bdy3d = .false.,
    bdyfmt_3d = 2,
    bdyramp_3d = -1,
@@ -458,13 +500,14 @@
    bdy3d_tmrlx_min = 0.0,
    bdy3d_tmrlx_max = 0.25,
    bdy3d_tmrlx_ucut = 0.02,
-   vel_hor_adv = 1,
-   vel_ver_adv = 1,
-   vel_adv_split = 0,
+   vel3d_adv_split = 0,
+   vel3d_adv_hor = 1,
+   vel3d_adv_ver = 1,
    calc_temp = .true.,
    calc_salt = .true.,
    avmback = 0.0,
    avhback = 0.0,
+   advect_turbulence = .false.,
    ip_method = 1,
    ip_ramp = -1,
    vel_check = 0,
@@ -501,29 +544,32 @@
 !                      what number to read initial data from
 !                      This variable is only used if (temp_method = 3 and
 !                        temp_format = 2)
-! temp_hor_adv       [integer]
-!                      horizontal advection method for temperature
-!                      1: upstream (first-order, monotone)
-!                      2: 2D upstream (first-order, monotone)
-!                      3: P2-PDM (third-order, non-monotone)
-!                      4: TVD-Superbee (second-order, monotone)
-!                      5: TVD-MUSCL (second-order, monotone)
-!                      6: TVD-P2-PDM (third-order, monotone)
-!                      7: 2D-FCT
-! temp_ver_adv       [integer]
-!                      vertical advection method for temperature
-!                      1: upstream (first-order, monotone)
-!                      2: 2D upstream (first-order, monotone)
-!                      3: P2-PDM (third-order, non-monotone)
-!                      4: TVD-Superbee (second-order, monotone)
-!                      5: TVD-MUSCL (second-order, monotone)
-!                      6: TVD-P2-PDM (third-order, monotone)
-!                      7: 2D-FCT
 ! temp_adv_split     [integer]
-!                      splitting scheme for advection of temperature
-!                      0: 1D split --> full u, full v, full w
-!                      1: 1D split --> half u, half v, full w, half v, half u
-!                      2: 2D-hor-1D-vert split --> full uv, full w
+!                      advection splitting for temperature
+!                      0: no split: one 3D uvw step
+!                      1: full step splitting: u + v + w
+!                      2: half step splitting: u/2 + v/2 + w + v/2 + u/2
+!                      3: hor/ver splitting: uv + w
+!                      This variable is not used if temp_adv_hor = 0
+! temp_adv_hor       [integer]
+!                      horizontal advection scheme for temperature
+!                      0: advection disabled
+!                      1: upstream (first-order, monotone)
+!                      2: 2DH-upstream with forced monotonicity
+!                      3: P2 (third-order, non-monotone)
+!                      4: TVD-Superbee (second-order, monotone)
+!                      5: TVD-MUSCL (second-order, monotone)
+!                      6: TVD-P2-PDM (third-order, monotone)
+!                      8: 2DH-FCT
+!                      8: 2DH-P2
+! temp_adv_ver       [integer]
+!                      vertical advection scheme for temperature
+!                      0: advection disabled
+!                      1: upstream (first-order, monotone)
+!                      3: P2 (third-order, non-monotone)
+!                      4: TVD-Superbee (second-order, monotone)
+!                      5: TVD-MUSCL (second-order, monotone)
+!                      6: TVD-P2-PDM (third-order, monotone)
 ! temp_AH            [float, unit = m^2/s]
 !                      horizontal diffusivity of heat
 ! attenuation_method [integer]
@@ -586,9 +632,9 @@
    temp_file = 'tprofile.dat',
    temp_name = 'temp',
    temp_field_no = 1,
-   temp_hor_adv = 1,
-   temp_ver_adv = 1,
    temp_adv_split = 0,
+   temp_adv_hor = 1,
+   temp_adv_ver = 1,
    temp_AH = -1.0,
    attenuation_method = 0,
    jerlov = 1,
@@ -632,29 +678,32 @@
 !                  what number to read initial data from
 !                  This variable is only used if (salt_method = 3 and
 !                    salt_format = 2)
-! salt_hor_adv   [integer]
-!                  horizontal advection method for salinity
-!                  1: upstream (first-order, monotone)
-!                  2: 2D upstream (first-order, monotone)
-!                  3: P2-PDM (third-order, non-monotone)
-!                  4: TVD-Superbee (second-order, monotone)
-!                  5: TVD-MUSCL (second-order, monotone)
-!                  6: TVD-P2-PDM (third-order, monotone)
-!                  7: 2D-FCT
-! salt_ver_adv   [integer]
-!                  vertical advection method for salinity
-!                  1: upstream (first-order, monotone)
-!                  2: 2D upstream (first-order, monotone)
-!                  3: P2-PDM (third-order, non-monotone)
-!                  4: TVD-Superbee (second-order, monotone)
-!                  5: TVD-MUSCL (second-order, monotone)
-!                  6: TVD-P2-PDM (third-order, monotone)
-!                  7: 2D-FCT
 ! salt_adv_split [integer]
-!                  splitting scheme for advection of salinity
-!                  0: 1D split --> full u, full v, full w
-!                  1: 1D split --> half u, half v, full w, half v, half u
-!                  2: 2D-hor-1D-vert split --> full uv, full w
+!                  advection splitting for salinity
+!                  0: no split: one 3D uvw step
+!                  1: full step splitting: u + v + w
+!                  2: half step splitting: u/2 + v/2 + w + v/2 + u/2
+!                  3: hor/ver splitting: uv + w
+!                  This variable is not used if salt_adv_hor = 0
+! salt_adv_hor   [integer]
+!                  horizontal advection scheme for salinity
+!                  0: advection disabled
+!                  1: upstream (first-order, monotone)
+!                  2: 2DH-upstream with forced monotonicity
+!                  3: P2 (third-order, non-monotone)
+!                  4: TVD-Superbee (second-order, monotone)
+!                  5: TVD-MUSCL (second-order, monotone)
+!                  6: TVD-P2-PDM (third-order, monotone)
+!                  8: 2DH-FCT
+!                  9: 2DH-P2
+! salt_adv_ver   [integer]
+!                  vertical advection scheme for salinity
+!                  0: advection disabled
+!                  1: upstream (first-order, monotone)
+!                  3: P2 (third-order, non-monotone)
+!                  4: TVD-Superbee (second-order, monotone)
+!                  5: TVD-MUSCL (second-order, monotone)
+!                  6: TVD-P2-PDM (third-order, monotone)
 ! salt_AH        [float, unit = m^2/s]
 !                  horizontal diffusivity of salt
 ! salt_check     [integer]
@@ -677,9 +726,9 @@
    salt_file = 'sprofile.dat',
    salt_name = 'salt',
    salt_field_no = 1,
-   salt_hor_adv = 1,
-   salt_ver_adv = 1,
    salt_adv_split = 0,
+   salt_adv_hor = 1,
+   salt_adv_ver = 1,
    salt_AH = -1.0,
    salt_check = 0,
    min_salt = 0.0,
