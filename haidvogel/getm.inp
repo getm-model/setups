@@ -169,7 +169,7 @@
 !                 Are meteo given on grid-points?
 !                 This variable is only used if metforcing = True
 ! calc_met      [bool]
-!                 Are the fluxes already given?
+!                 Fluxes are not provided and need to be calculated.
 !                 This variable is only used if metforcing = True
 ! met_method    [integer]
 !                 meteo method
@@ -184,7 +184,7 @@
 !                 3: evaporation is calculated, precipitation from file
 !                 4: evaporation is calculated, NO precipitation
 !                 This variable is only used if metforcing = True
-! spinup        [integer, unit = micro time steps]
+! meteo_ramp    [integer, unit = micro time steps]
 !                 number of time steps for forcing spin-up
 !                 This variable is only used if metforcing = True
 ! metfmt        [integer]
@@ -237,7 +237,7 @@
    calc_met = .false.,
    met_method = 2,
    fwf_method = 2,
-   spinup = 500,
+   meteo_ramp = 500,
    metfmt = 2,
    meteo_file = 'meteo.nc',
    tx = 0.0,
@@ -358,7 +358,7 @@
 !                   1: ASCII
 !                   2: NetCDF
 !                   This variable is only used if bdy2d = True
-! bdyramp_2d      [integer]
+! bdy2d_ramp      [integer]
 !                   number of time steps for elevation boundary spin-up
 !                   This variable is only used if bdy2d = True
 ! bdyfile_2d      [string]
@@ -382,7 +382,7 @@
    sealevel_check = 0,
    bdy2d = .false.,
    bdyfmt_2d = 2,
-   bdyramp_2d = -1,
+   bdy2d_ramp = -1,
    bdyfile_2d = 'bdy_2d.nc',
 /
 
@@ -407,7 +407,7 @@
 !                      1: ASCII
 !                      2: NetCDF
 !                      This variable is only used if bdy3d = True
-! bdyramp_3d         [integer]
+! bdy3d_ramp         [integer]
 !                      number of time steps for boundary spin-up
 !                      This variable is only used if bdy3d = True
 ! bdyfile_3d         [string]
@@ -494,7 +494,7 @@
    adv_ver_iterations = 200,
    bdy3d = .false.,
    bdyfmt_3d = 2,
-   bdyramp_3d = -1,
+   bdy3d_ramp = -1,
    bdyfile_3d = 'bdy_3d.nc',
    bdy3d_tmrlx = .false.,
    bdy3d_tmrlx_min = 0.0,
