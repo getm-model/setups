@@ -9,7 +9,7 @@ SETUPS=`cat SETUPS`
 
 all: model
 
-model namelist input run example realclean distclean:
+model namelist input run example realclean distclean nml2xml:
 ifdef SETUPS
 	set -e; for i in $(SETUPS); do $(MAKE) -C $$i $@; done
 endif
