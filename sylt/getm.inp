@@ -253,34 +253,54 @@
 !-------------------------------------------------------------------------------
 ! variables related to rivers
 !-------------------------------------------------------------------------------
-! river_method   [integer]
-!                  river method
-!                  0: none
-!                  1: constant
-!                  2: from file
-! river_info     [string]
-!                  name of file with river specifications
-!                  This variable is only used if river_method = 2
-! river_format   [integer]
-!                  format of river_data
-!                  1: ASCII
-!                  2: NetCDF
-!                  This variable is only used if river_method = 2
-! river_data     [string]
-!                  name of file with actual river data
-!                  This variable is only used if river_method = 2
-! river_ramp     [integer]
-!                  ramp on river flows - in micro time steps
-!                  This variable is not used if river_method = 0
-! river_factor   [float]
-!                  factor to convert river flow to m^3/s
-!                  This variable is only used if river_method = 2
-! use_river_salt [bool]
-!                  use salinity info - if present in river data
-!                  This variable is only used if river_method = 2
-! use_river_temp [bool]
-!                  use temperature info - if present in river data
-!                  This variable is only used if river_method = 2
+! river_method                                [integer]
+!                                               river method
+!                                               0: none
+!                                               1: constant
+!                                               2: from file
+! river_info                                  [string]
+!                                               name of file with river
+!                                                 specifications
+!                                               This variable is only used if
+!                                                 river_method = 2
+! river_format                                [integer]
+!                                               format of river_data
+!                                               1: ASCII
+!                                               2: NetCDF
+!                                               This variable is only used if
+!                                                 river_method = 2
+! river_data                                  [string]
+!                                               name of file with actual river
+!                                                 data
+!                                               This variable is only used if
+!                                                 river_method = 2
+! river_ramp                                  [integer]
+!                                               ramp on river flows - in micro
+!                                                 time steps
+!                                               This variable is not used if
+!                                                 river_method = 0
+! river_factor                                [float]
+!                                               factor to convert river flow to
+!                                                 m^3/s
+!                                               This variable is only used if
+!                                                 river_method = 2
+! use_river_salt                              [bool]
+!                                               use salinity info - if present
+!                                                 in river data
+!                                               This variable is only used if
+!                                                 river_method = 2
+! use_river_temp                              [bool]
+!                                               use temperature info - if
+!                                                 present in river data
+!                                               This variable is only used if
+!                                                 river_method = 2
+! river_outflow_properties_follow_source_cell [bool]
+!                                               take temperature, salinity,
+!                                                 biogeochemistry of river
+!                                                 outflow from modelled source
+!                                                 cell
+!                                               This variable is only used if
+!                                                 river_method = 2
 !-------------------------------------------------------------------------------
 
 &rivers
@@ -292,6 +312,7 @@
    river_factor = 1.0,
    use_river_salt = .false.,
    use_river_temp = .false.,
+   river_outflow_properties_follow_source_cell = .true.,
 /
 
 !-------------------------------------------------------------------------------
@@ -836,10 +857,16 @@
 !                           first time step to save 2D fields
 ! step_2d                 [integer, minimum = 1, unit = micro time steps]
 !                           interval between saves of 2D fields
+! sync_2d                 [integer, minimum = 0, unit = every n'th save - 0 no
+!                             syncing]
+!                           2D fields disk syncing frequecncy
 ! first_3d                [integer, minimum = 0, unit = micro time steps]
 !                           first time step to save 3D fields
 ! step_3d                 [integer, minimum = 1, unit = micro time steps]
 !                           interval between saves of 3D fields
+! sync_3d                 [integer, minimum = 0, unit = every n'th save - 0 no
+!                             syncing]
+!                           3D fields disk syncing frequecncy
 ! hotout                  [integer array with shape (3)]
 !                           Array to control generation of hot-start files. The
 !                             three array elements represent the start, stop and
@@ -859,7 +886,7 @@
 &io_spec
    out_fmt = 2,
    hotin_fmt = 3,
-   hotout_fmt = 3,
+   hotout_fmt = 2,
    in_dir = '.',
    out_dir = '.',
    save_metrics = .false.,
@@ -884,8 +911,10 @@
    save_numerical_analyses = .false.,
    first_2d = 0,
    step_2d = 100,
+   sync_2d = 1,
    first_3d = 20000,
    step_3d = 500,
+   sync_3d = 1,
    hotout(:) = -1,,,
    meanout = -1,
 /
