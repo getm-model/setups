@@ -40,6 +40,9 @@ model: link clean
 	mkdir -p $(BINDIR)
 	$(MAKE) -e -C $(srcdir)
 
+confall confdir confflags:
+	$(MAKE) -C $(srcdir) $@
+
 nml2xml:
 	nml2xml.py -q $(GETMDIR)/schemas/getm-$(ver).schema . $(setup).xml
 	mv getm.inp getm.inp.old
