@@ -7,7 +7,7 @@ SHELL	= /bin/sh
 name	= box_cartesian
 setup	= $(name)
 
-STATIC += -DSTATIC -DUV_TVD
+STATIC += -DSTATIC
 
 include ../Rules.make
 

@@ -7,7 +7,7 @@ SHELL	  = /bin/sh
 name	  = haidvogel
 setup	  = $(name)
 
-STATIC += -DSTATIC -DNO_BOTTFRIC -DUV_TVD
+STATIC += -DSTATIC -DNO_BOTTFRIC
 
 include ../Rules.make
 

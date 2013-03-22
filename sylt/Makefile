@@ -11,7 +11,7 @@ setup	= $(name)
 
 include ../Rules.make
 
-STATIC  += -DSTATIC -DUV_TVD -DMUDFLAT
+STATIC  += -DSTATIC -DMUDFLAT
 
 .PHONY: input
 input:

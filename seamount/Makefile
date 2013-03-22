@@ -9,7 +9,7 @@ setup = $(name)
 
 include ../Rules.make
 
-STATIC += -DSTATIC -DUV_TVD
+STATIC += -DSTATIC
 
 .PHONY: input
 input: topo temp
