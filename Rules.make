@@ -11,7 +11,7 @@ ifndef GOTMDIR
 export GOTMDIR=$(HOME)/GOTM/gotm-git
 endif
 
-ver=2.4
+ver=2.5
 
 ifndef GETMDIR
 export GETMDIR = $(HOME)/GETM/getm-git
