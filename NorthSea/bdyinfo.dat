@@ -1,0 +1,12 @@
+! Number of western boundaries
+2
+2   3  18 4 0
+2 104 115 4 0
+! Number of northern boundaries
+2
+116   2 23 4 0
+124  27 60 4 0
+! Number of eastern boundaries
+0
+! Number of southern boundaries
+0

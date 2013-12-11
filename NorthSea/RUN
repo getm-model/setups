@@ -1,0 +1,217 @@
+#!/bin/bash
+# run script to cycle through the year 2006 in monthly
+# chunks.
+# You have to set:
+#  SETUPREV, np, RUNBASE, GETMBIN
+#
+# If you have any problems (with the setup), contact me:
+# ulf.graewe@io-warnemuende.de
+
+# give every run a unique version number, everything else
+# is bad habbit!
+export SETUPREV=R-v01
+
+# number of cpus to use
+export np=2
+
+# the actual run year
+runyear=2006
+
+# set some paths and settings
+export RUNBASE=/home/ulf/Desktop/GETM-GOTM/getm-setups/NorthSea/
+export SETUPNAME=NorthSea
+export GETMBIN=./bin/getm_prod_GFORTRAN_2p
+
+echo "======================================================="
+echo "Year   " ${runyear}
+echo "Version" ${SETUPREV}
+echo "======================================================="
+
+
+# do global timing
+tt1=`date +%s`
+
+# Alternative name for SETUPNAME
+export runid=$SETUPNAME
+
+# Choices made for this run:
+BDY2D=bdy.2d.${runyear}.nc
+BDY3D=bound_3D.CFSR.${runyear}.nc
+BDYRIV=rivers.nc
+METEO=CFSR.daymean.${runyear}.nc
+TOPO=NS6nm.v01.nc
+
+# clean up the old stuff
+rm -fv meteo_files.dat getm.inp init.nc bdy.2d.nc bdy.3d.nc meteo.nc river.nc
+
+# Set the directory to store the output
+export out_base=${RUNBASE}/store/${SETUPREV}
+mkdir -pv ${out_base}
+
+# Create symlinks to files
+ln -sfv Forcing/River/$BDYRIV  river.nc
+ln -sfv Forcing/Meteo/$METEO   meteo.nc
+ln -sfv Forcing/3D/$BDY3D      bdy.3d.nc
+ln -sfv Forcing/2D/$BDY2D      bdy.2d.nc
+ln -sfv Topo/$TOPO             topo.nc
+
+echo "\"meteo.nc\"" > meteofiles.dat
+
+# the run goes over all 12 months
+firstphase=1
+lastphase=12
+
+# since we do full year, we use use_epoch=.true. and set the
+# start date only once
+export start="2006-01-02 00:00:00"
+
+for phas in `seq $firstphase $lastphase` ; do
+   export ticphase=`date +%s`
+   phase=`printf %02d $phas`
+   nowdate=`date`
+   echo "$nowdate: Doing phase $phase"
+   #
+   # Common stuff:
+   export timestep=60.
+   export M=30
+   export use_epoch=True
+   export runtype=1
+   export parallel=True
+   export hotstart=True
+   export yystart=${runyear}
+   export yystop=${runyear}
+   export temp_method=0
+   export salt_method=0
+   # set the advection stuff
+   export vel2d_adv_hor=4
+   export vel2d_adv_split=2
+   export vel3d_adv_hor=4
+   export vel3d_adv_ver=4
+   export vel3d_adv_split=2
+   export advect_turbulence=False
+   export temp_adv_split=2
+   export temp_adv_hor=4
+   export temp_adv_ver=4
+   # handle the spinup of the forcing
+   export meteo_ramp=-1
+   export bdy2d_ramp=-1
+   export bdy3d_ramp=-1
+   export ip_ramp=-1
+   export river_ramp=-1
+   export An_method=0
+   export An_const=20
+   export Am=-1
+   export title='NorthSea annual 6nm run : '$SETUPREV
+   export river_method=2
+   # saving the data
+   export save_initial=False
+   export save_2d=True
+   export save_3d=True
+   export step_2d=60    # hourly snapshots
+   export step_3d=1440  # daily snapshots
+   export meanout=1488  # average of 2 tidal periods
+
+   # create the start and stop dates
+   export mmstart=`printf %02d $(($phas))`
+   export mmstop=`printf %02d $((1+$phas))`
+   # Only very few exceptions in January and December:
+   if [ "$phase " -eq "01" ] ; then
+     # here we do the spinup, hence some extra settings
+     export save_initial=True
+     export hotstart=False
+     export temp_method=1
+     export salt_method=1
+     export meteo_ramp=10000
+     export bdy2d_ramp=10000
+     export bdy2d_ramp=10000
+     export ip_ramp=10000
+     export river_ramp=10000
+     export An_method=1
+     export An_const=20.
+     export M=10
+   elif [ "$phase " -eq "12" ] ; then
+     export mmstop=01
+     export yystop=$(($runyear+1))
+   fi
+
+   export stop="${yystop}-${mmstop}-01 00:00:00"
+   export YEARMM=$yystart$mmstart
+   echo ' start time:'$start
+   echo ' stop  time:'$stop
+   #
+   # Actually write GETM output to here:
+   export out_dir=$out_base/OUT/${YEARMM}
+   echo  'creating out_dir:'$out_dir
+   mkdir -pv ${out_dir}
+   export hot_dir=$out_base/OUT/$yystop$mmstop
+   echo  'creating hot_dir:'$hot_dir
+   mkdir -pv ${hot_dir}
+   export hot_store_dir=$out_base/HOT/$yystop${mmstop}
+   echo  'creating hot_store_dir:'$hot_store_dir
+   mkdir -pv ${hot_store_dir}
+   #
+   # Loggin is set here:
+   export logdir=log/${SETUPREV}/$conf/$YEARMM
+   export logfil=log/${SETUPREV}/log.$YEARMM
+   mkdir -pv ${logdir}
+   echo " Running getm: log to $logfil +more to $logdir"
+   # Dont truncate log files, but write that we start writing to them now:
+   nowdate=`date`
+   echo "$nowdate: Starting logfile" >> $logfil
+
+   cd ${RUNBASE}
+   echo " Running getm:"
+   nowdate=`date`
+   echo "$nowdate: Starting GETM"
+   export tic=`date +%s`
+   # here the call to the engine
+   make namelist
+   mpiexec -n ${np} ${GETMBIN} 2>&1 >> $logfil
+
+   export toc=`date +%s`
+   echo "   GETM walltime (secs):" $(( $toc - $tic ))
+
+   nowdate=`date`
+   echo "$nowdate: Moving log files"
+   mv *.stderr $logdir && rm -f *.stdout
+
+   # store some files for reproducebility
+   cp -v adaptcoord.inp     $logdir
+   cp -v RUN                $logdir
+   cp -v getm.inp           $logdir
+   cp -v gotmturb.nml       $logdir
+   cp -v bdyinfo.dat        $logdir
+   cp -v Makefile           $logdir
+   cp -v riverinfo.dat      $logdir
+
+   echo `date`": === Moving hotstart files for next sim ==="
+   echo "Moving files to ${hot_dir}"
+   mkdir -pv ${hot_dir}
+   mkdir -pv ${hot_store_dir}
+
+   echo 'cd to out_dir:'${out_dir}
+   cd ${out_dir}
+   # handling the restart files
+   # first, rename the files
+   for FILE in *.out; do mv ${FILE} ${FILE%.out}.in; done
+   # copy the files in the next folder
+   cp restart.???.in ${hot_dir}/
+   # move the restart files to a storage folder and zip them
+   # Yo might need them later! 
+   mv restart.* ${hot_store_dir}
+   gzip -f ${hot_store_dir}/* &
+
+   cd ${RUNBASE}
+
+done
+
+# do global timing
+tt2=`date +%s`
+
+wall=`echo $tt2-$tt1 | bc`
+echo " "
+echo "======================================================="
+echo "total wall clock time: "$wall" secs"
+echo "======================================================="
+
+

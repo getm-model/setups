@@ -1,0 +1,17 @@
+This setup simulates the North Sea for the year 2006. It starts with uniform conditions in salt and temperature. It uses as boundary conditions the output of a global Ocean-Atmopshere model (Climate Forcast System Reanalysis CFSR). It also includes realistic river forcing. The setup is a reduced model of a 1nm North Sea / Baltic Sea setup. Only every 6th point is picked. Additionally, the setup is choped in the Arkona Basin.
+You can run the setup in serial, but also with 2 or 4 domains. Note that you need mpiexec in your path.
+For a first test, simply try:
+make distclean
+make input
+make 2p (a parallel 2 domain setup)
+
+If you are more interested in a complex setup, you can try the RUN script. This is a script that runs the setup in monthly chunks, stores the data and handles the hotstart files. Additionally, a bit of logging is included. If you like, give it a try. At the beginning of the RUN script you have to set some user defined values. The script should give you a flavour, how large setups are run and handled. Maybe you get some ideas!
+
+If you want to have a fast test, simply set runtype=1. With two domains, the run time for one month is approx 15 minutes.
+
+Enjoy!
+
+Ulf Gräwe
+
+For comments, questions, or addtional forcing fields, please contact me:
+ulf.graewe@io-warnemuende.de

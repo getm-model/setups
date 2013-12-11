@@ -1,0 +1,3 @@
+   integer, parameter :: iextr=112,jextr=125
+   integer, parameter :: imin=1,imax=56,jmin=1,jmax=125
+   integer, parameter :: kmax=30
