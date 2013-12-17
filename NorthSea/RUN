@@ -18,9 +18,9 @@ export np=2
 runyear=2006
 
 # set some paths and settings
-export RUNBASE=/home/ulf/Desktop/GETM-GOTM/getm-setups/NorthSea/
+export RUNBASE=${RUNBASE:-$HOME/GETM/getm-setups/NorthSea}
 export SETUPNAME=NorthSea
-export GETMBIN=./bin/getm_prod_GFORTRAN_2p
+export GETMBIN=./bin/getm_prod_${FORTRAN_COMPILER}_${np}p
 
 echo "======================================================="
 echo "Year   " ${runyear}
