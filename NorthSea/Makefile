@@ -32,6 +32,6 @@ input:
 	ln -sf Parallel/$(name).1p.dim $(name).dim
 
 $(name)_clean:
-	$(RM) -rv 1p 2p 4p
+	$(RM) -rv 1p 2p 4p store log
 
 .PHONY: 1p 2p 4p
