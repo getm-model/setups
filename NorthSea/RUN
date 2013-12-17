@@ -18,7 +18,7 @@ export np=2
 runyear=2006
 
 # set some paths and settings
-export RUNBASE=${RUNBASE:-$HOME/GETM/getm-setups/NorthSea}
+export RUNBASE=${RUNBASE:-`pwd`}
 export SETUPNAME=NorthSea
 export GETMBIN=./bin/getm_prod_${FORTRAN_COMPILER}_${np}p
 
