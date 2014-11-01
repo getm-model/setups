@@ -13,6 +13,7 @@ include ../Rules.make
 .PHONY: input
 
 input:
+	ln -sf Parallel/$(name).1p.dim $(name).dim
 	ln -sf Forcing/River/rivers.nc            river.nc
 	ln -sf Forcing/Meteo/CFSR.daymean.2006.nc meteo.nc
 	ln -sf Forcing/3D/bound_3D.CFSR.2006.nc   bdy.3d.nc

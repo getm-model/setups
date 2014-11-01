@@ -167,7 +167,7 @@
 			<hotin_fmt>2</hotin_fmt>
 			<hotout_fmt>2</hotout_fmt>
 			<in_dir>.</in_dir>
-			<out_dir>1p</out_dir>
+			<out_dir>.</out_dir>
 			<save_metrics>False</save_metrics>
 			<save_masks>False</save_masks>
 			<save_2d>False</save_2d>
