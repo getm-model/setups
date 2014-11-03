@@ -118,13 +118,21 @@
 !                    layer thickness constant at surface (else at the bottom)
 !                    This variable is only used if vert_cord = 3
 ! il               [integer]
-!                    ???
+!                    lower bound of used i-indices (mandatory for dynamic
+!                      compilation; default -1 indicates full domain for static
+!                      compilation)
 ! ih               [integer]
-!                    ???
+!                    upper bound of used i-indices (mandatory for dynamic
+!                      compilation; default -1 indicates full domain for static
+!                      compilation)
 ! jl               [integer]
-!                    ???
+!                    lower bound of used j-indices (mandatory for dynamic
+!                      compilation; default -1 indicates full domain for static
+!                      compilation)
 ! jh               [integer]
-!                    ???
+!                    upper bound of used j-indices (mandatory for dynamic
+!                      compilation; default -1 indicates full domain for static
+!                      compilation)
 ! z0_method        [integer]
 !                    bottom roughness specification
 !                    0: constant - using z0_const
@@ -152,10 +160,10 @@
    ddl = -1.0,
    d_gamma = 20.0,
    gamma_surf = .true.,
-   il = -1,
-   ih = -1,
-   jl = -1,
-   jh = -1,
+   il = 1,
+   ih = 66,
+   jl = 1,
+   jh = 66,
    z0_method = 0,
    z0_const = 0.01,
 /
