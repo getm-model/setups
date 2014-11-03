@@ -195,7 +195,7 @@ for phas in `seq $firstphase $lastphase` ; do
    # first, rename the files
    for FILE in *.out; do mv ${FILE} ${FILE%.out}.in; done
    # copy the files in the next folder
-   cp restart.???.in ${hot_dir}/
+   cp restart.????.in ${hot_dir}/
    # move the restart files to a storage folder and zip them
    # Yo might need them later! 
    mv restart.* ${hot_store_dir}
