@@ -25,8 +25,8 @@ fi
 export parallel=True; export out_dir=./Parallel;  make namelist
 mpdboot
 time ( mpiexec -np 4 bin/getm_prod_IFORT_mpi ) >& Parallel/log.time
-ncmerge Parallel/*.2d.???.nc Parallel/$setup.2d.nc && ncmerge Parallel/*.3d.???.nc Parallel/$setup.3d.nc
-rm Parallel/*.[23]d.???.nc
+ncmerge Parallel/*.2d.????.nc Parallel/$setup.2d.nc && ncmerge Parallel/*.3d.????.nc Parallel/$setup.3d.nc
+rm Parallel/*.[23]d.????.nc
 mv *.stderr Parallel/
 cp getm.inp Parallel/
 rm *.stdout
