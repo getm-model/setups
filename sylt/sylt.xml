@@ -53,6 +53,8 @@
 			<meteo_file>meteo.nc</meteo_file>
 			<tx>0.0</tx>
 			<ty>0.0</ty>
+                        <albedo_method>1</albedo_method>
+                        <albedo_const>0.0</albedo_const>
 			<swr_const>0.0</swr_const>
 			<shf_const>0.0</shf_const>
 			<evap_const>0.0</evap_const>
