@@ -1,5 +1,32 @@
+! In riverinfo.dat it is now allowed to have:
+!   empty lines
+!   comments using # or ! - everything to the right of the comment character 
+!   is discarded
+!
+! format of this file:
+!
+! a line with an integer number specifying the number of rivers to read
+!
+! lines with the following information for each of the rivers:
+! i  j  name <zl zu>
+! i,j specify the global indices of the position of the river
+! name (without spaces) is used as key to the NetCDF file with the actual data
+! zl and zu specifies the depth range over which the river influences the 
+! water column - zl and zu are depths i.e. measured from the surface. Negative
+! values have the following meaning - if zl < 0 use bottom and if zu < 0 use
+! surface. zl and zu are optional but either none or both must be specified 
+!
+! number of rivers 
+
  67
- 106    85                  Atran !   56.890  12.480     20
+!
+! here comes the actual river info data
+!  i     j                  name  zl  zu    optional comment
+!                               <optional>
+!
+
+ 106    85                  Atran 10. -1. !   56.890  12.480     20    
+! 106    85                  Atran !   56.890  12.480     20      
  102    95                GotaAlv !   57.800  11.850     20
  109    82                  Lagan !   56.550  12.950     20
  108    83                 Nissan !   56.660  12.850     20
