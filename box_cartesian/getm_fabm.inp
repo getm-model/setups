@@ -13,8 +13,8 @@
   fabm_init_file='fabm_fields.nc',
   fabm_init_format=2,
   fabm_field_no=1,
-  fabm_hor_adv=4
-  fabm_ver_adv=4
+  fabm_adv_hor=4
+  fabm_adv_ver=4
   fabm_adv_split=1
   fabm_AH=-1.
  /
