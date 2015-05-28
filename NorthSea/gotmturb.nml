@@ -114,7 +114,7 @@
   compute_c3=      .true.,
   ri_st=           0.25,
   length_lim=      .true.,
-  galp=            0.27,
+  galp=            0.53,
   const_num=       5.e-4,
   const_nuh=       5.e-4,
   k_min=           1.e-7,
