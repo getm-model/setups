@@ -74,7 +74,8 @@ distclean: clean $(name)_clean
 	$(RM) -r modules
 	$(RM) -r lib
 	$(RM) -r bin
-	$(RM) -r $(name).?d.*nc
+	$(RM)    $(name).[2-3]d.nc $(name).[2-3]d.[0-9][0-9][0-9][0-9].nc
+	$(RM)    $(name).mean.nc $(name).mean.[0-9][0-9][0-9][0-9].nc
 	$(RM) -r $(name)*.stdout
 	$(RM) -r $(name)*.stderr
 
