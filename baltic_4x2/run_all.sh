@@ -14,8 +14,6 @@ do
 done
 
 months="1 2 3 4 5 6 7 8 9 10 11 12"
-months="1 2"
-months="2"
 
 out_base=./output
 
@@ -24,12 +22,12 @@ for year in $years; do
    for month in $months; do
       if [ $year == 1990 -a $month == 1 ]; then
          ln -sf Config/baltic_4x2.xml.init baltic_4x2.xml
-         start=`printf "%04i-%02i-01 00:00:00" 1990 1`
-         stop=`printf "%04i-%02i-05 00:00:00" 1990 1`
+#         start=`printf "%04i-%02i-01 00:00:00" 1990 1`
+#         stop=`printf "%04i-%02i-05 00:00:00" 1990 1`
       else
          ln -sf Config/baltic_4x2.xml.hot baltic_4x2.xml
-         start=`printf "%04i-%02i-05 00:00:00" 1990 1`
-         stop=`printf "%04i-%02i-10 00:00:00" 1990 1`
+#         start=`printf "%04i-%02i-10 00:00:00" 1990 1`
+#         stop=`printf "%04i-%02i-11 00:00:00" 1990 1`
       fi
 
       if [ $month == 12 ]; then
@@ -40,8 +38,8 @@ for year in $years; do
          hot_month=$[$month+1]
       fi
 
-#      start=`printf "%04i-%02i-01 00:00:00" $year $month`
-#      stop=`printf "%04i-%02i-01 00:00:00" $hot_year $hot_month`
+      start=`printf "%04i-%02i-01 00:00:00" $year $month`
+      stop=`printf "%04i-%02i-01 00:00:00" $hot_year $hot_month`
 #      echo $start $stop
       out_dir=`printf "$out_base/%04i/%02i" $year $month`
       hot_dir=`printf "$out_base/%04i/%02i" $hot_year $hot_month`
