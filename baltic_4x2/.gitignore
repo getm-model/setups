@@ -3,6 +3,7 @@ build/
 FABM/
 GETM/
 GOTM/
+Meteo/
 output/
 *.stderr
 *.stdout
