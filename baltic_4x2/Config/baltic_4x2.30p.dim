@@ -1,0 +1,5 @@
+! specifies the dimensions - in case of static compilation subdomains
+   integer, parameter :: iextr=336,jextr=378
+   integer, parameter :: imin=1,imax=50,jmin=1,jmax=44
+   integer, parameter :: kmax=25
+
