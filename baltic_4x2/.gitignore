@@ -1,0 +1,11 @@
+bin/
+build/
+FABM/
+GETM/
+GOTM/
+output/
+*.stderr
+*.stdout
+adaptcoord.inp
+getm.inp
+getm_fabm.inp
