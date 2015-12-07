@@ -8,13 +8,13 @@ ADDARGS=
 STATIC += -D_$(shell echo $(name) | tr a-z A-Z)_TEST_ $(ADDARGS)
 
 ifndef GOTMDIR
-export GOTMDIR=$(HOME)/GOTM/gotm-git
+export GOTMDIR=$(HOME)/GOTM/code
 endif
 
 ver=2.5
 
 ifndef GETMDIR
-export GETMDIR = $(HOME)/GETM/getm-git
+export GETMDIR = $(HOME)/GETM/code
 endif
 srcdir  = $(GETMDIR)/src
 
