@@ -5,3 +5,4 @@ modules/
 *.stdout
 *.log
 timestamp
+fabm.nml
