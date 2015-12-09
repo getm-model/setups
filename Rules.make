@@ -56,6 +56,9 @@ nml2xml:
 namelist:
 	editscenario.py $(editscenario.py_args) $(name).xml .
 
+namelist-gui:
+	editscenario.py -g $(editscenario.py_args) $(name).xml .
+
 link:
 	(cd $(srcdir)/../include ; ln -sf $(GETM_SETUP)/$(name).dim dimensions.h)
 
