@@ -39,6 +39,9 @@ tarflags = -C .. --files-from filelist --exclude=CVS -cvzf
 clone_sources:
 	. ../clone_sources.sh
 
+cmake_config:
+	. ../CMake_configure.sh
+
 compile_getm:
 	. ../compile_getm.sh
 
