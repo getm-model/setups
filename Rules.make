@@ -36,6 +36,10 @@ editscenario.py_args=-q -e nml --schemadir=$(GETMDIR)/schemas --targetversion=ge
 
 tarflags = -C .. --files-from filelist --exclude=CVS -cvzf
 
+model: link clean
+	mkdir -p $(BINDIR)
+	$(MAKE) -e -C $(srcdir)
+
 clone_sources:
 	. ../clone_sources.sh
 
@@ -44,10 +48,6 @@ cmake_config:
 
 compile_getm:
 	. ../compile_getm.sh
-
-model: link clean
-	mkdir -p $(BINDIR)
-	$(MAKE) -e -C $(srcdir)
 
 confall confdir confflags:
 	$(MAKE) -C $(srcdir) $@
