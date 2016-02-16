@@ -1,9 +1,9 @@
 #!/bin/sh
 
-GETM_BASE=${GETM_BASE=$HOME/GETM/getm-git}
-GOTM_BASE=${GOTM_BASE=$HOME/GOTM/gotm-git}
+GETM_BASE=${GETM_BASE=$HOME/GETM/code}
+GOTM_BASE=${GOTM_BASE=$HOME/GOTM/code}
 fabm=${fabm=on}
-FABM_BASE=${FABM_BASE=$HOME/FABM/fabm-git}
+FABM_BASE=${FABM_BASE=$HOME/FABM/code}
 compiler=${compiler=ifort}
 parallel=${parallel=off}
 coordinate=${coordinate=Cartesian}
