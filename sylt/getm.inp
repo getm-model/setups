@@ -213,6 +213,14 @@
 !                 constant y stress
 !                 This variable is only used if (metforcing = True and
 !                   met_method = 1)
+! albedo_method [integer]
+!                 albedo method
+!                 This variable is only used if (metforcing = True and
+!                   met_method = 2)
+! albedo_const  [float]
+!                 constant albedo
+!                 This variable is only used if (metforcing = True and
+!                   met_method = 2)
 ! swr_const     [float, unit = W/m^2]
 !                 constant short wave radiation
 !                 This variable is only used if (metforcing = True and
@@ -250,6 +258,8 @@
    meteo_file = 'meteo.nc',
    tx = 0.0,
    ty = 0.0,
+   albedo_method = 1,
+   albedo_const = 0.0,
    swr_const = 0.0,
    shf_const = 0.0,
    evap_const = 0.0,
@@ -481,6 +491,33 @@
 !                      4: TVD-Superbee (second-order, monotone)
 !                      5: TVD-MUSCL (second-order, monotone)
 !                      6: TVD-P2-PDM (third-order, monotone)
+! turb_adv_split     [integer]
+!                      advection splitting for TKE and eps
+!                      0: no split: one 3D uvw step
+!                      1: full step splitting: u + v + w
+!                      2: half step splitting: u/2 + v/2 + w + v/2 + u/2
+!                      3: hor/ver splitting: uv + w
+!                      This variable is not used if turb_adv_hor = 0
+! turb_adv_hor       [integer]
+!                      horizontal advection scheme for TKE and eps
+!                      0: advection disabled
+!                      1: upstream (first-order, monotone)
+!                      2: 2DH-upstream with forced monotonicity
+!                      3: P2 (third-order, non-monotone)
+!                      4: TVD-Superbee (second-order, monotone)
+!                      5: TVD-MUSCL (second-order, monotone)
+!                      6: TVD-P2-PDM (third-order, monotone)
+!                      7: 2DH-J7
+!                      8: 2DH-FCT
+!                      9: 2DH-P2
+! turb_adv_ver       [integer]
+!                      vertical advection scheme for TKE and eps
+!                      0: advection disabled
+!                      1: upstream (first-order, monotone)
+!                      3: P2 (third-order, non-monotone)
+!                      4: TVD-Superbee (second-order, monotone)
+!                      5: TVD-MUSCL (second-order, monotone)
+!                      6: TVD-P2-PDM (third-order, monotone)
 ! calc_temp          [bool]
 !                      solve temperature equation
 ! calc_salt          [bool]
@@ -489,8 +526,6 @@
 !                      background viscosity
 ! avhback            [float, unit = m^2/s]
 !                      background diffusivity
-! advect_turbulence  [bool]
-!                      advect TKE and eps
 ! ip_method          [integer]
 !                      internal pressure method
 !                      1: Blumberg and Mellor
@@ -532,11 +567,13 @@
    vel3d_adv_split = 0,
    vel3d_adv_hor = 1,
    vel3d_adv_ver = 1,
+   turb_adv_split = 0,
+   turb_adv_hor = 0,
+   turb_adv_ver = 0,
    calc_temp = .false.,
    calc_salt = .false.,
    avmback = 0.0,
    avhback = 0.0,
-   advect_turbulence = .false.,
    ip_method = 1,
    ip_ramp = -1,
    vel_check = 0,
