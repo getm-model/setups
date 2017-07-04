@@ -57,10 +57,10 @@ nml2xml:
 	mv getm.inp getm.inp.old
 
 namelist:
-	editscenario.py $(editscenario.py_args) $(name).xml
+	editscenario.py $(name).xml $(editscenario.py_args)
 
 namelist-gui:
-	editscenario.py -g $(editscenario.py_args) $(name).xml
+	editscenario.py $(name).xml -g $(editscenario.py_args)
 
 link:
 	(cd $(srcdir)/../include ; ln -sf $(GETM_SETUP)/$(name).dim dimensions.h)
