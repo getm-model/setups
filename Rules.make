@@ -32,7 +32,7 @@ ifndef BINDIR
 export BINDIR=$(GETM_SETUP)/bin
 endif
 
-editscenario.py_args=-q -e nml --schemadir=$(GETMDIR)/schemas --targetversion=getm-$(ver)
+editscenario.py_args=-q -e nml . --schemadir=$(GETMDIR)/schemas --targetversion=getm-$(ver)
 
 tarflags = -C .. --files-from filelist --exclude=CVS -cvzf
 
@@ -53,14 +53,14 @@ confall confdir confflags:
 	$(MAKE) -C $(srcdir) $@
 
 nml2xml:
-	nml2xml.py -q $(GETMDIR)/schemas/getm-$(ver).schema . $(setup).xml
+	nml2xml.py -q $(GETMDIR)/schemas/getm-$(ver).schema . -e xml $(setup).xml
 	mv getm.inp getm.inp.old
 
 namelist:
-	editscenario.py $(editscenario.py_args) $(name).xml .
+	editscenario.py $(name).xml $(editscenario.py_args)
 
 namelist-gui:
-	editscenario.py -g $(editscenario.py_args) $(name).xml .
+	editscenario.py $(name).xml -g $(editscenario.py_args)
 
 link:
 	(cd $(srcdir)/../include ; ln -sf $(GETM_SETUP)/$(name).dim dimensions.h)
