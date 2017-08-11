@@ -53,14 +53,14 @@ confall confdir confflags:
 	$(MAKE) -C $(srcdir) $@
 
 nml2xml:
-	nml2xml.py -q $(GETMDIR)/schemas/getm-$(ver).schema . -e xml $(setup).xml
+	nml2xml -q $(GETMDIR)/schemas/getm-$(ver).schema . -e xml $(setup).xml
 	mv getm.inp getm.inp.old
 
 namelist:
-	editscenario.py $(name).xml $(editscenario.py_args)
+	editscenario $(name).xml $(editscenario.py_args)
 
 namelist-gui:
-	editscenario.py $(name).xml -g $(editscenario.py_args)
+	editscenario $(name).xml -g $(editscenario.py_args)
 
 link:
 	(cd $(srcdir)/../include ; ln -sf $(GETM_SETUP)/$(name).dim dimensions.h)
