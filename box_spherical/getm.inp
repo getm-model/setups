@@ -120,19 +120,19 @@
 ! il               [integer]
 !                    lower bound of used i-indices (mandatory for dynamic
 !                      compilation; default -1 indicates full domain for static
-!                      compilation)
+!                      compilation, i.e. il=1)
 ! ih               [integer]
 !                    upper bound of used i-indices (mandatory for dynamic
 !                      compilation; default -1 indicates full domain for static
-!                      compilation)
+!                      compilation, i.e. ih=iextr)
 ! jl               [integer]
 !                    lower bound of used j-indices (mandatory for dynamic
 !                      compilation; default -1 indicates full domain for static
-!                      compilation)
+!                      compilation, i.e. jl=1)
 ! jh               [integer]
 !                    upper bound of used j-indices (mandatory for dynamic
 !                      compilation; default -1 indicates full domain for static
-!                      compilation)
+!                      compilation, i.e. jh=jextr)
 ! z0_method        [integer]
 !                    bottom roughness specification
 !                    0: constant - using z0_const
