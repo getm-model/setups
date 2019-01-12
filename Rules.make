@@ -38,7 +38,7 @@ tarflags = -C .. --files-from filelist --exclude=CVS -cvzf
 
 model: link clean
 	mkdir -p $(BINDIR)
-	$(MAKE) -e -C $(srcdir)
+	$(MAKE) -C $(srcdir)
 
 clone_sources:
 	. ../clone_sources.sh
