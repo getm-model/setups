@@ -4,3 +4,6 @@
 /NorthSea.dim
 /river.nc
 /topo.nc
+parallel.inp
+par_setup.dat
+*p/
