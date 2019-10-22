@@ -72,8 +72,6 @@ else
 GETM_USE_PARALLEL=OFF
 endif
 
-ARFLAGS=rvU
-
 editscenario.py_args=-q -e nml . --schemadir=$(GETMDIR)/schemas --targetversion=getm-$(ver)
 
 tarflags = -C .. --files-from filelist --exclude=CVS -cvzf
