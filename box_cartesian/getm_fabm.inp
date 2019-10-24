@@ -1,21 +1,66 @@
 !-------------------------------------------------------------------------------
-!  Specification for 3D part of fabmlogical modelling
-!
-!  hotstart_fabm=        reading initial fields from hot-start file
-!  see getm.inp for descriptiona and valid values of the following variables
-!  fabm_hor_adv=         horizontal advection method
-!  fabm_ver_adv=         vertical advection method
-!  fabm_adv_split=       spitting scheme for advection
-!  fabm_AH=  horizontal diffusivity for fabmlogical variables
+! parameters related to treatment of fabm quantities inside getm
 !-------------------------------------------------------------------------------
+! fabm_init_method       [integer]
+!                          fabm init method
+!                          0: read from hotstart file
+!                          1: constant from fabm.nml
+!                          2: constant from fabm.nml and from 3D field
+! fabm_init_format       [integer]
+!                          format of fabm_init_file
+!                          1: ASCII
+!                          2: NetCDF
+!                          This variable is only used if fabm_init_method = 2
+! fabm_init_file         [string]
+!                          name of file with initial distribution of fabm
+!                            quantities
+!                          This variable is only used if fabm_init_method = 2
+! fabm_field_no          [integer]
+!                          what number to read initial data from
+!                          This variable is only used if (fabm_init_method = 2
+!                            and fabm_init_format = 2)
+! fabm_adv_split         [integer]
+!                          advection splitting for pelagic fabm fields
+!                          0: no split: one 3D uvw step
+!                          1: full step splitting: u + v + w
+!                          2: half step splitting: u/2 + v/2 + w + v/2 + u/2
+!                          3: hor/ver splitting: uv + w
+!                          This variable is not used if fabm_adv_hor = 0
+! fabm_adv_hor           [integer]
+!                          horizontal advection scheme for pelagic fabm fields
+!                          0: advection disabled
+!                          1: upstream (first-order, monotone)
+!                          2: 2DH-upstream with forced monotonicity
+!                          3: P2 (third-order, non-monotone)
+!                          4: TVD-Superbee (second-order, monotone)
+!                          5: TVD-MUSCL (second-order, monotone)
+!                          6: TVD-P2-PDM (third-order, monotone)
+!                          8: 2DH-FCT
+!                          9: 2DH-P2
+! fabm_adv_ver           [integer]
+!                          vertical advection scheme for pelagic fabm fields
+!                          0: advection disabled
+!                          1: upstream (first-order, monotone)
+!                          3: P2 (third-order, non-monotone)
+!                          4: TVD-Superbee (second-order, monotone)
+!                          5: TVD-MUSCL (second-order, monotone)
+!                          6: TVD-P2-PDM (third-order, monotone)
+! fabm_AH                [float, unit = m^2/s]
+!                          constant horizontal diffusivity of pelagic fabm
+!                            fields
+! fabm_surface_flux_file [string]
+!                          name of file with FABM state variable surface fluxes
+!-------------------------------------------------------------------------------
+
 &getm_fabm_nml
-  fabm_init_method=1,
-  fabm_init_file='fabm_fields.nc',
-  fabm_init_format=2,
-  fabm_field_no=1,
-  fabm_adv_hor=4
-  fabm_adv_ver=4
-  fabm_adv_split=1
-  fabm_AH=-1.
- /
+   fabm_init_method = 1,
+   fabm_init_format = 2,
+   fabm_init_file = 'fabm_fields.nc',
+   fabm_field_no = 1,
+   fabm_adv_split = 2,
+   fabm_adv_hor = 4,
+   fabm_adv_ver = 4,
+   fabm_AH = -1.0,
+   fabm_surface_flux_file = '',
+/
 
