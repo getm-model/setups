@@ -1,3 +1,7 @@
+set( GETM_USE_STATIC ON )
+set( CMAKE_INSTALL_PREFIX ${PROJECT_SOURCE_DIR}/NorthSea )
+set( GETM_COORDINATE_TYPE Spherical )
+
 if ( NOT ${GETM_USE_PARALLEL} )
     set(IEXTR 112)
     set(JEXTR 125)
@@ -11,4 +15,3 @@ else()
     set(JMAX   63)
     set(KMAX   25)
 endif()
-set(GETM_COORDINATE_TYPE Spherical)

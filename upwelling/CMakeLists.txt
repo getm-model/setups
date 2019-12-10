@@ -1,3 +1,7 @@
+set( GETM_USE_STATIC ON )
+set( CMAKE_INSTALL_PREFIX ${PROJECT_SOURCE_DIR}/upwelling )
+set( GETM_COORDINATE_TYPE Cartesian )
+
 if ( NOT ${GETM_USE_PARALLEL} )
     set(IEXTR 202)
     set(JEXTR   4)
@@ -11,4 +15,3 @@ else()
     set(JMAX    4)
     set(KMAX   25)
 endif()
-set(GETM_COORDINATE_TYPE Cartesian)

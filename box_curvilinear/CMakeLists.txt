@@ -1,3 +1,7 @@
+set( GETM_USE_STATIC ON )
+set( CMAKE_INSTALL_PREFIX ${PROJECT_SOURCE_DIR}/box_curvilinear )
+set( GETM_COORDINATE_TYPE Curvilinear )
+
 if ( NOT ${GETM_USE_PARALLEL} )
     set(IEXTR 100)
     set(JEXTR  30)
@@ -11,4 +15,3 @@ else()
     set(JMAX   15)
     set(KMAX   30)
 endif()
-set(GETM_COORDINATE_TYPE Curvilinear)
